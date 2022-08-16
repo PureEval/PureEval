@@ -1,4 +1,4 @@
-import {curry} from './curry.js'
+import { curry,uncurry } from './curry.js'
 function __iterate(fun,args){
     if(args.length==1){
         if(Array.isArray(args[0]))args[0].forEach(v=>fun(v));
@@ -16,7 +16,7 @@ function __iterate(fun,args){
     }
 }
 function iterate(fun,...args){
-    let curryed=curry(fun);
+    let curryed=curry(fun,false);
     __iterate(curryed,args);
 }
 function map(arr,rule){
@@ -28,4 +28,12 @@ function foreach(arr,v){
 function reduce(arr,fun,init){
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 }
-export { iterate,map,foreach,reduce };
+function pipe(...fun){
+    let args=fun;
+    if(args[0].curryed===true)args[0]=uncurry(args[0]);
+    return function(){
+        let result=args.shift().apply(this,arguments);
+        return args.reduce((p,c)=>c(p),result);
+    }
+}
+export { iterate,map,foreach,reduce,pipe };
