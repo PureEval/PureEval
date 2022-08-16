@@ -1,4 +1,4 @@
-function curry(fun){
+function curry(fun,save=true){
     let args="",i=0,s=fun.toString(),result,flag=0;
     if(s.substring(0,8)=='function'){
         while(s[i]!='(')++i;
@@ -18,9 +18,13 @@ function curry(fun){
     if(flag==0)result=new Function(args[args.length-1],s.substring(i+1,s.length-1));
     else result=new Function(args[args.length-1],`return ${s.substring(i,s.length)}`);
     for(let j=args.length-2;j>=0;--j)result=new Function(args[j],`return ${result.toString()}`);
+    if(save){
+        result.curryed=true;
+        result.origin=fun;
+    }
     return result;
 }
-function curry_any(fun){
+function curry_any(fun,save=true){
     let args="",i=0,s=fun.toString(),result,flag=0,head="";
     if(s.substring(0,8)=='function'){
         while(s[i]!='(')++i;
@@ -41,6 +45,14 @@ function curry_any(fun){
     if(flag==0)result=new Function(`...${args[args.length-1]}`,head+s.substring(i+1,s.length-1));
     else result=new Function(`...${args[args.length-1]}`,`${head}return ${s.substring(i,s.length)}`);
     for(let j=args.length-2;j>=0;--j)result=new Function(`...${args[j]}`,`let u=${result.toString()},i;if(${args[j]}.length>1)for(i=1;i<${args[j]}.length;++i)u=u(${args[j]}[i]);return u;`);
+    if(save){
+        result.curryed=true;
+        result.origin=fun;
+    }
     return result;
 }
-export { curry,curry_any };
+function uncurry(fun){
+    if(fun.curryed)return fun.origin;
+    else return NaN;
+}
+export { curry,curry_any,uncurry };
