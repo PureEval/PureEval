@@ -30,7 +30,6 @@ function reduce(arr,fun,init){
 }
 function pipe(...fun){
     let args=fun;
-    if(args[0].curryed===true)args[0]=uncurry(args[0]);
     return function(){
         let result=args.shift().apply(this,arguments);
         return args.reduce((p,c)=>c(p),result);
