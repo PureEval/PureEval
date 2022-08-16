@@ -16,7 +16,7 @@ function __iterate(fun,args){
     }
 }
 function iterate(fun,...args){
-    let curryed=curry(fun,false);
+    let curryed=curry(fun,0);
     __iterate(curryed,args);
 }
 function map(arr,rule){
