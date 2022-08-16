@@ -46,7 +46,6 @@ function curry_any(fun,save=true){
     return result;
 }
 function uncurry(fun){
-    if(fun.curryed)return fun.origin;
-    else return NaN;
+    return fun.origin;
 }
 export { curry,curry_any,uncurry };
