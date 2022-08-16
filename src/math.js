@@ -8,7 +8,17 @@ const rema=curry_any((a,b)=>(a%b+b)%b);
 const power=curry_any((a,b)=>Math.pow(a,b));
 const either=curry_any((a,b)=>a||b);
 const both=curry_any((a,b)=>a&&b);
+const gt=curry_any((a,b)=>a>b);
+const gte=curry_any((a,b)=>a>=b);
+const lt=curry_any((a,b)=>a<b);
+const lte=curry_any((a,b)=>a<=b);
 const negate=a=>-a;
+const upper=(a,b)=>a<b?-1:a>b?1:0;
+const under=(a,b)=>a>b?-1:a<b?1:0;
+const sort=curry_any((arr,rule)=>{
+    if(rule!=undefined)return arr.sort(rule);
+    else return arr.sort();
+})
 function average(arr){
     let result=0;
     arr.forEach(v=>result+=v);
@@ -21,4 +31,4 @@ function median(arr){
 function sum(arr){
     return arr.reduce((x,y)=>x+y);
 }
-export { add,minus,mul,div,mod,rema,power,either,both,sum,negate,average,median };
+export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median };
