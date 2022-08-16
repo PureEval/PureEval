@@ -6,6 +6,8 @@ const div=curry_any((a,b)=>a/b);
 const mod=curry_any((a,b)=>a%b);
 const rema=curry_any((a,b)=>(a%b+b)%b);
 const power=curry_any((a,b)=>Math.pow(a,b));
+const either=curry_any((a,b)=>a||b);
+const both=curry_any((a,b)=>a&&b);
 const negate=a=>-a;
 function average(arr){
     let result=0;
@@ -19,4 +21,4 @@ function median(arr){
 function sum(arr){
     return arr.reduce((x,y)=>x+y);
 }
-export { add,minus,mul,div,mod,rema,power,sum,negate,average,median };
+export { add,minus,mul,div,mod,rema,power,either,both,sum,negate,average,median };

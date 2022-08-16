@@ -3,6 +3,11 @@ function filter(arr,rule){
         return rule(v);
     });
 }
+function reject(arr,rule){
+    return arr.filter(v=>{
+        return !rule(v);
+    });
+}
 function shied(v,arr){
     if(!Array.isArray(v))v=[v];
     return arr.filter(val=>{
@@ -15,4 +20,4 @@ function choose(v,arr){
         return v.includes(val);
     });
 }
-export { filter,shied,choose };
+export { filter,reject,shied,choose };
