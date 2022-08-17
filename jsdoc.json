@@ -1,13 +1,13 @@
 {
     "source": {
-      "include": [ "./" ],
+      "include": [ "./docs/src/" ],
       "exclude": [ "./node_modules/" ]
     },
     "sourceType": "module",
     "opts": {
-        "template":"/home/lampese/GitHub/PureEval/node_modules/docdash/",
+      "template":"/home/lampese/GitHub/PureEval/node_modules/minami/",
       "encoding": "utf8",
-      "destination": "./",
+      "destination": "./docs/build/",
       "recurse": true,
       "verbose": false
     }

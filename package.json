@@ -2,16 +2,16 @@
   "name": "pureeval",
   "version": "1.0.0",
   "description": "",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json -R README.md"
+    "docs": "jsdoc -c jsdoc.json -R ./docs/README.md"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "docdash": "^1.2.0",
     "jsdoc": "^3.6.11",
+    "minami": "^1.2.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
