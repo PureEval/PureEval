@@ -1,4 +1,5 @@
-import { curry,uncurry } from './curry.js'
+import { curry_any } from '../PureEval.js';
+import { curry } from './curry.js'
 function __iterate(fun,args){
     if(args.length==1){
         if(Array.isArray(args[0]))args[0].forEach(v=>fun(v));
@@ -19,15 +20,15 @@ function iterate(fun,...args){
     let curryed=curry(fun,0);
     __iterate(curryed,args);
 }
-function map(arr,rule){
+const map=curry_any((arr,rule)=>{
     return arr.map(v=>rule(v));
-}
-function foreach(arr,v){
-    arr.forEach(v);
-}
-function reduce(arr,fun,init){
+});
+const foreach=curry_any((arr,rule)=>{
+    arr.forEach(rule);
+});
+const reduce=curry_any((arr,fun,init)=>{
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
-}
+});
 function pipe(...fun){
     let args=fun;
     return function(){
