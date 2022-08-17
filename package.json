@@ -4,12 +4,14 @@
   "description": "",
   "type":"module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "jsdoc -c jsdoc.json -R README.md"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.11",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
