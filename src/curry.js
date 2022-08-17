@@ -1,3 +1,9 @@
+/**
+ * 完全柯里化一个函数，如果需要仍希望可以多元函数的方式调用，可见 {@link curry_any}
+ * @constructor
+ * @param {fun} Function - 需要柯里化的函数
+ * @param {save} save - 是否保留原函数，不保留则无法对该函数使用 {@link uncurry} 方法 (默认为 true)
+ */
 function curry(fun,save=true){
     let args="",i=0,s=fun.toString(),result,flag=0;
     if(s.substring(0,8)=='function'){

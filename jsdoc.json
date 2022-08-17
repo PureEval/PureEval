@@ -1,0 +1,14 @@
+{
+    "source": {
+      "include": [ "./" ],
+      "exclude": [ "./node_modules/" ]
+    },
+    "sourceType": "module",
+    "opts": {
+        "template":"/home/lampese/GitHub/PureEval/node_modules/docdash/",
+      "encoding": "utf8",
+      "destination": "./",
+      "recurse": true,
+      "verbose": false
+    }
+  }
