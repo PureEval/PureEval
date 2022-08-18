@@ -6,7 +6,7 @@ module.exports = {
         outputModule: true,
     }, 
     output: {
-        filename: "[name].js",
+        filename: "PureEval.es.min.js",
         path: path.resolve(__dirname, "dist"),
         library: {
             type: "module"
