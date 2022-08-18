@@ -12,7 +12,7 @@ PureEval 具有以下特点：
 
 # Usage
 
-关于 PureEval 的使用文档可见此：[文档](PureEval.github.io)。
+关于 PureEval 的使用文档可见此：[文档](https://PureEval.github.io)。
 
 ## CommanJs
 
