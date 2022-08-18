@@ -29,7 +29,7 @@ const P=require("pureeval");
 console.log(P.add(1)(114513));//114514
 ```
 
-### release
+### Release
 
 下载最新版 [Release](https://github.com/PureEval/PureEval/releases) 中的 PureEval.common.min.js。
 
