@@ -41,7 +41,7 @@ function curry_any(fun,save=true){
     args.forEach(v=>head+=`${v}=${v}[0];`);
     if(flag==0)result=new Function(`...${args[args.length-1]}`,head+s.substring(i+1,s.length-1));
     else result=new Function(`...${args[args.length-1]}`,`${head}return ${s.substring(i,s.length)}`);
-    for(let j=args.length-2;j>=0;--j)result=new Function(`...${args[j]}`,`let u=${result.toString()},i,_t=${args[j]};if(_t.length>1)for(i=1;i<_t.length;++i)u=u(_t[i]);return u;`);
+    for(let j=args.length-2;j>=0;--j)result=new Function(`...${args[j]}`,`let u=${result.toString()},i,t=${args[j]};if(t.length>1)for(i=1;i<t.length;++i)u=u(t[i]);return u;`);
     if(save)result.origin=fun;
     return result;
 }
