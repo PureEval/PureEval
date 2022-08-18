@@ -14,9 +14,9 @@ function curry(fun,save=true){
             }
         }
     }
-    args=args.replace(/[^,|^\[a-zA-Z0-9\]]/g,'').split(',');
-    if(flag==0)result=new Function(args[args.length-1],s.substring(i+1,s.length-1));
-    else result=new Function(args[args.length-1],`return ${s.substring(i,s.length)}`);
+    args=args.replace(/[^_^,|^\[a-zA-Z0-9\]]/g,'').split(',');
+    if(flag==0)result=new Function(args[args.length-1],`arguments=Object.assign({},[${args.toString()}]);`+s.substring(i+1,s.length-1));
+    else result=new Function(args[args.length-1],`arguments=Object.assign({},[${args.toString()}]);return ${s.substring(i,s.length)}`);
     for(let j=args.length-2;j>=0;--j)result=new Function(args[j],`return ${result.toString()}`);
     if(save)result.origin=fun;
     return result;
@@ -37,11 +37,11 @@ function curry_any(fun,save=true){
             }
         }
     }
-    args=args.replace(/[^,|^\[a-zA-Z0-9\]]/g,'').split(',');
+    args=args.replace(/[^_^,|^\[a-zA-Z0-9\]]/g,'').split(',');
     args.forEach(v=>head+=`${v}=${v}[0];`);
-    if(flag==0)result=new Function(`...${args[args.length-1]}`,head+s.substring(i+1,s.length-1));
-    else result=new Function(`...${args[args.length-1]}`,`${head}return ${s.substring(i,s.length)}`);
-    for(let j=args.length-2;j>=0;--j)result=new Function(`...${args[j]}`,`let u=${result.toString()},i,_t=${args[j]};if(_t.length>1)for(i=1;i<_t.length;++i)u=u(_t[i]);return u;`);
+    if(flag==0)result=new Function(`...${args[args.length-1]}`,head+`arguments=Object.assign({},[${args.toString()}]);`+s.substring(i+1,s.length-1));
+    else result=new Function(`...${args[args.length-1]}`,`${head}arguments=Object.assign({},[${args.toString()}]);return ${s.substring(i,s.length)}`);
+    for(let j=args.length-2;j>=0;--j)result=new Function(`...${args[j]}`,`let _u=${result.toString()},i,_t=${args[j]};if(_t.length>1)for(i=1;i<_t.length;++i)_u=_u(_t[i]);return _u;`);
     if(save)result.origin=fun;
     return result;
 }
