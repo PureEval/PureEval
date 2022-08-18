@@ -5,12 +5,14 @@
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
 PureEval 具有以下特点：
-
+<img align="right" src="https://raw.githubusercontent.com/PureEval/PureEval/main/logo.svg" height="150px" alt="the deno mascot dinosaur standing in the rain">
 - 具有独特的非变量绑定式 iterate 策略。
 - 支持对任意参数已知函数函数的柯里化。
 - 体积小、代码精简，嵌入成本极低。
 
 # Usage
+
+关于 PureEval 的使用文档可见此：[文档](PureEval.github.io)。
 
 ## CommanJs
 
