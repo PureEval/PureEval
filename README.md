@@ -14,9 +14,32 @@ PureEval 具有以下特点：
 
 ## CommanJs
 
-Coming soon
+### npm
+
+```bash
+npm i pureeval
+```
+
+```javascript
+const P=require("pureeval");
+console.log(P.add(1)(114513));//114514
+```
+
+### Release
+
+下载最新版 [Release](https://github.com/PureEval/PureEval/releases) 中的 PureEval.common.min.js。
+
+```javascript
+const P=require("PureEval.common.min.js")
+console.log(P.add(1)(114513));//114514
+```
 
 ## ECMAScript
 
-Coming soon
+下载最新版 [Release](https://github.com/PureEval/PureEval/releases) 中的 PureEval.es.min.js。
+
+```javascript
+import * as P from 'PureEval.es.min.js'
+console.log(P.add(1)(114513));//114514
+```
 
