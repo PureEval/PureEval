@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="183.21332"
+   height="130.66667"
+   viewBox="0 0 183.21332 130.66667"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <g
+     id="g10"
+     transform="matrix(1.3333333,0,0,-1.3333333,-313.12766,631.41182)">
+    <g
+       id="g12"
+       transform="translate(356.08574,431.55887)"
+       style="fill:#333333">
+      <path
+         d="m 0,0 -4.04,-7 -4.04,-7 h -64.66 l 8.08,14 z"
+         style="fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path14" />
+    </g>
+    <g
+       id="g16"
+       transform="translate(372.25574,459.55887)"
+       style="fill:#333333">
+      <path
+         d="m 0,0 -4.04,-7 -4.04,-6.99 -4.04,-7.01 h -16.17 l 8.08,13.99 V -7 h 0.01 l 4.04,7 h -48.5 l 8.08,14 h 48.5 z"
+         style="fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path18" />
+    </g>
+    <g
+       id="g20"
+       transform="translate(307.58574,473.55887)"
+       style="fill:#333333">
+      <path
+         d="m 0,0 -4.03,-7 h -0.01 l -4.03,-7 h -0.01 l -4.04,-7 -4.04,-6.99 V -28 l -4.04,-6.99 V -35 l -4.04,-7 -4.04,-7 -4.04,-7 h -0.01 l -4.04,-7 -4.04,-7 -8.08,-14 -4.04,-7 -4.04,-6.99 V -98 h -16.17 l 8.09,14 4.04,7 8.08,14 4.04,6.99 V -56 l 8.09,14 4.04,7 8.08,14 4.04,7 8.08,14 z"
+         style="fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path22" />
+    </g>
+  </g>
+</svg>
