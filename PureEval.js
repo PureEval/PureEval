@@ -4,7 +4,7 @@ import { iterate,map,foreach,reduce } from './src/iterate.js'
 import { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median } from './src/math.js'
 import { range } from './src/range.js'
 import { compose,pipe } from './src/transform.js'
-import { place,bind } from './src/bind.js'
+import { _,bind } from './src/bind.js'
 export {
     curry,curry_any,uncurry,
     filter,reject,shied,choose,
@@ -12,5 +12,5 @@ export {
     add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,
     range,
     compose,pipe,
-    place,bind
+    _,bind
 }

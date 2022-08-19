@@ -52,24 +52,24 @@ const filter=curry_any((arr,rule)=>{
     return arr.filter(v=>{
         return rule(v);
     });
-},0);
+});
 const reject=curry_any((arr,rule)=>{
     return arr.filter(v=>{
         return !rule(v);
     });
-},0);
+});
 const shied=curry_any((v,arr)=>{
     if(!Array.isArray(v))v=[v];
     return arr.filter(val=>{
         return !v.includes(val);
     });
-},0);
+});
 const choose=curry_any((v,arr)=>{
     if(!Array.isArray(v))v=[v];
     return arr.filter(val=>{
         return v.includes(val);
     });
-},0)
+})
 function __iterate(fun,args){
     if(args.length==1){
         if(Array.isArray(args[0]))args[0].forEach(v=>fun(v));
@@ -125,7 +125,7 @@ const under=(a,b)=>a>b?-1:a<b?1:0;
 const sort=curry_any((arr,rule)=>{
     if(rule!=undefined)return arr.sort(rule);
     else return arr.sort();
-},0);
+});
 function median(arr){
     let w=2-arr.length%2,x=(arr.length-w)>>1;
     return average(Array.prototype.slice.call(arr,0).sort((a,b)=>a<b?-1:a>b?1:0).slice(x,x+w));
