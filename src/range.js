@@ -6,5 +6,5 @@ const range=curry_any((start,end)=>{
         let l=start.charCodeAt(),r=end.charCodeAt();
         return new Array(r-l+1).fill(start).map((v,i)=>String.fromCharCode(l+i));
     }
-},0);
+});
 export { range };
