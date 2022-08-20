@@ -1,19 +1,18 @@
-import { curry} from './curry.js'
+import { curry,curry_any } from './curry.js'
+function __deepClone(obj){
+    let _obj=JSON.stringify(obj),
+    objClone=JSON.parse(_obj);
+    return objClone;
+}
 function __iterate(fun,args){
-    if(args.length==1){
-        if(Array.isArray(args[0]))args[0].forEach(v=>fun(v));
-        else fun(args[0]);
+    let u=__deepClone(args);
+    if(u.length==1){
+        if(Array.isArray(u[0]))u[0].forEach(v=>fun(v));
+        else fun(u[0]);
         return;
     }
-    if(Array.isArray(args[0])){
-        let list=args[0];
-        args.shift();
-        list.forEach(v=>__iterate(fun(v),args));
-    }else{
-        let temp=args[0];
-        args.shift();
-        __iterate(fun(temp),args);
-    }
+    if(Array.isArray(u[0]))u.shift().forEach(v=>__iterate(fun(v),u));
+    else __iterate(fun(u.shift()),u);
 }
 /**
  * 对函数进行迭代
@@ -40,7 +39,7 @@ function iterate(fun,...args){
  * console.log(map(arr)(v=>v+1));//[ 2, 3, 4, 5, 6 ]
  * @returns {Array} 
  */
-function map(arr,rule){
+ function map(arr,rule){
     return arr.map(v=>rule(v));
 }
 /**
@@ -74,21 +73,4 @@ function foreach(arr,v){
 function reduce(arr,fun,init){
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 }
-/**
- * 返回一个管道函数，从左到右执行函数，前一个函数的返回值作为下一个函数的参数。
- * 第一个函数可以是任意元函数，但接下来的函数必须是单元函数。
- * 特别的，pipe 返回的函数不支持被柯里化，而是强制多元。
- * 实际上该函数为反向版本的 {@link_compose}。
- * @param {...Function} fun 需要执行的函数排列
- * @example
- * console.log(pipe(add(1),add(114512))(1))//114514
- * @returns {Function} 
- */
-function pipe(...fun){
-    let args=fun;
-    return function(){
-        let result=args.shift().apply(this,arguments);
-        return args.reduce((p,c)=>c(p),result);
-    }
-}
-export { iterate,map,foreach,reduce,pipe };
+export { iterate,map,foreach,reduce };
