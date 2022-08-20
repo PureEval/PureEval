@@ -26,7 +26,13 @@ function median(arr){
 function sum(arr){
     return arr.reduce((x,y)=>x+y);
 }
+function max(arr){
+    return arr.sort()[arr.length-1];
+}
+function min(arr){
+    return arr.sort()[0];
+}
 function average(arr){
     return sum(arr)/arr.length;
 }
-export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median };
+export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,max,min };
