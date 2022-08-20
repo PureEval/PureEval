@@ -4,7 +4,7 @@ module.exports = {
     mode:"production",
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "PureEval.commonjs.js",
+        filename: "PureEval.common.min.js",
         library: {
             type: 'commonjs',
         },
