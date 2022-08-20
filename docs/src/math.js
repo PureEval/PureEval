@@ -206,4 +206,24 @@ function sum(arr){
 function average(arr){
     return sum(arr)/arr.length;
 }
-export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median };
+/**
+ * 求出序列中的元素最大值
+ * @param {Array} arr - 需要求最大值的序列
+ * @example
+ * console.log(average([1,2,3,4,5,6]));//6
+ * @returns {Number} 
+ */
+function max(arr){
+    return arr.sort()[arr.length-1];
+}
+/**
+ * 求出序列中的元素最小值
+ * @param {Array} arr - 需要求最小值的序列
+ * @example
+ * console.log(average([1,2,3,4,5,6]));//1
+ * @returns {Number} 
+ */
+function min(arr){
+    return arr.sort()[0];
+}
+export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,max,min };
