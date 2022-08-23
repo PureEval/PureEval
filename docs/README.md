@@ -1,6 +1,6 @@
 # PrueEval
 
-[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v0.11-red) ![](https://img.shields.io/badge/Author-Lampese-success)
+[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v0.2-red) ![](https://img.shields.io/badge/Author-Lampese-success)
 
 [Github存储库](https://github.com/Lampese/PureEval)
 

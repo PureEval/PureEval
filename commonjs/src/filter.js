@@ -20,5 +20,5 @@ const choose=curry_any((v,arr)=>{
     return arr.filter(val=>{
         return v.includes(val);
     });
-})
+});
 export { filter,reject,shied,choose };

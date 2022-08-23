@@ -1,4 +1,4 @@
-import { curry,curry_any } from './curry.js'
+import { curry } from './curry.js'
 function __deepClone(obj){
     let _obj=JSON.stringify(obj),
     objClone=JSON.parse(_obj);
@@ -24,7 +24,7 @@ function __iterate(fun,args){
  * @returns {void} 
  */
 function iterate(fun,...args){
-    let curryed=curry(fun,0);
+    let curryed=curry((fun.curryed===true)?uncurry(fun):fun);
     __iterate(curryed,args);
 }
 /**

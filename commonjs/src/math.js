@@ -20,17 +20,17 @@ const sort=curry_any((arr,rule)=>{
     else return arr.sort();
 },0);
 function median(arr){
-    let w=2-arr.length%2,x=(arr.length-w)>>1;
+    let w=2-(arr.length&1),x=(arr.length-w)>>1;
     return average(Array.prototype.slice.call(arr,0).sort((a,b)=>a<b?-1:a>b?1:0).slice(x,x+w));
 }
 function sum(arr){
     return arr.reduce((x,y)=>x+y);
 }
 function max(arr){
-    return arr.sort()[arr.length-1];
+    return arr.reduce((x,y)=>x>y?x:y);
 }
 function min(arr){
-    return arr.sort()[0];
+    return arr.reduce((x,y)=>x<y?x:y);
 }
 function average(arr){
     return sum(arr)/arr.length;
