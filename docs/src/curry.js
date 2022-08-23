@@ -1,5 +1,8 @@
 /**
+ * <pre>
  * 完全柯里化一个函数，如果需要仍希望可以多元函数的方式调用，可见 {@link curry_any}。
+ * 被柯里化后的函数将会有一个名为 len 的属性代表原函数的参数个数。
+ * </pre>
  * @param {Function} fun - 需要柯里化的函数
  * @example
  * let f=(a,b)=>a+b;
@@ -16,7 +19,10 @@
     return result;
 }
 /**
+ * <pre>
  * 不完全柯里化一个函数，如果需要完全柯里化，可见 {@link curry}。
+ * 被柯里化后的函数将会有一个名为 len 的属性代表原函数的参数个数。
+ * </pre>
  * @param {Function} fun - 需要柯里化的函数
  * @example
  * let f=(a,b)=>a+b;
