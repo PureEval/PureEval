@@ -2,6 +2,7 @@
   "name": "pureeval",
   "version": "1.0.0",
   "description": "",
+  "type":"module",
   "scripts": {
     "docs": "jsdoc -c jsdoc.json -R ./docs/README.md"
   },
