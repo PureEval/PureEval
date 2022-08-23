@@ -1,10 +1,10 @@
-import { curry_any } from "./curry.js";
+import { __summon } from "./summon.js"
 /**
 * 人畜无害的可爱占位符，用于 {@link bind}。
 */
 const _={_P:1};
 /**
- * 将函数的部分参数固定
+ * 将函数的部分参数固定，若传入的函数已被柯里化，则将会自动解开
  * @param {Function} fun - 需要逆柯里化的函数
  * @param {...Any} args - 需要传入的参数，若为固定函数则直接传入值，否则传入 {@link _}作为占位符使用
  * @example
@@ -12,17 +12,17 @@ const _={_P:1};
  * console.log(bind(f,1,_)(2));//3
  * @returns {Function} 
  */
-function bind(func,...args){
-    let arg=[],pos=[],nowarg=[];
-    for(let i in args){
-        if(args[i]==_){
-            arg.push("a"+i);
-            pos.push(i);
-            nowarg.push(0);
-            continue;
-        }
-        nowarg.push(args[i]);
-    }
-    return (curry_any(new Function(["Fu","Ar","_F"],arg,`let _a=Object.values(arguments).splice(3);for(let i in Ar)_F[Ar[i]]=_a.shift();return Fu.apply(this,_F);`)))(func,pos,nowarg);
+ function bind(func,...args){
+    if(func.curryed===true)func=uncurry(func);
+    let pos=[],nowarg=[],cnt=0;
+    args.forEach((v,i)=>{
+        if(v==_)++cnt,pos.push(i);
+        nowarg.push(v);
+    });
+    return __summon(cnt,function(){
+        let a=Object.values(arguments),arg=[...nowarg];
+        pos.forEach(v=>arg[v]=a.shift());
+        return func.apply(this,arg);
+    });
 }
 export { _,bind };

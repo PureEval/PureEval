@@ -1,5 +1,5 @@
 /**
- * 求 a+b 的值
+ * 求 a + b 的值
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -10,7 +10,7 @@
  */
 const add=(a,b)=>a+b;
 /**
- * 求 a-b 的值
+ * 求 a - b 的值
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -21,7 +21,7 @@ const add=(a,b)=>a+b;
  */
 const minus=(a,b)=>a-b;
 /**
- * 求 a*b 的值
+ * 求 a * b 的值
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -32,7 +32,7 @@ const minus=(a,b)=>a-b;
  */
 const mul=(a,b)=>a*b;
 /**
- * 求 a/b 的值
+ * 求 a / b 的值
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -43,7 +43,7 @@ const mul=(a,b)=>a*b;
  */
 const div=(a,b)=>a/b;
 /**
- * 求 a%b 的值(与 {@link_rema} 不同的是，此处为取余运算)
+ * 求 a % b 的值(与 {@link rema} 不同的是，此处为取余运算)
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -54,7 +54,7 @@ const div=(a,b)=>a/b;
  */
 const mod=(a,b)=>a%b;
 /**
- * 求 a mod b 的值(与 {@link_mod} 不同的是，此处为取模运算)
+ * 求 a mod b 的值(与 {@link mod} 不同的是，此处为取模运算)
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -65,7 +65,7 @@ const mod=(a,b)=>a%b;
  */
 const rema=(a,b)=>(a%b+b)%b;
 /**
- * 求 a^b 的值
+ * 求 a ^ b 的值
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -76,7 +76,7 @@ const rema=(a,b)=>(a%b+b)%b;
  */
 const power=(a,b)=>Math.pow(a,b);
 /**
- * 求 a||b 的值
+ * 求 a || b 的值
  * @param {Boolean} a
  * @param {Boolean} b
  * @example
@@ -87,7 +87,7 @@ const power=(a,b)=>Math.pow(a,b);
  */
 const either=(a,b)=>a||b;
 /**
- * 求 a&&b 的值
+ * 求 a &&  b 的值
  * @param {Boolean} a
  * @param {Boolean} b
  * @example
@@ -98,7 +98,7 @@ const either=(a,b)=>a||b;
  */
 const both=(a,b)=>a&&b;
 /**
- * 判断 a<b 是否成立
+ * 判断 a < b 是否成立
  * @param {Boolean} a
  * @param {Boolean} b
  * @example
@@ -109,7 +109,7 @@ const both=(a,b)=>a&&b;
  */
 const gt=(a,b)=>a>b;
 /**
- * 判断 a<=b 是否成立
+ * 判断 a <= b 是否成立
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -120,7 +120,7 @@ const gt=(a,b)=>a>b;
  */
 const gte=(a,b)=>a>=b;
 /**
- * 判断 a>b 是否成立
+ * 判断 a > b 是否成立
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -131,7 +131,7 @@ const gte=(a,b)=>a>=b;
  */
 const lt=(a,b)=>a<b;
 /**
- * 判断 a>=b 是否成立
+ * 判断 a >= b 是否成立
  * @param {Number} a
  * @param {Number} b
  * @example
@@ -150,14 +150,14 @@ const lte=(a,b)=>a<=b;
  */
 const negate=a=>-a;
 /**
- * 返回一个适用于 {@link_sort} 的升序比较器
+ * 返回一个适用于 {@link sort} 的升序比较器
  * @example
  * console.log(P.sort([3,2,1],P.upper));//[ 1, 2, 3 ]
  * @returns {Function} 
  */
 const upper=(a,b)=>a<b?-1:a>b?1:0;
 /**
- * 返回一个适用于 {@link_sort} 的降序比较器
+ * 返回一个适用于 {@link sort} 的降序比较器
  * @example
  * console.log(P.sort([1,2,3],P.under));//[ 3, 2, 1 ]
  * @returns {Function} 
@@ -183,7 +183,7 @@ const sort=(arr,rule)=>{
  * @returns {Number} 
  */
 function median(arr){
-    let w=2-arr.length%2,x=(arr.length-w)>>1;
+    let w=2-(arr.length&1),x=(arr.length-w)>>1;
     return average(Array.prototype.slice.call(arr,0).sort((a,b)=>a<b?-1:a>b?1:0).slice(x,x+w));
 }
 /**
@@ -214,7 +214,7 @@ function average(arr){
  * @returns {Number} 
  */
 function max(arr){
-    return arr.sort()[arr.length-1];
+    return arr.reduce((x,y)=>x>y?x:y);
 }
 /**
  * 求出序列中的元素最小值
@@ -224,6 +224,6 @@ function max(arr){
  * @returns {Number} 
  */
 function min(arr){
-    return arr.sort()[0];
+    return arr.reduce((x,y)=>x<y?x:y);
 }
 export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,max,min };
