@@ -10,7 +10,7 @@ function __iterate(fun,args){
     else __iterate(fun(u.shift()),u);
 }
 function iterate(fun,...args){
-    let curryed=curry(fun,0);
+    let curryed=curry((fun.curryed===true)?uncurry(fun):fun);
     __iterate(curryed,args);
 }
 const map=curry_any((arr,rule)=>{
