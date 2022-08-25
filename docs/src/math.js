@@ -14,9 +14,9 @@ const add=(a,b)=>a+b;
  * @param {Number} a
  * @param {Number} b
  * @example
- * console.log(add(114515,1));//114514
+ * console.log(minus(114515,1));//114514
  * @example
- * console.log(add(114515)(1));//114514
+ * console.log(minus(114515)(1));//114514
  * @returns {Number} 
  */
 const minus=(a,b)=>a-b;
@@ -135,9 +135,9 @@ const lt=(a,b)=>a<b;
  * @param {Number} a
  * @param {Number} b
  * @example
- * console.log(gt(2,1));//true
+ * console.log(lte(2,1));//true
  * @example
- * console.log(gt(2)(1));//true
+ * console.log(lte(2)(1));//true
  * @returns {Boolean} 
  */
 const lte=(a,b)=>a<=b;
@@ -210,7 +210,7 @@ function average(arr){
  * 求出序列中的元素最大值
  * @param {Array} arr - 需要求最大值的序列
  * @example
- * console.log(average([1,2,3,4,5,6]));//6
+ * console.log(max([1,2,3,4,5,6]));//6
  * @returns {Number} 
  */
 function max(arr){
@@ -220,7 +220,7 @@ function max(arr){
  * 求出序列中的元素最小值
  * @param {Array} arr - 需要求最小值的序列
  * @example
- * console.log(average([1,2,3,4,5,6]));//1
+ * console.log(min([1,2,3,4,5,6]));//1
  * @returns {Number} 
  */
 function min(arr){
