@@ -12,6 +12,7 @@ const gt=curry_any((a,b)=>a>b);
 const gte=curry_any((a,b)=>a>=b);
 const lt=curry_any((a,b)=>a<b);
 const lte=curry_any((a,b)=>a<=b);
+const equal=curry_any((a,b)=>a==b);
 const negate=a=>-a;
 const upper=(a,b)=>a<b?-1:a>b?1:0;
 const under=(a,b)=>a>b?-1:a<b?1:0;
@@ -35,4 +36,4 @@ function min(arr){
 function average(arr){
     return sum(arr)/arr.length;
 }
-export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,max,min };
+export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,sort,upper,under,sum,negate,average,median,max,min,equal };

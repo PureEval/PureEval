@@ -14,4 +14,7 @@ function pipe(...fun){
     }
     return __summon(fun[0].length,f);
 }
-export { compose,pipe }
+function call(fun,args){
+    return fun.apply(this,args);
+}
+export { compose,pipe,call }
