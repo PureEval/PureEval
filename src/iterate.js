@@ -16,10 +16,13 @@ function iterate(fun,...args){
 const map=curry_any((arr,rule)=>{
     return arr.map(v=>rule(v));
 });
+const flatMap=curry_any((arr,rule)=>{
+    return arr.reduce((x,y)=>x.concat(rule(y)),[]);
+});
 const foreach=curry_any((arr,rule)=>{
     arr.forEach(rule);
 });
 const reduce=curry_any((arr,fun,init)=>{
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 });
-export { iterate,map,foreach,reduce };
+export { iterate,map,flatMap,foreach,reduce };
