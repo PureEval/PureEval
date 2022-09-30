@@ -1,4 +1,4 @@
-import { curry, curry_any } from './curry.js'
+import { curry_any } from './curry.js'
 const either=curry_any((a,b)=>a||b);
 const both=curry_any((a,b)=>a&&b);
 const gt=curry_any((a,b)=>a>b);
