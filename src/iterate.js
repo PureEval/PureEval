@@ -1,17 +1,19 @@
-import { curry,curry_any } from './curry.js'
-function __iterate(fun,args){
-    let u=[...args];
-    if(u.length==1){
-        if(Array.isArray(u[0]))u[0].forEach(v=>fun(v));
-        else fun(u[0]);
-        return;
-    }
-    if(Array.isArray(u[0]))u.shift().forEach(v=>__iterate(fun(v),u));
-    else __iterate(fun(u.shift()),u);
+import { curry, curry_any } from './curry.js'
+function __boom(args){
+    let now=args.shift().map(x=>[x]),upper=[];
+    args.forEach(v=>{
+        v.forEach(u=>now.forEach(x=>upper.push([...x,u])));
+        now=[...upper];
+        upper=[];
+    });
+    return now;
 }
 function iterate(fun,...args){
-    let curryed=curry((fun.curryed===true)?uncurry(fun):fun);
-    __iterate(curryed,args);
+    let uncurryed=(fun.curryed===true)?uncurry(fun):fun;
+    let iterateList=[],result=[];
+    args.forEach(v=>iterateList.push(Array.isArray(v)?v:[v]));
+    __boom(iterateList).forEach(v=>result.push(uncurryed.apply(null,v)));
+    return result;
 }
 const map=curry_any((arr,rule)=>{
     return arr.map(v=>rule(v));
@@ -25,4 +27,13 @@ const foreach=curry_any((arr,rule)=>{
 const reduce=curry_any((arr,fun,init)=>{
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 });
-export { iterate,map,flatMap,foreach,reduce };
+const fold=curry_any((init,fun,cnt)=>{
+    while(cnt--)init=fun(init);
+    return init;
+});
+const scan=curry_any((init,fun,cnt)=>{
+    let result=[];
+    while(cnt--)result.push(init=fun(init));
+    return result;
+});
+export { iterate,map,flatMap,foreach,reduce,fold,scan };
