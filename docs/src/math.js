@@ -76,72 +76,6 @@ const rema=(a,b)=>(a%b+b)%b;
  */
 const power=(a,b)=>Math.pow(a,b);
 /**
- * 求 a || b 的值
- * @param {Boolean} a
- * @param {Boolean} b
- * @example
- * console.log(either(1,0));//true
- * @example
- * console.log(either(1)(0));//true
- * @returns {Boolean} 
- */
-const either=(a,b)=>a||b;
-/**
- * 求 a &&  b 的值
- * @param {Boolean} a
- * @param {Boolean} b
- * @example
- * console.log(both(1,1));//true
- * @example
- * console.log(both(1)(1));//true
- * @returns {Boolean} 
- */
-const both=(a,b)=>a&&b;
-/**
- * 判断 a < b 是否成立
- * @param {Boolean} a
- * @param {Boolean} b
- * @example
- * console.log(gt(1,2));//true
- * @example
- * console.log(gt(1)(2));//true
- * @returns {Boolean} 
- */
-const gt=(a,b)=>a>b;
-/**
- * 判断 a <= b 是否成立
- * @param {Number} a
- * @param {Number} b
- * @example
- * console.log(gte(1,2));//true
- * @example
- * console.log(gte(1)(2));//true
- * @returns {Boolean} 
- */
-const gte=(a,b)=>a>=b;
-/**
- * 判断 a > b 是否成立
- * @param {Number} a
- * @param {Number} b
- * @example
- * console.log(lt(2,1));//true
- * @example
- * console.log(lt(2)(1));//true
- * @returns {Boolean} 
- */
-const lt=(a,b)=>a<b;
-/**
- * 判断 a >= b 是否成立
- * @param {Number} a
- * @param {Number} b
- * @example
- * console.log(lte(2,1));//true
- * @example
- * console.log(lte(2)(1));//true
- * @returns {Boolean} 
- */
-const lte=(a,b)=>a<=b;
-/**
  * 计算 -a 的值
  * @param {Number} a
  * @example
@@ -226,4 +160,4 @@ function max(arr){
 function min(arr){
     return arr.reduce((x,y)=>x<y?x:y);
 }
-export { add,minus,mul,div,mod,rema,power,either,both,gt,gte,lt,lte,upper,under,sort,sum,negate,average,median,max,min };
+export { add,minus,mul,div,mod,rema,power,upper,under,sort,sum,negate,average,median,max,min };

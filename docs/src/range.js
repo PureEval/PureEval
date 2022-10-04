@@ -1,6 +1,6 @@
 import { curry_any } from './curry.js'
 /**
- * 返回一个从 start 到 end 的序列（[start,end]），支持整数和字符。
+ * 返回一个从 start 到 end 的序列（[start,end]），支持整数和字符
  * @param {Any} start - 区间的左端点
  * @param {Any} end - 区间的右端点
  * @example
