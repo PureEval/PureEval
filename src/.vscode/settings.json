@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "regex": "cpp"
-    }
-}

@@ -1,5 +1,5 @@
 import { summon } from "./summon.js"
-import { uncurry } from './curry.js'
+import { curry_any, uncurry } from './curry.js'
 function compose(...fun){
     if(fun.length===1)return fun[0];
     if(fun[fun.length-1].curryed===true)fun[fun.length-1]=uncurry(fun[fun.length-1]);
@@ -14,7 +14,7 @@ function pipe(...fun){
     }
     return summon(fun[0].length,f);
 }
-function call(fun,args){
+const call=curry_any((fun,args)=>{
     return fun.apply(this,args);
-}
+});
 export { compose,pipe,call }
