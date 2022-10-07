@@ -1,6 +1,6 @@
 import { __summon } from "./summon.js"
 /**
-* 人畜无害的可爱占位符，用于 {@link bind}
+* 人畜无害的可爱占位符，用于 {@link bind} 和 {@link match}
 */
 const _={_P:1};
 /**
