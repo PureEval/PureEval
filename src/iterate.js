@@ -1,4 +1,4 @@
-import { curry_any } from './curry.js'
+import { uncurry,curry_any } from './curry.js'
 function __boom(args){
     let now=args.shift().map(x=>[x]),upper=[];
     args.forEach(v=>{
