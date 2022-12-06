@@ -1,4 +1,6 @@
 import { curry_any } from './curry.js'
+const odd=v=>v%2;
+const even=v=>!(v%2);
 const add=curry_any((a,b)=>a+b);
 const minus=curry_any((a,b)=>a-b);
 const mul=curry_any((a,b)=>a*b);
@@ -29,4 +31,4 @@ function min(arr){
 function average(arr){
     return sum(arr)/arr.length;
 }
-export { add,minus,mul,div,mod,rema,power,sort,upper,under,sum,negate,average,median,max,min };
+export { odd,even,add,minus,mul,div,mod,rema,power,sort,upper,under,sum,negate,average,median,max,min };

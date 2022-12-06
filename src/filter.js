@@ -1,10 +1,10 @@
 import { curry_any } from "./curry.js";
-const filter=curry_any((arr,rule)=>{
+const filter=curry_any((rule,arr)=>{
     return arr.filter(v=>{
         return rule(v);
     });
 });
-const reject=curry_any((arr,rule)=>{
+const reject=curry_any((rule,arr)=>{
     return arr.filter(v=>{
         return !rule(v);
     });
