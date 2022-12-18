@@ -15,16 +15,16 @@ function iterate(fun,...args){
     __boom(iterateList).forEach(v=>result.push(uncurryed.apply(null,v)));
     return result;
 }
-const map=curry_any((arr,rule)=>{
+const map=curry_any((rule,arr)=>{
     return arr.map(v=>rule(v));
 });
-const flatMap=curry_any((arr,rule)=>{
+const flatMap=curry_any((rule,arr)=>{
     return arr.reduce((x,y)=>x.concat(rule(y)),[]);
 });
-const foreach=curry_any((arr,rule)=>{
+const foreach=curry_any((rule,arr)=>{
     arr.forEach(rule);
 });
-const reduce=curry_any((arr,fun,init)=>{
+const reduce=curry_any((fun,init,arr)=>{
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 });
 const fold=curry_any((init,fun,cnt)=>{
