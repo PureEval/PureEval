@@ -2,6 +2,7 @@ import { curry_any } from './curry.js'
 import { reduce } from './iterate.js';
 const either=curry_any((a,b)=>a||b);
 const both=curry_any((a,b)=>a&&b);
+const id=v=>v;
 const gt=curry_any((a,b)=>a>b);
 const gte=curry_any((a,b)=>a>=b);
 const lt=curry_any((a,b)=>a<b);
@@ -47,4 +48,4 @@ const ifElse_v=curry_any((a,b,c)=>{
         else return c(obj);
     }
 });
-export { either,both,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v }
+export { either,both,id,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v }

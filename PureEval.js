@@ -5,7 +5,7 @@ import { odd,even,add,minus,mul,div,mod,rema,power,upper,under,sort,sum,negate,a
 import { range } from './src/range.js'
 import { compose,pipe,call } from './src/transform.js'
 import { _,bind } from './src/bind.js'
-import { either,both,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v } from './src/logic.js'
+import { either,both,id,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v } from './src/logic.js'
 import { summon } from './src/summon.js'
 import { match } from './src/match.js'
 export {
@@ -16,7 +16,7 @@ export {
     range,
     compose,pipe,call,
     _,bind,
-    either,both,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v,
+    either,both,id,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v,
     summon,
     match
 }
