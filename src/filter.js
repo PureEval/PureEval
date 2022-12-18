@@ -1,4 +1,5 @@
 import { curry_any } from "./curry.js";
+
 const filter=curry_any((rule,arr)=>{
     return arr.filter(v=>{
         return rule(v);

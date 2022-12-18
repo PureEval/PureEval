@@ -1,5 +1,6 @@
 import { _ } from './bind.js' 
 import { arr_equal } from './logic.js';
+
 function match(...rules){
     return function(value){
         for(let i=0;i<rules.length;i+=2){

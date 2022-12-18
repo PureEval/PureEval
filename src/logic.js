@@ -1,5 +1,6 @@
 import { curry_any } from './curry.js'
 import { reduce } from './iterate.js';
+
 const either=curry_any((a,b)=>a||b);
 const both=curry_any((a,b)=>a&&b);
 const id=v=>v;

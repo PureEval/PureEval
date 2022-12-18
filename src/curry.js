@@ -11,7 +11,7 @@ function curry_any(fun,...argv){
     else{
         let result=curry_any.bind(null,...arguments);
         result.curryed=true;
-        result.len=fun.length;
+        result.len=fun.length-(arguments.length-1);
         result.origin=fun;
         return result;
     }

@@ -1,4 +1,5 @@
 import { curry_any } from './curry.js'
+
 const range=curry_any((start,end)=>{
     if(typeof start==='number'&&typeof end==='number')
         return new Array(end-start+1).fill(start).map((v,i)=>start+i);
