@@ -1,5 +1,6 @@
 import { summon } from "./summon.js"
 import { uncurry } from "./curry.js";
+
 const _={_P:1};
 function bind(func,...args){
     if(func.curryed===true)func=uncurry(func);

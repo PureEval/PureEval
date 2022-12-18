@@ -1,4 +1,5 @@
 import { uncurry,curry_any } from './curry.js'
+
 function __boom(args){
     let now=args.shift().map(x=>[x]),upper=[];
     args.forEach(v=>{
@@ -27,7 +28,7 @@ const foreach=curry_any((rule,arr)=>{
 const reduce=curry_any((fun,init,arr)=>{
     return init!=undefined?arr.reduce(fun,init):arr.reduce(fun);
 });
-const fold=curry_any((init,fun,cnt)=>{
+const fold=curry_any((fun,cnt,init)=>{
     while(cnt--)init=fun(init);
     return init;
 });
@@ -36,4 +37,4 @@ const scan=curry_any((init,fun,cnt)=>{
     while(cnt--)result.push(init=fun(init));
     return result;
 });
-export { iterate,map,flatMap,foreach,reduce,fold,scan };    
+export { iterate,map,flatMap,foreach,reduce,fold,scan };

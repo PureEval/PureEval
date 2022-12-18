@@ -1,4 +1,5 @@
 import { curry_any } from './curry.js'
+
 const odd=v=>v%2;
 const even=v=>!(v%2);
 const add=curry_any((a,b)=>a+b);
