@@ -33,5 +33,6 @@ const higherComp=curry_any((functions,iv)=>{
         fold(value,processedIv[index])))
         (firstFunction.len===1?fold(firstFunction,firstFunctionIv,args[0]):firstFunction(...args)));
 });
-
-export { higherPipe,higherComp };
+const coalgebra=curry_any((seed,next)=>()=>seed=next(seed));
+const stateMachine=curry_any((seed,functions)=>iv=>seed=higherPipe(functions,iv)(seed));
+export { higherPipe,higherComp,coalgebra,stateMachine };

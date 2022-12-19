@@ -8,7 +8,7 @@ import { _,bind } from './src/bind.js'
 import { either,both,id,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v } from './src/logic.js'
 import { summon } from './src/summon.js'
 import { match } from './src/match.js'
-import { higherPipe,higherComp } from './src/statemachine.js'
+import { higherPipe,higherComp,coalgebra,stateMachine } from './src/stateMachine.js'
 export {
     curry,curry_any,uncurry,
     filter,reject,shied,choose,
@@ -20,5 +20,5 @@ export {
     either,both,id,gt,gte,lt,lte,equal,arr_equal,common,always,when,unless,ifElse,when_v,unless_v,ifElse_v,
     summon,
     match,
-    higherPipe,higherComp
+    higherPipe,higherComp,coalgebra,stateMachine
 }
