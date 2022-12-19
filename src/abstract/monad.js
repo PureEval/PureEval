@@ -1,23 +1,23 @@
 class Monad {
     constructor(v) {
-        this.value = v
+        this.value = v;
     }
 
     static lift(v){
-        return new Monad(v)
+        return new Monad(v);
     }
 
     map(f){
-        return this.lift(f(this.v))
+        return this.lift(f(this.v));
     }
 
     chain(f){
-        return f(this.value)
+        return f(this.value);
     }
 
     apply(m){
-        return m.map(this.value)
+        return m.map(this.value);
     }
 }
 
-export {Monad}
+export { Monad }

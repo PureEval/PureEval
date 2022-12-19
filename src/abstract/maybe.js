@@ -1,4 +1,4 @@
-import {Monad} from './monad.js' 
+import { Monad } from './monad.js' 
 
 class Maybe extends Monad {
     constructor(value) {
@@ -6,9 +6,13 @@ class Maybe extends Monad {
     }
 
     static lift(v){
-        return new Maybe(v)
+        return new Maybe(v);
     }
   
+    static is(m){
+      return Object.prototype.toString.call(m)==='[object Object]'&&m.constructor===Maybe;
+    }
+
     isNothing() {
       return this.value === null || this.value === undefined;
     }
@@ -27,3 +31,8 @@ class Maybe extends Monad {
       return f(this.value);
     }
 }
+
+const Nothing=Maybe.lift(null);
+const Just=x=>Maybe.lift(x);
+
+export { Maybe,Nothing,Just }
