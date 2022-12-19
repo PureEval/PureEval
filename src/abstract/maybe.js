@@ -30,6 +30,10 @@ class Maybe extends Monad {
       }
       return f(this.value);
     }
+
+    fold(asNothing,asJust){
+      return this.isNothing()?asNothing(this.value):asJust(this.value);
+    }
 }
 
 const Nothing=Maybe.lift(null);
