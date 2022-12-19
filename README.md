@@ -7,9 +7,11 @@ PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而
 PureEval 具有以下特点：
 <img align="right" src="https://raw.githubusercontent.com/PureEval/PureEval/main/logo.svg" height="150px" alt="logo">
 
-- 具有独特的非变量绑定式 iterate 策略。
 - 支持对任意参数已知函数函数的柯里化。
-- 体积小、代码精简，嵌入成本极低。
+- 拥有可用的 Monad 单子和 optics 组件。
+- 拥有独特的非变量绑定式 iterate 策略。
+- 拥有一套美妙且实用的状态机体系。
+- 体积小、代码精简，但功能强大，嵌入成本极低。
 
 # Usage
 
