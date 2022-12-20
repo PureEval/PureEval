@@ -10,7 +10,7 @@ import { summon } from './src/summon.js'
 import { match } from './src/match.js'
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js'
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js'
-import { prop, assoc, valuesIn } from './src/object.js'
+import { prop, assoc, modify, dissoc, valuesIn } from './src/object.js'
 import { Lens, view, set, over } from './src/abstract/optics.js'
 export {
     curry, curry_any, uncurry,
@@ -25,6 +25,6 @@ export {
     match,
     higherPipe, higherComp, coalgebra, stateMachine,
     Maybe, Nothing, Just,
-    prop, assoc, valuesIn,
+    prop, assoc, modify, dissoc, valuesIn,
     Lens, view, set, over
 }
