@@ -1,22 +1,23 @@
+import { curry_any } from "../curry.js";
+import { assoc, prop } from "../object.js";
+
 class Lens {
     constructor(getter, setter) {
         this.get = getter;
         this.set = setter;
     }
 
-    // Modify the focused value
-    map(f) {
-        return new Lens(
-            this.get,
-            value => this.set(f(value))
-        );
+    static of(getter, setter) {
+        return new Lens(getter, setter);
     }
 
-    // Compose Lens
-    compose(other) {
-        return new Lens(
-            () => other.get(this.get()),
-            value => this.set(other.set(value))
-        );
+    static bind(pos) {
+        return new Lens(prop(pos), assoc(pos));
     }
 }
+
+const view = curry_any((lens, value) => lens.get(value));
+const set = curry_any((lens, opt, value) => lens.set(opt, value));
+const over = curry_any((lens, f, value) => lens.set(f(lens.get(value)), value));
+
+export { Lens, view, set, over }
