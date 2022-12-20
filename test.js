@@ -1,3 +1,5 @@
-import * as P from './PureEval.js';
+import * as P from './PureEval.js'
 
-console.log(P.match(P.Nothing,v=>console.log(111))(P.Nothing))
+const xL=P.Lens.bind(["x",0,"b"]);
+
+console.log(JSON.stringify(P.set(xL,100,{x:[{b:1}]})));

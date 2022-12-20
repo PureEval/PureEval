@@ -3,19 +3,19 @@ class Monad {
         this.value = v;
     }
 
-    static lift(v){
+    static lift(v) {
         return new Monad(v);
     }
 
-    map(f){
+    map(f) {
         return this.lift(f(this.v));
     }
 
-    chain(f){
+    chain(f) {
         return f(this.value);
     }
 
-    apply(m){
+    apply(m) {
         return m.map(this.value);
     }
 }
