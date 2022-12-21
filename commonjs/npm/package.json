@@ -1,6 +1,6 @@
 {
   "name": "pureeval",
-  "version": "3.0.0",
+  "version": "10.0.0",
   "description": "A powerful simple JavaScript function-like toolset.",
   "scripts": {
     "docs": "jsdoc -c jsdoc.json -R ./docs/README.md"
