@@ -50,4 +50,4 @@ const ifElse_v = curry_any((a, b, c) => {
     }
 });
 
-export { either, both, id, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v }
+export { either, both, id, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v };

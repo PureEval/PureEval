@@ -31,6 +31,4 @@ class Profunctor {
     }
 }
 
-
-
-export { Profunctor }
+export { Profunctor };

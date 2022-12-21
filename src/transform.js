@@ -17,4 +17,4 @@ const call = curry_any((fun, args) => {
     return fun.apply(this, args);
 });
 
-export { compose, pipe, call }
+export { compose, pipe, call };

@@ -10,8 +10,9 @@ import { summon } from './src/summon.js'
 import { match } from './src/match.js'
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js'
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js'
-import { prop, assoc, modify, dissoc, valuesIn } from './src/object.js'
+import { prop, assoc, modify, dissoc, valuesIn, has } from './src/object.js'
 import { Lens, view, set, over } from './src/abstract/optics.js'
+import { rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words } from './src/string.js'
 export {
     curry, curry_any, uncurry,
     filter, reject, shied, choose,
@@ -25,6 +26,7 @@ export {
     match,
     higherPipe, higherComp, coalgebra, stateMachine,
     Maybe, Nothing, Just,
-    prop, assoc, modify, dissoc, valuesIn,
-    Lens, view, set, over
+    prop, assoc, modify, dissoc, valuesIn, has,
+    Lens, view, set, over,
+    rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words
 }
