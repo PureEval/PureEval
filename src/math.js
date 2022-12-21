@@ -23,6 +23,9 @@ function median(arr) {
 function sum(arr) {
     return arr.reduce((x, y) => x + y);
 }
+function prod(arr) {
+    return arr.reduce((x, y) => x * y);
+}
 function max(arr) {
     return arr.reduce((x, y) => x > y ? x : y);
 }
@@ -32,5 +35,11 @@ function min(arr) {
 function average(arr) {
     return sum(arr) / arr.length;
 }
+function inc(x) {
+    return x + 1;
+}
+function dec(x) {
+    return x - 1;
+}
 
-export { odd, even, add, minus, mul, div, mod, rema, power, sort, upper, under, sum, negate, average, median, max, min };
+export { odd, even, add, minus, mul, div, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec };
