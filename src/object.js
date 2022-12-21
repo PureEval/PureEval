@@ -82,5 +82,6 @@ function valuesIn(x) {
     for (let i in x) result.push(x[i]);
     return x;
 }
+const has = curry_any((prop, obj) => obj.hasOwnProperty(prop));
 
-export { prop, assoc, modify, dissoc, valuesIn };
+export { prop, assoc, modify, dissoc, valuesIn, has };

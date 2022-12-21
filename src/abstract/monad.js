@@ -20,4 +20,4 @@ class Monad {
     }
 }
 
-export { Monad }
+export { Monad };
