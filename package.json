@@ -12,7 +12,7 @@
   "devDependencies": {
     "jsdoc": "^3.6.11",
     "minami": "^1.2.3",
-    "webpack": "^5.74.0",
+    "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
   }
 }
