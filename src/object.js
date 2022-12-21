@@ -1,5 +1,6 @@
-import { Just, Nothing } from "../PureEval.js";
+import { Just, Nothing } from "./abstract/maybe.js";
 import { curry_any } from "./curry.js";
+import { summon } from './summon.js'
 
 function _assoc(pos, val, obj) {
     if (Array.isArray(obj)) {
@@ -65,7 +66,7 @@ const modify = curry_any((s, f, a) => {
     }
     return a;
 });
-let dissoc = curry_any((s, a) => {
+const dissoc = curry_any((s, a) => {
     if (Array.isArray(s)) {
         switch (s.length) {
             case 0: return a;
@@ -82,6 +83,12 @@ function valuesIn(x) {
     for (let i in x) result.push(x[i]);
     return x;
 }
+function makePair(arr) {
+    let result = {};
+    for (let i in arr) result[arr[i][0]] = arr[i][1];
+    return result;
+}
+const construct = cls => curry_any(summon(cls.constructor.length, (...args) => new cls(...args)));
 const has = curry_any((prop, obj) => obj.hasOwnProperty(prop));
 
-export { prop, assoc, modify, dissoc, valuesIn, has };
+export { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has };
