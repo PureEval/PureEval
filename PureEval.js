@@ -13,7 +13,7 @@ import { Maybe, Nothing, Just } from './src/abstract/maybe.js'
 import { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has } from './src/object.js'
 import { Lens, view, set, over } from './src/abstract/optics.js'
 import { rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words } from './src/string.js'
-import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, check, concat, reverse } from './src/list.js'
+import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, reverse } from './src/list.js'
 export {
     curry, curry_any, uncurry,
     filter, reject, shied, choose,
@@ -30,5 +30,5 @@ export {
     prop, assoc, modify, dissoc, valuesIn, makePair, construct, has,
     Lens, view, set, over,
     rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words,
-    zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, check, concat, reverse
+    zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, reverse
 }
