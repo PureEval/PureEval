@@ -8,7 +8,7 @@ PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而
 
 PureEval 具有以下特点：
 
-- 支持对任意参数已知函数函数的柯里化。
+- 支持对任意参数函数的柯里化。
 
 - 拥有可用的 Monad 单子和 optics 组件。
 
