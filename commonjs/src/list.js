@@ -1,6 +1,6 @@
-import { curry_any } from "./curry.js";
+import { curry } from "./curry.js";
 
-const zipWith = curry_any((f, a, b) => {
+const zipWith = curry((f, a, b) => {
     let result = [], index = 0, end = Math.min(a.length, b.length);
     while (index < end) {
         result.push(f(a[index], b[index]));
@@ -9,10 +9,10 @@ const zipWith = curry_any((f, a, b) => {
     return result;
 });
 const zip = zipWith((a, b) => [a, b]);
-const join = curry_any((s, arr) => arr.join(s));
-const slice = curry_any((start, end, arr) => arr.splice(start, end));
-const take = curry_any((pos, arr) => slice(0, pos - 1, arr));
-const takeWhile = curry_any((f, arr) => {
+const join = curry((s, arr) => arr.join(s));
+const slice = curry((start, end, arr) => arr.splice(start, end));
+const take = curry((pos, arr) => slice(0, pos - 1, arr));
+const takeWhile = curry((f, arr) => {
     let result = [], index = 0, end = arr.length;
     while (index < end) {
         if (f(arr[index])) result.push(arr[index]);
@@ -21,8 +21,8 @@ const takeWhile = curry_any((f, arr) => {
     }
     return result;
 });
-const drop = curry_any((pos, arr) => arr.slice(pos));
-const dropWhile = curry_any((f, arr) => {
+const drop = curry((pos, arr) => arr.slice(pos));
+const dropWhile = curry((f, arr) => {
     let result = [], index = 0, end = arr.length, flag = false;
     while (index < end) {
         if (flag) result.push(arr[index]);
@@ -34,7 +34,7 @@ const dropWhile = curry_any((f, arr) => {
     }
     return result;
 });
-const allCheck = curry_any((f, arr) => {
+const allCheck = curry((f, arr) => {
     let index = 0, end = arr.length;
     while (index < end) {
         if (!f(arr[index])) return false;
@@ -42,7 +42,7 @@ const allCheck = curry_any((f, arr) => {
     }
     return true;
 });
-const anyCheck = curry_any((f, arr) => {
+const anyCheck = curry((f, arr) => {
     let index = 0, end = arr.length;
     while (index < end) {
         if (f(arr[index])) return true;
@@ -50,7 +50,7 @@ const anyCheck = curry_any((f, arr) => {
     }
     return false;
 });
-const concat = curry_any((a, b) => {
+const concat = curry((a, b) => {
     if (Array.isArray(a)) return a.concat(b);
     else return a + b;
 });

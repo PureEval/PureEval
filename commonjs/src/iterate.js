@@ -1,4 +1,4 @@
-import { uncurry, curry_any } from './curry.js'
+import { uncurry, curry } from './curry.js'
 
 function __boom(args) {
     let now = args.shift().map(x => [x]), upper = [];
@@ -16,23 +16,23 @@ function iterate(fun, ...args) {
     __boom(iterateList).forEach(v => result.push(uncurryed.apply(null, v)));
     return result;
 }
-const map = curry_any((rule, arr) => {
+const map = curry((rule, arr) => {
     return arr.map(v => rule(v));
 });
-const flatMap = curry_any((rule, arr) => {
+const flatMap = curry((rule, arr) => {
     return arr.reduce((x, y) => x.concat(rule(y)), []);
 });
-const foreach = curry_any((rule, arr) => {
+const foreach = curry((rule, arr) => {
     arr.forEach(rule);
 });
-const reduce = curry_any((fun, init, arr) => {
+const reduce = curry((fun, init, arr) => {
     return init != undefined ? arr.reduce(fun, init) : arr.reduce(fun);
 });
-const fold = curry_any((fun, cnt, init) => {
+const fold = curry((fun, cnt, init) => {
     while (cnt--) init = fun(init);
     return init;
 });
-const scan = curry_any((init, fun, cnt) => {
+const scan = curry((init, fun, cnt) => {
     let result = [];
     while (cnt--) result.push(init = fun(init));
     return result;

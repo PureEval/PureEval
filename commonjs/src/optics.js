@@ -1,4 +1,4 @@
-import { curry_any } from "../curry.js";
+import { curry } from "../curry.js";
 import { assoc, prop } from "../object.js";
 
 class Lens {
@@ -16,8 +16,8 @@ class Lens {
     }
 }
 
-const view = curry_any((lens, value) => lens.get(value));
-const set = curry_any((lens, opt, value) => lens.set(opt, value));
-const over = curry_any((lens, f, value) => lens.set(f(lens.get(value)), value));
+const view = curry((lens, value) => lens.get(value));
+const set = curry((lens, opt, value) => lens.set(opt, value));
+const over = curry((lens, f, value) => lens.set(f(lens.get(value)), value));
 
 export { Lens, view, set, over };

@@ -1,11 +1,11 @@
 import { Just, Nothing } from "./abstract/maybe.js";
-import { curry_any } from "./curry.js";
+import { curry } from "./curry.js";
 
-const rexMatch = curry_any((rex, str) => str.match(rex));
-const rexReplace = curry_any((rex, to, str) => str.replace(rex, to));
-const rexTest = curry_any((rex, str) => str.test(rex));
-const toString = curry_any(val => Just(val).isNothing() ? Nothing : val.toString());
-const split = curry_any((char, str) => str.split(char));
+const rexMatch = curry((rex, str) => str.match(rex));
+const rexReplace = curry((rex, to, str) => str.replace(rex, to));
+const rexTest = curry((rex, str) => str.test(rex));
+const toString = curry(val => Just(val).isNothing() ? Nothing : val.toString());
+const split = curry((char, str) => str.split(char));
 const toLower = v => v.toLowerCase();
 const toUpper = v => v.toUpperCase();
 const trim = v => v.trim();

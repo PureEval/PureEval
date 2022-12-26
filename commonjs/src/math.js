@@ -1,18 +1,18 @@
-import { curry_any } from './curry.js'
+import { curry } from './curry.js'
 
 const odd = v => v % 2;
 const even = v => !(v % 2);
-const add = curry_any((a, b) => a + b);
-const minus = curry_any((a, b) => a - b);
-const mul = curry_any((a, b) => a * b);
-const div = curry_any((a, b) => a / b);
-const mod = curry_any((a, b) => a % b);
-const rema = curry_any((a, b) => (a % b + b) % b);
-const power = curry_any((a, b) => Math.pow(a, b));
+const add = curry((a, b) => a + b);
+const minus = curry((a, b) => a - b);
+const mul = curry((a, b) => a * b);
+const div = curry((a, b) => a / b);
+const mod = curry((a, b) => a % b);
+const rema = curry((a, b) => (a % b + b) % b);
+const power = curry((a, b) => Math.pow(a, b));
 const negate = a => -a;
 const upper = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const under = (a, b) => a > b ? -1 : a < b ? 1 : 0;
-const sort = curry_any((arr, rule) => {
+const sort = curry((arr, rule) => {
     if (rule != undefined) return arr.sort(rule);
     else return arr.sort();
 });

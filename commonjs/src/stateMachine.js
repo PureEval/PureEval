@@ -1,9 +1,9 @@
-import { curry_any } from './curry.js'
+import { curry } from './curry.js'
 import { fold } from './iterate.js';
 import { summon } from './summon.js';
 import { compose, pipe } from './transform.js';
 
-const higherPipe = curry_any((functions, iv) => {
+const higherPipe = curry((functions, iv) => {
     let processed = [], processedIv = [], firstFunction, firstFunctionIv;
     iv.forEach((value, index) => {
         if (value !== 0) {
@@ -18,7 +18,7 @@ const higherPipe = curry_any((functions, iv) => {
             fold(value, processedIv[index])))
             (firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args)));
 });
-const higherComp = curry_any((functions, iv) => {
+const higherComp = curry((functions, iv) => {
     let processed = [], processedIv = [], firstFunction, firstFunctionIv;
     iv.forEach((value, index) => {
         if (value !== 0) {
@@ -33,7 +33,7 @@ const higherComp = curry_any((functions, iv) => {
             fold(value, processedIv[index])))
             (firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args)));
 });
-const coalgebra = curry_any((seed, next) => () => seed = next(seed));
-const stateMachine = curry_any((seed, functions) => iv => seed = higherPipe(functions, iv)(seed));
+const coalgebra = curry((seed, next) => () => seed = next(seed));
+const stateMachine = curry((seed, functions) => iv => seed = higherPipe(functions, iv)(seed));
 
 export { higherPipe, higherComp, coalgebra, stateMachine };

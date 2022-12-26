@@ -1,6 +1,6 @@
-import { curry_any } from './curry.js'
+import { curry } from './curry.js'
 
-const range = curry_any((start, end) => {
+const range = curry((start, end) => {
     if (typeof start === 'number' && typeof end === 'number')
         return new Array(end - start + 1).fill(start).map((v, i) => start + i);
     else if (typeof start === 'string' && typeof end === 'string') {
