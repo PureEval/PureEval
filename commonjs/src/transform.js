@@ -1,5 +1,5 @@
 import { summon } from "./summon.js"
-import { curry, uncurry } from './curry.js'
+import { curry } from './curry.js'
 
 function compose(...fun) {
     if (fun.length === 1) return fun[0];
