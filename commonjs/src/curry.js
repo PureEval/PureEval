@@ -6,10 +6,10 @@ function curry(fun) {
     result.len = fun.length;
     return result;
 }
-function curry_any(fun, ...argv) {
+function curry(fun, ...argv) {
     if (fun.length === argv.length) return fun.call(null, ...argv);
     else {
-        let result = curry_any.bind(null, ...arguments);
+        let result = curry.bind(null, ...arguments);
         result.curryed = true;
         result.len = fun.length - (arguments.length - 1);
         result.origin = fun;
@@ -20,4 +20,4 @@ function uncurry(fun) {
     return fun.origin;
 }
 
-export { curry, curry_any, uncurry };
+export { curry, curry, uncurry };

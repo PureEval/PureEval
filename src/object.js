@@ -1,5 +1,5 @@
 import { Just, Nothing } from "./abstract/maybe.js";
-import { curry_any } from "./curry.js";
+import { curry } from "./curry.js";
 import { summon } from './summon.js'
 
 function _assoc(pos, val, obj) {
@@ -32,7 +32,7 @@ function _dissoc(pos, obj) {
     return result;
 }
 
-const prop = curry_any((s, a) => {
+const prop = curry((s, a) => {
     if (Array.isArray(s)) {
         let value = a;
         for (let index in s)
@@ -40,7 +40,7 @@ const prop = curry_any((s, a) => {
         return value;
     } else return a[s];
 });
-const assoc = curry_any((s, v, a) => {
+const assoc = curry((s, v, a) => {
     if (Array.isArray(s)) {
         let idx = s[0];
         if (s.length > 1) {
@@ -50,7 +50,7 @@ const assoc = curry_any((s, v, a) => {
         return _assoc(idx, v, a);
     } else return _assoc(s, v, a);
 });
-const modify = curry_any((s, f, a) => {
+const modify = curry((s, f, a) => {
     if (Array.isArray(s)) {
         let value = a;
         for (let index in s) {
@@ -66,7 +66,7 @@ const modify = curry_any((s, f, a) => {
     }
     return a;
 });
-const dissoc = curry_any((s, a) => {
+const dissoc = curry((s, a) => {
     if (Array.isArray(s)) {
         switch (s.length) {
             case 0: return a;
@@ -88,7 +88,7 @@ function makePair(arr) {
     for (let i in arr) result[arr[i][0]] = arr[i][1];
     return result;
 }
-const construct = cls => curry_any(summon(cls.constructor.length, (...args) => new cls(...args)));
-const has = curry_any((prop, obj) => obj.hasOwnProperty(prop));
+const construct = cls => curry(summon(cls.constructor.length, (...args) => new cls(...args)));
+const has = curry((prop, obj) => obj.hasOwnProperty(prop));
 
 export { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has };

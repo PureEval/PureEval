@@ -1,4 +1,4 @@
-import { curry_any } from './curry.js'
+import { curry } from './curry.js'
 /**
 * 求 a || b 的值
 * @param {Boolean} a

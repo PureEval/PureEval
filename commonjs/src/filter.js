@@ -1,22 +1,22 @@
-import { curry_any } from "./curry.js";
+import { curry } from "./curry.js";
 
-const filter = curry_any((rule, arr) => {
+const filter = curry((rule, arr) => {
     return arr.filter(v => {
         return rule(v);
     });
 });
-const reject = curry_any((rule, arr) => {
+const reject = curry((rule, arr) => {
     return arr.filter(v => {
         return !rule(v);
     });
 });
-const shied = curry_any((v, arr) => {
+const shied = curry((v, arr) => {
     if (!Array.isArray(v)) v = [v];
     return arr.filter(val => {
         return !v.includes(val);
     });
 });
-const choose = curry_any((v, arr) => {
+const choose = curry((v, arr) => {
     if (!Array.isArray(v)) v = [v];
     return arr.filter(val => {
         return v.includes(val);
