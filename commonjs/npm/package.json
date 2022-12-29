@@ -1,17 +1,8 @@
 {
   "name": "pureeval",
   "version": "1.2.0",
-  "description": "A powerful simple JavaScript function-like toolset.",
-  "scripts": {
-    "docs": "jsdoc -c jsdoc.json -R ./docs/README.md"
-  },
+  "description": "A powerful simple JavaScript functional-programming toolset.",
   "keywords": ["fp","eval"],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "jsdoc": "^3.6.11",
-    "minami": "^1.2.3",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
-  }
+  "license": "ISC"
 }
