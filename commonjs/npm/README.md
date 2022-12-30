@@ -1,6 +1,6 @@
 # PrueEval
 
-[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v1.1-red) [![](https://img.shields.io/badge/npm-pureeval-blue.svg)](https://www.npmjs.com/pureeval)
+[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v1.3-red) [![](https://img.shields.io/badge/npm-pureeval-blue.svg)](https://www.npmjs.com/pureeval)
 
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
@@ -16,6 +16,8 @@ PureEval 具有以下特点：
 # Usage
 
 关于 PureEval 的使用文档可见此：[文档](https://PureEval.github.io)。
+
+对于中国大陆开发者，可访问[托管在 Cloudflare 的文档](https://PureEval.shannon.science)。
 
 ## CommanJs
 

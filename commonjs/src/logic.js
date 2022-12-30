@@ -20,11 +20,13 @@ const always = v => () => v;
 const when = curry((a, b) => {
     return function (obj) {
         if (a(obj)) return b();
+        return obj;
     }
 });
 const unless = curry((a, b) => {
     return function (obj) {
         if (!a(obj)) return b();
+        return obj;
     }
 });
 const ifElse = curry((a, b, c) => {
@@ -36,11 +38,13 @@ const ifElse = curry((a, b, c) => {
 const when_v = curry((a, b) => {
     return function (obj) {
         if (a(obj)) return b(obj);
+        return obj;
     }
 });
 const unless_v = curry((a, b) => {
     return function (obj) {
         if (!a(obj)) return b(obj);
+        return obj;
     }
 });
 const ifElse_v = curry((a, b, c) => {

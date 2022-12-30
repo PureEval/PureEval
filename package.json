@@ -2,7 +2,6 @@
   "name": "pureeval",
   "version": "1.0.0",
   "description": "A powerful simple JavaScript functional-programming toolset.",
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
