@@ -1,5 +1,6 @@
 {
   "name": "pureeval",
+  "type": "module",
   "version": "1.0.0",
   "description": "A powerful simple JavaScript functional-programming toolset.",
   "keywords": [],
