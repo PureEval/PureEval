@@ -3,7 +3,7 @@ import { reduce } from './iterate.js';
 
 const either = curry((a, b) => a || b);
 const both = curry((a, b) => a && b);
-const id = v => v;
+const not = v => !v;
 const gt = curry((a, b) => a > b);
 const gte = curry((a, b) => a >= b);
 const lt = curry((a, b) => a < b);
@@ -54,4 +54,4 @@ const ifElse_v = curry((a, b, c) => {
     }
 });
 
-export { either, both, id, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v };
+export { either, both, not, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v };

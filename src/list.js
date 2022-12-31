@@ -58,6 +58,7 @@ const head = arr => arr[0];
 const tail = arr => arr[arr.length - 1];
 const dropHead = arr => drop(1, arr);
 const dropTail = arr => arr.splice(0, -1);
+const includes=curry((a,b)=>a.includes(b));
 function reverse(arr) {
     let result = [], end = arr.length - 1;
     while (end >= 0) {
@@ -67,4 +68,4 @@ function reverse(arr) {
     return result;
 }
 
-export { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, reverse };
+export { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse };
