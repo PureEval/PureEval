@@ -1,73 +1,56 @@
-const id = x => x
+import { curry } from "../curry.js";
 
-const seq = xs => xs()
-const seq_list = xs => [...xs()]
+const iter = xs => xs();
+const seq = xs => [...xs()];
 
-const range = (start, end) => function* () {
-    let [i, j] = !end ? [0, start] : [start, end];
+const range = curry((start, end, step) => function* () {
     do {
-        yield i
-        i++;
-    } while (i < j)
-}
+        yield start;
+        start = step(start);
+    } while (start != end);
+    yield end;
+});
 
 const lazy = xs => function* () {
-    for (let x of xs) {
-        yield x
-    }
+    for (let x of xs)
+        yield x;
 }
 
-const iterate = f => d => function* () {
-    for (let x = d;; x = f(x)) {
-        yield x
-    }
-}
+const iterate = curry((f, d) => function* () {
+    for (let x = d; ; x = f(x))
+        yield x;
+});
 
-
-
-const map = f => xs => function* () {
-    for (let x of seq(xs)) {
-        yield f(x)
-    }
-}
+const map = curry((f, xs) => function* () {
+    for (let x of iter(xs))
+        yield f(x);
+});
 
 const concat = xss => function* () {
-    for (let xs of seq(xss)) {
-        for (let x of seq(xs)) {
-            yield x
-        }
-    }
+    for (let xs of iter(xss))
+        for (let x of iter(xs))
+            yield x;
 }
 
-
-
-const take = n => xs => function* () {
-    for (let x of seq(xs)) {
+const take = curry((n, xs) => function* () {
+    for (let x of iter(xs)) {
         if (n > 0) {
             n--;
-            yield x
-        } else {
-            return
-        }
+            yield x;
+        } else return;
     }
-}
+});
 
-const drop = n => xs => function* () {
-    for (let x of seq(xs)) {
+const drop = curry((n, xs) => function* () {
+    for (let x of iter(xs)) {
         if (n > 0) {
-            n--
-        } else {
-            yield x
-        }
+            n--;
+        } else yield x;
     }
-}
-
-
+});
 
 const repeat = x => function* () {
-    while (1) {
-        yield x
-    }
+    while (1)
+        yield x;
 }
 
-const nat = range(0, Infinity)
