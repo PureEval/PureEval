@@ -15,7 +15,7 @@ const arr_equal = curry((a, b) => {
         else return true;
     }, true)(a);
 });
-const common = v => v;
+const id = v => v;
 const always = v => () => v;
 const when = curry((a, b) => {
     return function (obj) {
@@ -54,4 +54,4 @@ const ifElse_v = curry((a, b, c) => {
     }
 });
 
-export { either, both, not, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v };
+export { either, both, not, gt, gte, lt, lte, equal, arr_equal, id, always, when, unless, ifElse, when_v, unless_v, ifElse_v };

@@ -5,7 +5,7 @@ import { odd, even, add, minus, mul, div, mod, rema, power, upper, under, sort, 
 import { range } from './src/range.js'
 import { compose, pipe, call } from './src/transform.js'
 import { _, bind } from './src/bind.js'
-import { either, both, not, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v } from './src/logic.js'
+import { either, both, not, gt, gte, lt, lte, equal, arr_equal, id, always, when, unless, ifElse, when_v, unless_v, ifElse_v } from './src/logic.js'
 import { match } from './src/match.js'
 import { Data } from './src/abstract/data.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js'
@@ -22,7 +22,7 @@ export {
     range,
     compose, pipe, call,
     _, bind,
-    either, both, not, gt, gte, lt, lte, equal, arr_equal, common, always, when, unless, ifElse, when_v, unless_v, ifElse_v,
+    either, both, not, gt, gte, lt, lte, equal, arr_equal, id, always, when, unless, ifElse, when_v, unless_v, ifElse_v,
     match,
     Data,
     higherPipe, higherComp, coalgebra, stateMachine,
