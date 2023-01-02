@@ -1,5 +1,5 @@
-import { summon } from "./summon.js"
-import { uncurry } from "./curry.js";
+import { summon } from './summon.js'
+import { uncurry } from './curry.js';
 
 const _ = { _P: 1 };
 function bind(func, ...args) {

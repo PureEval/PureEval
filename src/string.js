@@ -1,5 +1,5 @@
-import { Just, Nothing } from "./abstract/maybe.js";
-import { curry } from "./curry.js";
+import { Just, Nothing } from './abstract/maybe.js';
+import { curry } from './curry.js';
 
 const rexMatch = curry((rex, str) => str.match(rex));
 const rexReplace = curry((rex, to, str) => str.replace(rex, to));

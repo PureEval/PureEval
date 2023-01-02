@@ -1,5 +1,5 @@
-import { curry } from "../curry.js";
-import { assoc, prop } from "../object.js";
+import { curry } from '../curry.js';
+import { assoc, prop } from '../object.js';
 
 class Lens {
     constructor(getter, setter) {

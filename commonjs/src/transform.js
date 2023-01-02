@@ -1,4 +1,4 @@
-import { summon } from "./summon.js"
+import { summon } from './summon.js'
 import { curry } from './curry.js'
 
 function compose(...fun) {

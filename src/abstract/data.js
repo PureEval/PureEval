@@ -1,4 +1,4 @@
-import { summonWithName } from "../summon.js";
+import { summonWithName } from '../summon.js';
 
 function Data(...args) {
     class DATA {

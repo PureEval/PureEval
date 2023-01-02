@@ -1,4 +1,4 @@
-import { curry } from "./curry.js";
+import { curry } from './curry.js';
 
 const zipWith = curry((f, a, b) => {
     let result = [], index = 0, end = Math.min(a.length, b.length);
