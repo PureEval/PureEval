@@ -1,4 +1,4 @@
-import { curry } from "../curry.js";
+import { curry } from '../curry.js';
 
 const iter = xs => xs();
 const seq = xs => [...xs()];

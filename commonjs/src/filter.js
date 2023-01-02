@@ -1,4 +1,4 @@
-import { curry } from "./curry.js";
+import { curry } from './curry.js';
 
 const filter = curry((rule, arr) => {
     return arr.filter(v => {

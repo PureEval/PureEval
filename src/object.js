@@ -1,5 +1,5 @@
-import { Just, Nothing } from "./abstract/maybe.js";
-import { curry } from "./curry.js";
+import { Just, Nothing } from './abstract/maybe.js';
+import { curry } from './curry.js';
 import { summon } from './summon.js'
 
 function _assoc(pos, val, obj) {
