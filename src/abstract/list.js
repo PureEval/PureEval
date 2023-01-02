@@ -26,11 +26,12 @@ const map = curry((f, xs) => function* () {
         yield f(x);
 });
 
-const concat = xss => function* () {
-    for (let xs of iter(xss))
-        for (let x of iter(xs))
-            yield x;
-}
+const concat = curry((xsa, xsb) => function* () {
+    for (let x of iter(xsa))
+        yield x;
+    for (let x of iter(xsb))
+        yield x;
+});
 
 const take = curry((n, xs) => function* () {
     for (let x of iter(xs)) {
@@ -53,4 +54,17 @@ const repeat = x => function* () {
     while (1)
         yield x;
 }
+
+//Unverified
+const filter = curry((rule, xs) => function* () {
+    for (let x of iter(xs))
+        if (rule(x))
+            yield x;
+});
+
+//Unverified
+const forEach = curry((rule, xs) => function* () {
+    for (let x of iter(xs))
+        rule(x);
+});
 
