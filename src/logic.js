@@ -9,6 +9,7 @@ const gte = curry((a, b) => a >= b);
 const lt = curry((a, b) => a < b);
 const lte = curry((a, b) => a <= b);
 const equal = curry((a, b) => a == b);
+//doc
 const arr_equal = curry((a, b) => {
     return a.length === b.length ? true : reduce((p, c, i) => {
         if (p == false || c != b[i]) return false;
