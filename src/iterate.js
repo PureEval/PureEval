@@ -22,7 +22,8 @@ const map = curry((rule, arr) => {
 const flatMap = curry((rule, arr) => {
     return arr.reduce((x, y) => x.concat(rule(y)), []);
 });
-const foreach = curry((rule, arr) => {
+//name
+const forEach = curry((rule, arr) => {
     arr.forEach(rule);
 });
 const reduce = curry((fun, init, arr) => {
@@ -38,4 +39,4 @@ const scan = curry((init, fun, cnt) => {
     return result;
 });
 
-export { iterate, map, flatMap, foreach, reduce, fold, scan };
+export { iterate, map, flatMap, forEach, reduce, fold, scan };
