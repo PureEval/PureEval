@@ -41,9 +41,9 @@ const map = curry((f, xs) => function* () {
 });
 
 //Unverified
-const faltMap=curry((f,xs)=>function*(){
-    for(let x of iter(xs))
-        for(let y of iter(f(x)))
+const faltMap = curry((f, xs) => function* () {
+    for (let x of iter(xs))
+        for (let y of iter(f(x)))
             yield y;
 });
 
@@ -135,3 +135,5 @@ const shied = curry((v, xs) => reject(includes(v), xs));
 
 //Unverified
 const choose = curry((v, xs) => filter(includes(v), xs));
+
+export { seq, head, isEmpty, range, lazy, tail, iterate, map, faltMap, zip, insert, choose, dropWhile, take, takeWhile, drop, filter, reject, repeat, shied, forEach, concat, includes }
