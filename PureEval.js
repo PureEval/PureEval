@@ -1,6 +1,6 @@
 import { curry, uncurry } from './src/curry.js'
 import { filter, reject, shied, choose } from './src/filter.js'
-import { iterate, map, flatMap, foreach, reduce, fold, scan } from './src/iterate.js'
+import { iterate, map, flatMap, forEach, reduce, fold, scan } from './src/iterate.js'
 import { odd, even, add, minus, mul, div, mod, rema, power, upper, under, sort, sum, prod, negate, average, median, max, min, inc, dec } from './src/math.js'
 import { range } from './src/range.js'
 import { compose, pipe, call } from './src/transform.js'
@@ -17,7 +17,7 @@ import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, 
 export {
     curry, uncurry,
     filter, reject, shied, choose,
-    iterate, map, flatMap, foreach, reduce, fold, scan,
+    iterate, map, flatMap, forEach, reduce, fold, scan,
     odd, even, add, minus, mul, div, mod, rema, power, upper, under, sort, sum, prod, negate, average, median, max, min, inc, dec,
     range,
     compose, pipe, call,
