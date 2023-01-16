@@ -19,8 +19,9 @@ function iterate(fun, ...args) {
 const map = curry((rule, arr) => {
     return arr.map(v => rule(v));
 });
+//Unverified
 const flatMap = curry((rule, arr) => {
-    return arr.reduce((x, y) => x.concat(rule(y)), []);
+    return arr.flatMap(rule);
 });
 //name
 const forEach = curry((rule, arr) => {
