@@ -2,18 +2,18 @@ import { curry } from '../curry.js';
 import { assoc, prop } from '../object.js';
 
 class Lens {
-    constructor(getter, setter) {
-        this.get = getter;
-        this.set = setter;
-    }
+	constructor(getter, setter) {
+		this.get = getter;
+		this.set = setter;
+	}
 
-    static of(getter, setter) {
-        return new Lens(getter, setter);
-    }
+	static of(getter, setter) {
+		return new Lens(getter, setter);
+	}
 
-    static bind(pos) {
-        return new Lens(prop(pos), assoc(pos));
-    }
+	static bind(pos) {
+		return new Lens(prop(pos), assoc(pos));
+	}
 }
 
 const view = curry((lens, value) => lens.get(value));
