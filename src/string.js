@@ -9,6 +9,6 @@ const split = curry((char, str) => str.split(char));
 const toLower = v => v.toLowerCase();
 const toUpper = v => v.toUpperCase();
 const trim = v => v.trim();
-const words = str => String(str).split(/\s|\b/).filter(function alpha(v) { return /^[\w]+$/.test(v) });
+const words = str => String(str).split(/\s|\b/).filter(function alpha(v) { return /^[\w]+$/.test(v); });
 
 export { rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words };
