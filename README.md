@@ -19,7 +19,7 @@ PureEval 具有以下特点：
 
 对于中国大陆开发者，可访问[托管在 Cloudflare 的文档](https://PureEval.shannon.science)。
 
-## CommanJs
+## CommonJs
 
 ### npm
 
