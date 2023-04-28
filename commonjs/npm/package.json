@@ -1,8 +1,0 @@
-{
-  "name": "pureeval",
-  "version": "1.3.0",
-  "description": "A powerful simple JavaScript functional-programming toolset.",
-  "keywords": ["fp","eval"],
-  "author": "",
-  "license": "ISC"
-}
