@@ -1,10 +1,19 @@
 import { summon } from './summon.js';
 import { curry } from './curry.js';
+import { getFunctionLength } from './summon.js';
 
 function compose(...fun) {
 	if (fun.length === 1) return fun[0];
-	return summon(fun[fun.length - 1].length, fun.reduce((a, b) => (...args) => a(b(...args))));
+	return summon(
+		getFunctionLength(fun[fun.length - 1]),
+		fun.reduce(
+			(a, b) =>
+				(...args) =>
+					a(b(...args))
+		)
+	);
 }
+
 function pipe(...fun) {
 	if (fun.length == 1) return fun[0];
 	let f = function () {
@@ -13,6 +22,7 @@ function pipe(...fun) {
 	};
 	return summon(fun[0].length, f);
 }
+
 const call = curry((fun, args) => {
 	return fun.apply(this, args);
 });

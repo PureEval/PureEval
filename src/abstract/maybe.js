@@ -37,6 +37,6 @@ class Maybe extends Monad {
 }
 
 const Nothing = Maybe.lift(null);
-const Just = x => Maybe.lift(x);
+const Just = (x) => Maybe.lift(x);
 
 export { Maybe, Nothing, Just };

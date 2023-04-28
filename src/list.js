@@ -1,7 +1,9 @@
 import { curry } from './curry.js';
 
 const zipWith = curry((f, a, b) => {
-	let result = [], index = 0, end = Math.min(a.length, b.length);
+	let result = [],
+		index = 0,
+		end = Math.min(a.length, b.length);
 	while (index < end) {
 		result.push(f(a[index], b[index]));
 		++index;
@@ -13,7 +15,9 @@ const join = curry((s, arr) => arr.join(s));
 const slice = curry((start, end, arr) => arr.splice(start, end));
 const take = curry((pos, arr) => slice(0, pos - 1, arr));
 const takeWhile = curry((f, arr) => {
-	let result = [], index = 0, end = arr.length;
+	let result = [],
+		index = 0,
+		end = arr.length;
 	while (index < end) {
 		if (f(arr[index])) result.push(arr[index]);
 		else break;
@@ -23,7 +27,10 @@ const takeWhile = curry((f, arr) => {
 });
 const drop = curry((pos, arr) => arr.slice(pos));
 const dropWhile = curry((f, arr) => {
-	let result = [], index = 0, end = arr.length, flag = false;
+	let result = [],
+		index = 0,
+		end = arr.length,
+		flag = false;
 	while (index < end) {
 		if (flag) result.push(arr[index]);
 		else if (!f(arr[index])) {
@@ -35,7 +42,8 @@ const dropWhile = curry((f, arr) => {
 	return result;
 });
 const allCheck = curry((f, arr) => {
-	let index = 0, end = arr.length;
+	let index = 0,
+		end = arr.length;
 	while (index < end) {
 		if (!f(arr[index])) return false;
 		++index;
@@ -43,7 +51,8 @@ const allCheck = curry((f, arr) => {
 	return true;
 });
 const anyCheck = curry((f, arr) => {
-	let index = 0, end = arr.length;
+	let index = 0,
+		end = arr.length;
 	while (index < end) {
 		if (f(arr[index])) return true;
 		++index;
@@ -54,13 +63,14 @@ const concat = curry((a, b) => {
 	if (Array.isArray(a)) return a.concat(b);
 	else return a + b;
 });
-const head = arr => arr[0];
-const tail = arr => arr[arr.length - 1];
-const dropHead = arr => drop(1, arr);
-const dropTail = arr => arr.splice(0, -1);
-const includes=curry((a,b)=>a.includes(b));
+const head = (arr) => arr[0];
+const tail = (arr) => arr[arr.length - 1];
+const dropHead = (arr) => drop(1, arr);
+const dropTail = (arr) => arr.splice(0, -1);
+const includes = curry((a, b) => a.includes(b));
 function reverse(arr) {
-	let result = [], end = arr.length - 1;
+	let result = [],
+		end = arr.length - 1;
 	while (end >= 0) {
 		result.push(arr[end]);
 		--end;
