@@ -3,6 +3,7 @@ import { curry } from './curry.js';
 import { fold } from './iterate.js';
 import { summon } from './summon.js';
 import { compose, pipe } from './transform.js';
+import { getFunctionLength } from './summon.js';
 
 const higherPipe = curry((functions, iv) => {
 	let processed = [],
@@ -18,7 +19,7 @@ const higherPipe = curry((functions, iv) => {
 	(firstFunction = processed.shift()), (firstFunctionIv = processedIv.shift());
 	if (processed.length === 0) return fold(firstFunction, firstFunctionIv);
 	else
-		return summon(firstFunction.length, (...args) =>
+		return summon(getFunctionLength(firstFunction), (...args) =>
 			pipe.apply(
 				this,
 				processed.map((value, index) => fold(value, processedIv[index]))
@@ -39,7 +40,7 @@ const higherComp = curry((functions, iv) => {
 	(firstFunction = processed.pop()), (firstFunctionIv = processedIv.pop());
 	if (processed.length === 0) return fold(firstFunction, firstFunctionIv);
 	else
-		return summon(firstFunction.length, (...args) =>
+		return summon(getFunctionLength(firstFunction), (...args) =>
 			compose.apply(
 				this,
 				processed.map((value, index) => fold(value, processedIv[index]))
