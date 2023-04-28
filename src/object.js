@@ -36,8 +36,7 @@ function _dissoc(pos, obj) {
 const prop = curry((s, a) => {
 	if (Array.isArray(s)) {
 		let value = a;
-		for (let index in s)
-			value = value[s[index]];
+		for (let index in s) value = value[s[index]];
 		return value;
 	} else return a[s];
 });
@@ -45,7 +44,7 @@ const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
 		let idx = s[0];
 		if (s.length > 1) {
-			let nextObj = (!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)) ? a[idx] : Number.isInteger(s[1]) ? [] : {};
+			let nextObj = !Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx) ? a[idx] : Number.isInteger(s[1]) ? [] : {};
 			v = assoc(Array.prototype.slice.call(s, 1), v, nextObj);
 		}
 		return _assoc(idx, v, a);
@@ -70,12 +69,15 @@ const modify = curry((s, f, a) => {
 const dissoc = curry((s, a) => {
 	if (Array.isArray(s)) {
 		switch (s.length) {
-		case 0: return a;
-		case 1: return _dissoc(s[0], a);
-		default:
-			let head = s[0], tail = Array.prototype.slice.call(s, 1);
-			if (a[head] == null) return _shallowCloneObject(head, a);
-			else return assoc(head, dissoc(tail, a[head]), a);
+			case 0:
+				return a;
+			case 1:
+				return _dissoc(s[0], a);
+			default:
+				let head = s[0],
+					tail = Array.prototype.slice.call(s, 1);
+				if (a[head] == null) return _shallowCloneObject(head, a);
+				else return assoc(head, dissoc(tail, a[head]), a);
 		}
 	} else return _dissoc(s, a);
 });
@@ -89,7 +91,7 @@ function makePair(arr) {
 	for (let i in arr) result[arr[i][0]] = arr[i][1];
 	return result;
 }
-const construct = cls => curry(summon(cls.constructor.length, (...args) => new cls(...args)));
-const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj,prop));
+const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new cls(...args)));
+const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj, prop));
 
 export { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has };

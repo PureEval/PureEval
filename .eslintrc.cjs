@@ -11,10 +11,6 @@ module.exports = {
 		'sourceType': 'module'
 	},
 	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
 		'linebreak-style': [
 			'error',
 			'unix'
@@ -26,6 +22,7 @@ module.exports = {
 		'semi': [
 			'error',
 			'always'
-		]
+		],
+        'no-mixed-spaces-and-tabs':'off'
 	}
 };

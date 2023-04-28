@@ -4,7 +4,7 @@ function curry(fun, ...argv) {
 		let result = curry.bind(null, ...arguments);
 		result.curryed = true;
 		result.len = fun.length - (arguments.length - 1);
-		result.origin = fun.bind(null,...argv);
+		result.origin = fun.bind(null, ...argv);
 		return result;
 	}
 }

@@ -3,7 +3,14 @@ import { curry } from './curry.js';
 
 function compose(...fun) {
 	if (fun.length === 1) return fun[0];
-	return summon(fun[fun.length - 1].length, fun.reduce((a, b) => (...args) => a(b(...args))));
+	return summon(
+		fun[fun.length - 1].length,
+		fun.reduce(
+			(a, b) =>
+				(...args) =>
+					a(b(...args))
+		)
+	);
 }
 function pipe(...fun) {
 	if (fun.length == 1) return fun[0];
