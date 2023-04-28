@@ -6,9 +6,10 @@ function Data(...args) {
 			this.type = type;
 		}
 	}
-	let data = { is: {}, from: v => v.constructor === DATA };
+	let data = { is: {}, from: (v) => v.constructor === DATA };
 	for (let name in args) {
-		let functions = args[name], fname;
+		let functions = args[name],
+			fname;
 		if (functions.includes(' ')) {
 			let spl = functions.split(' ');
 			fname = spl.shift();
@@ -22,7 +23,7 @@ function Data(...args) {
 			fname = functions;
 			data[fname] = new DATA(fname);
 		}
-		data.is[fname] = val => val.constructor === DATA && val.type === fname;
+		data.is[fname] = (val) => val.constructor === DATA && val.type === fname;
 	}
 	return data;
 }
