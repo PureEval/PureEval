@@ -10,9 +10,7 @@
 		"build": "node build.cjs"
 	},
 	"devDependencies": {
-		"eslint": "^8.32.0"
-	},
-	"dependencies": {
+		"eslint": "^8.32.0",
 		"esbuild": "^0.17.18"
 	}
 }
