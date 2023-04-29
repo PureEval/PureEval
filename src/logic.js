@@ -17,13 +17,15 @@ const lte = curry((a, b) => a <= b);
 
 const equal = curry((a, b) => a == b);
 
+const equalStrict = curry((a, b) => a === b);
+
 const id = (v) => v;
 
 const always = (v) => () => v;
 
 const arrEqual = curry((a, b) => {
-	return a.length === b.length
-		? true
+	return a.length !== b.length
+		? false
 		: reduce((p, c, i) => {
 				if (p == false || c != b[i]) return false;
 				else return true;
@@ -31,24 +33,24 @@ const arrEqual = curry((a, b) => {
 });
 
 const when = curry((a, b) => {
-	return function (obj) {
+	return (obj) => {
 		if (a(obj)) return b(obj);
 		return obj;
 	};
 });
 
 const unless = curry((a, b) => {
-	return function (obj) {
+	return (obj) => {
 		if (!a(obj)) return b(obj);
 		return obj;
 	};
 });
 
 const ifElse = curry((a, b, c) => {
-	return function (obj) {
+	return (obj) => {
 		if (a(obj)) return b(obj);
 		else return c(obj);
 	};
 });
 
-export { either, both, not, gt, gte, lt, lte, equal, arrEqual, id, always, when, unless, ifElse };
+export { either, both, not, gt, gte, lt, lte, equal, equalStrict, arrEqual, id, always, when, unless, ifElse };
