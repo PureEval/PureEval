@@ -1,12 +1,13 @@
-function curry(fun, ...argv) {
-	if (fun.length === argv.length) return fun.call(null, ...argv);
-	else {
-		const result = curry.bind(null, ...arguments);
-		result.curryed = true;
-		result.len = fun.length - (arguments.length - 1);
-		result.origin = fun.bind(null, ...argv);
-		return result;
-	}
+import { summon } from './summon.js';
+
+function curry(fun) {
+	if (fun.length < 2) return fun;
+	const result = summon(fun.length, (...args) => {
+		if (args.length >= fun.length) return fun.call(null, ...args);
+		else return curry(fun.bind(null, ...args));
+	});
+	result.origin = fun;
+	return result;
 }
 
 function uncurry(fun) {
