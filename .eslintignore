@@ -3,3 +3,4 @@ commonjs
 webpack.config.js
 build.cjs
 dist
+.eslintrc.cjs

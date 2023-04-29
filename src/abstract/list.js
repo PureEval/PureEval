@@ -21,14 +21,14 @@ const range = curry(
 
 const lazy = (xs) =>
 	function* () {
-		for (let x of xs) yield x;
+		for (const x of xs) yield x;
 	};
 
 //Unverified
 const tail = (xs) =>
 	function* () {
 		let flag = false;
-		for (let x of iter(xs)) {
+		for (const x of iter(xs)) {
 			if (flag) yield x;
 			else flag = true;
 		}
@@ -44,7 +44,7 @@ const iterate = curry(
 const map = curry(
 	(f, xs) =>
 		function* () {
-			for (let x of iter(xs)) yield f(x);
+			for (const x of iter(xs)) yield f(x);
 		}
 );
 
@@ -52,22 +52,22 @@ const map = curry(
 const faltMap = curry(
 	(f, xs) =>
 		function* () {
-			for (let x of iter(xs)) for (let y of iter(f(x))) yield y;
+			for (const x of iter(xs)) for (const y of iter(f(x))) yield y;
 		}
 );
 
 const concat = curry(
 	(xsa, xsb) =>
 		function* () {
-			for (let x of iter(xsa)) yield x;
-			for (let x of iter(xsb)) yield x;
+			for (const x of iter(xsa)) yield x;
+			for (const x of iter(xsb)) yield x;
 		}
 );
 
 const take = curry(
 	(n, xs) =>
 		function* () {
-			for (let x of iter(xs)) {
+			for (const x of iter(xs)) {
 				if (n > 0) {
 					n--;
 					yield x;
@@ -79,7 +79,7 @@ const take = curry(
 const drop = curry(
 	(n, xs) =>
 		function* () {
-			for (let x of iter(xs)) {
+			for (const x of iter(xs)) {
 				if (n > 0) {
 					n--;
 				} else yield x;
@@ -96,7 +96,7 @@ const repeat = (x) =>
 const filter = curry(
 	(rule, xs) =>
 		function* () {
-			for (let x of iter(xs)) if (rule(x)) yield x;
+			for (const x of iter(xs)) if (rule(x)) yield x;
 		}
 );
 
@@ -104,20 +104,20 @@ const filter = curry(
 const reject = curry(
 	(rule, xs) =>
 		function* () {
-			for (let x of iter(xs)) if (!rule(x)) yield x;
+			for (const x of iter(xs)) if (!rule(x)) yield x;
 		}
 );
 
 //Unverified
 const forEach = curry((rule, xs) => {
-	for (let x of iter(xs)) rule(x);
+	for (const x of iter(xs)) rule(x);
 });
 
 //Unverified
 const takeWhile = curry(
 	(rule, xs) =>
 		function* () {
-			for (let x of iter(xs)) {
+			for (const x of iter(xs)) {
 				if (rule(x)) yield x;
 				break;
 			}
@@ -129,7 +129,7 @@ const dropWhile = curry(
 	(rule, xs) =>
 		function* () {
 			let flag = true;
-			for (let x of iter(xs)) {
+			for (const x of iter(xs)) {
 				if (rule(x) && flag === true) continue;
 				else {
 					flag = false;
@@ -143,10 +143,10 @@ const dropWhile = curry(
 const zipWith = curry(
 	(f, xa, xb) =>
 		function* () {
-			let xsa = iter(xa),
+			const xsa = iter(xa),
 				xsb = iter(xb);
-			for (let x of xsa) {
-				let iter_y = xsb.next();
+			for (const x of xsa) {
+				const iter_y = xsb.next();
 				if (iter_y.done === true) break;
 				yield f(x, iter_y.value);
 			}

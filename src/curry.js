@@ -8,6 +8,7 @@ function curry(fun, ...argv) {
 		return result;
 	}
 }
+
 function uncurry(fun) {
 	return fun.origin;
 }

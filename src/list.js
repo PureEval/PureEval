@@ -1,9 +1,9 @@
 import { curry } from './curry.js';
 
 const zipWith = curry((f, a, b) => {
-	let result = [],
-		index = 0,
+	const result = [],
 		end = Math.min(a.length, b.length);
+	let index = 0;
 	while (index < end) {
 		result.push(f(a[index], b[index]));
 		++index;
@@ -15,9 +15,9 @@ const join = curry((s, arr) => arr.join(s));
 const slice = curry((start, end, arr) => arr.splice(start, end));
 const take = curry((pos, arr) => slice(0, pos - 1, arr));
 const takeWhile = curry((f, arr) => {
-	let result = [],
-		index = 0,
+	const result = [],
 		end = arr.length;
+	let index = 0;
 	while (index < end) {
 		if (f(arr[index])) result.push(arr[index]);
 		else break;
@@ -27,9 +27,9 @@ const takeWhile = curry((f, arr) => {
 });
 const drop = curry((pos, arr) => arr.slice(pos));
 const dropWhile = curry((f, arr) => {
-	let result = [],
-		index = 0,
-		end = arr.length,
+	const result = [],
+		end = arr.length;
+	let index = 0,
 		flag = false;
 	while (index < end) {
 		if (flag) result.push(arr[index]);
@@ -42,8 +42,8 @@ const dropWhile = curry((f, arr) => {
 	return result;
 });
 const allCheck = curry((f, arr) => {
-	let index = 0,
-		end = arr.length;
+	let index = 0;
+	const end = arr.length;
 	while (index < end) {
 		if (!f(arr[index])) return false;
 		++index;
@@ -51,8 +51,8 @@ const allCheck = curry((f, arr) => {
 	return true;
 });
 const anyCheck = curry((f, arr) => {
-	let index = 0,
-		end = arr.length;
+	let index = 0;
+	const end = arr.length;
 	while (index < end) {
 		if (f(arr[index])) return true;
 		++index;
@@ -69,8 +69,8 @@ const dropHead = (arr) => drop(1, arr);
 const dropTail = (arr) => arr.splice(0, -1);
 const includes = curry((a, b) => a.includes(b));
 function reverse(arr) {
-	let result = [],
-		end = arr.length - 1;
+	const result = [];
+	let end = arr.length - 1;
 	while (end >= 0) {
 		result.push(arr[end]);
 		--end;

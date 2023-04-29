@@ -11,8 +11,6 @@ function summonArray(total) {
 }
 
 function summon(total, fn) {
-	console.log(fn);
-	console.log(summonArray(total + 1));
 	return curry(new Function(...summonArray(total + 1), 'return a0.apply(this,Array.prototype.splice.call(arguments,1));'))(fn);
 }
 

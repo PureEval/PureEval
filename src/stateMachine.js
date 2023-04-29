@@ -6,10 +6,9 @@ import { compose, pipe } from './transform.js';
 import { getFunctionLength } from './summon.js';
 
 const higherPipe = curry((functions, iv) => {
-	let processed = [],
-		processedIv = [],
-		firstFunction,
-		firstFunctionIv;
+	const processed = [],
+		processedIv = [];
+	let firstFunction, firstFunctionIv;
 	iv.forEach((value, index) => {
 		if (value !== 0) {
 			processed.push(functions[index]);
@@ -26,11 +25,11 @@ const higherPipe = curry((functions, iv) => {
 			)(firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
 		);
 });
+
 const higherComp = curry((functions, iv) => {
-	let processed = [],
-		processedIv = [],
-		firstFunction,
-		firstFunctionIv;
+	const processed = [],
+		processedIv = [];
+	let firstFunction, firstFunctionIv;
 	iv.forEach((value, index) => {
 		if (value !== 0) {
 			processed.push(functions[index]);
@@ -47,7 +46,9 @@ const higherComp = curry((functions, iv) => {
 			)(firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
 		);
 });
+
 const coalgebra = curry((seed, next) => () => (seed = next(seed)));
+
 const stateMachine = curry((seed, functions) => (iv) => (seed = higherPipe(functions, iv)(seed)));
 
 export { higherPipe, higherComp, coalgebra, stateMachine };
