@@ -32,44 +32,23 @@ const arrEqual = curry((a, b) => {
 
 const when = curry((a, b) => {
 	return function (obj) {
-		if (a(obj)) return b();
+		if (a(obj)) return b(obj);
 		return obj;
 	};
 });
 
 const unless = curry((a, b) => {
 	return function (obj) {
-		if (!a(obj)) return b();
+		if (!a(obj)) return b(obj);
 		return obj;
 	};
 });
 
 const ifElse = curry((a, b, c) => {
 	return function (obj) {
-		if (a(obj)) return b();
-		else return c();
-	};
-});
-
-const when_v = curry((a, b) => {
-	return function (obj) {
-		if (a(obj)) return b(obj);
-		return obj;
-	};
-});
-
-const unless_v = curry((a, b) => {
-	return function (obj) {
-		if (!a(obj)) return b(obj);
-		return obj;
-	};
-});
-
-const ifElse_v = curry((a, b, c) => {
-	return function (obj) {
 		if (a(obj)) return b(obj);
 		else return c(obj);
 	};
 });
 
-export { either, both, not, gt, gte, lt, lte, equal, arrEqual, id, always, when, unless, ifElse, when_v, unless_v, ifElse_v };
+export { either, both, not, gt, gte, lt, lte, equal, arrEqual, id, always, when, unless, ifElse };
