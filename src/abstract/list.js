@@ -159,4 +159,4 @@ const shied = curry((v, xs) => reject(includes(v), xs));
 //Unverified
 const choose = curry((v, xs) => filter(includes(v), xs));
 
-export { seq, head, isEmpty, range, lazy, tail, iterate, map, faltMap, choose, dropWhile, take, takeWhile, drop, filter, reject, repeat, shied, forEach, concat, includes };
+export { seq, head, isEmpty, range, lazy, tail, iterate, map, faltMap, choose, dropWhile, take, takeWhile, zipWith, drop, filter, reject, repeat, shied, forEach, concat, includes };
