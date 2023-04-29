@@ -14,15 +14,17 @@ function compose(...fun) {
 		)
 	);
 }
+
 function pipe(...fun) {
 	if (fun.length === 0) return (v) => v;
 	if (fun.length === 1) return fun[0];
-	let f = function () {
-		let result = fun.shift().apply(this, arguments);
+	const f = function () {
+		const result = fun.shift().apply(this, arguments);
 		return fun.reduce((p, c) => c(p), result);
 	};
 	return summon(getFunctionLength(fun[0]), f);
 }
+
 const call = curry((fun, args) => {
 	return fun.apply(this, args);
 });

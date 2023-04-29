@@ -6,16 +6,16 @@ function Data(...args) {
 			this.type = type;
 		}
 	}
-	let data = { is: {}, from: (v) => v.constructor === DATA };
-	for (let name in args) {
-		let functions = args[name],
-			fname;
+	const data = { is: {}, from: (v) => v.constructor === DATA };
+	for (const name in args) {
+		const functions = args[name].trim();
+		let fname;
 		if (functions.includes(' ')) {
-			let spl = functions.split(' ');
+			const spl = functions.split(' ');
 			fname = spl.shift();
 			data[fname] = summonWithName(spl, (...iargs) => {
-				let result = new DATA(fname);
-				for (let idx in iargs) result[spl[idx]] = iargs[idx];
+				const result = new DATA(fname);
+				for (const idx in iargs) result[spl[idx]] = iargs[idx];
 				result.args = iargs;
 				return result;
 			});
