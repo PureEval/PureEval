@@ -1,9 +1,3 @@
-import { curry } from './curry.js';
-
-function getFunctionLength(fun) {
-	return fun.curryed ? fun.len : fun.length;
-}
-
 function summonArray(total) {
 	return Array(total)
 		.fill(0)
@@ -11,10 +5,10 @@ function summonArray(total) {
 }
 
 function summon(total, fn) {
-	return curry(new Function(...summonArray(total + 1), 'return a0.apply(this,Array.prototype.splice.call(arguments,1));'))(fn);
+	return new Function(...summonArray(total + 1), 'return a0.apply(this,Array.prototype.splice.call(arguments,1));').bind(null, fn);
 }
 
 function summonWithName(list, fn) {
-	return curry(new Function('a0', list, `return a0(${list.join(',')})`))(fn);
+	return new Function('a0', list, `return a0(${list.join(',')})`).bind(null, fn);
 }
-export { summon, summonWithName, getFunctionLength };
+export { summon, summonWithName };

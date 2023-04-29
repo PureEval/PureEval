@@ -2,5 +2,7 @@ node_modules
 commonjs
 webpack.config.js
 build.cjs
-dist
 .eslintrc.cjs
+test.js
+pe.test.js
+dist
