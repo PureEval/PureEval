@@ -8,7 +8,7 @@
 	"license": "ISC",
 	"scripts": {
 		"build": "node build/build.cjs",
-        "test":"node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js"
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js"
 	},
 	"devDependencies": {
 		"esbuild": "^0.17.18",

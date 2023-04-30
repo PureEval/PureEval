@@ -1,0 +1,39 @@
+name: Publish
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "build/package.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [19.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+
+      - name: Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Move
+        run: mv ./dist/common/PureEval.common.js ./build/index.js
+
+
+      - name: Publish
+        run: npm publish --access public
+        working-directory: ./build
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.LAMPESE_PUSSY}}

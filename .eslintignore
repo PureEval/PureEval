@@ -1,8 +1,6 @@
 node_modules
-commonjs
-webpack.config.js
-build.cjs
 .eslintrc.cjs
 test.js
-pe.test.js
+test
+build
 dist
