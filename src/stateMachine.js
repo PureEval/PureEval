@@ -21,7 +21,7 @@ const higherPipe = curry((functions, iv) => {
 			pipe.apply(
 				this,
 				processed.map((value, index) => fold(value, processedIv[index]))
-			)(firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
+			)(firstFunction.length === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
 		);
 });
 
@@ -42,7 +42,7 @@ const higherComp = curry((functions, iv) => {
 			compose.apply(
 				this,
 				processed.map((value, index) => fold(value, processedIv[index]))
-			)(firstFunction.len === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
+			)(firstFunction.length === 1 ? fold(firstFunction, firstFunctionIv, args[0]) : firstFunction(...args))
 		);
 });
 
