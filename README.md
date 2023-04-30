@@ -27,35 +27,3 @@ npm run build
 关于 PureEval 的使用文档可见此：[文档](https://PureEval.github.io)。
 
 对于中国大陆开发者，可访问[托管在 Cloudflare 的文档](https://PureEval.shannon.science)。
-
-## CommonJs
-
-### npm
-
-```bash
-npm i pureeval
-```
-
-```javascript
-const P=require("pureeval");
-console.log(P.add(1)(114513));//114514
-```
-
-### Release
-
-下载最新版 [Release](https://github.com/PureEval/PureEval/releases) 中的 PureEval.common.min.js。
-
-```javascript
-const P=require("PureEval.common.min.js")
-console.log(P.add(1)(114513));//114514
-```
-
-## ECMAScript
-
-下载最新版 [Release](https://github.com/PureEval/PureEval/releases) 中的 PureEval.es.min.js。
-
-```javascript
-import * as P from 'PureEval.es.min.js'
-console.log(P.add(1)(114513));//114514
-```
-
