@@ -1,4 +1,4 @@
-name: UnitTest
+name: Lint
 
 on:
   push:
