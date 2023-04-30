@@ -1,4 +1,4 @@
-import { uncurry, curry } from './curry.js';
+import { curry } from './curry.js';
 
 function __boom(args) {
 	let now = args.shift().map((x) => [x]),
