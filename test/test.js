@@ -337,12 +337,6 @@ function Math() {
 				assert.equal(negate(-1), 1);
 			});
 		});
-		describe('negate()', () => {
-			it('Base', () => {
-				assert.equal(negate(1), -1);
-				assert.equal(negate(-1), 1);
-			});
-		});
 		describe('upper()', () => {
 			it('Base', () => {
 				assert.deepEqual(sort(upper(), [1, 2, 3]), [3, 2, 1]);
