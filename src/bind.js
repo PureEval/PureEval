@@ -3,7 +3,6 @@ import { uncurry } from './curry.js';
 
 const _ = { _P: 1 };
 function bind(func, ...args) {
-	if (func.curryed === true) func = uncurry(func);
 	const pos = [],
 		nowarg = [];
 	let cnt = 0;
