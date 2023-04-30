@@ -1,28 +1,20 @@
 import { curry } from './curry.js';
 
 function __boom(args) {
-	let now = args.shift().map((x) => [x]),
-		upper = [];
+	let now = args.shift().map((x) => [x]);
 	args.forEach((v) => {
-		v.forEach((u) => now.forEach((x) => upper.push([...x, u])));
-		now = [...upper];
-		upper = [];
+		now = v.flatMap((u) => now.map((x) => x.concat([u])));
 	});
 	return now;
 }
 
 function iterate(fun, ...args) {
-	const iterateList = [],
-		result = [];
-	args.forEach((v) => iterateList.push(Array.isArray(v) ? v : [v]));
-	__boom(iterateList).forEach((v) => result.push(fun.apply(null, v)));
-	return result;
+	return __boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));
 }
 
 const map = curry((rule, arr) => {
 	return arr.map((v) => rule(v));
 });
-
 
 const flatMap = curry((rule, arr) => {
 	return arr.flatMap(rule);

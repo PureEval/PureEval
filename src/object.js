@@ -48,7 +48,12 @@ const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
 		const idx = s[0];
 		if (s.length > 1) {
-			const nextObj = !Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx) ? a[idx] : Number.isInteger(s[1]) ? [] : {};
+			const nextObj =
+				!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
+					? a[idx]
+					: Number.isInteger(s[1])
+					? []
+					: {};
 			v = assoc(Array.prototype.slice.call(s, 1), v, nextObj);
 		}
 		return _assoc(idx, v, a);

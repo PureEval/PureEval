@@ -1,6 +1,6 @@
 {
     "trailingComma": "none",
-    "printWidth": 220,
+    "printWidth": 100,
     "tabWidth": 4,
     "singleQuote": true,
     "bracketSameLine": true,

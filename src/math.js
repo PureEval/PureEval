@@ -68,4 +68,26 @@ function dec(x) {
 	return x - 1;
 }
 
-export { odd, even, add, minus, mul, div, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec };
+export {
+	odd,
+	even,
+	add,
+	minus,
+	mul,
+	div,
+	mod,
+	rema,
+	power,
+	sort,
+	upper,
+	under,
+	sum,
+	prod,
+	negate,
+	average,
+	median,
+	max,
+	min,
+	inc,
+	dec
+};

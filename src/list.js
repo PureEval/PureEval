@@ -94,4 +94,22 @@ function reverse(arr) {
 	return result;
 }
 
-export { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse };
+export {
+	zipWith,
+	zip,
+	join,
+	slice,
+	take,
+	takeWhile,
+	drop,
+	dropWhile,
+	allCheck,
+	anyCheck,
+	concat,
+	head,
+	tail,
+	dropHead,
+	dropTail,
+	includes,
+	reverse
+};

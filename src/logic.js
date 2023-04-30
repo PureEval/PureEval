@@ -53,4 +53,20 @@ const ifElse = curry((a, b, c) => {
 	};
 });
 
-export { either, both, not, gt, gte, lt, lte, equal, equalStrict, arrEqual, id, always, when, unless, ifElse };
+export {
+	either,
+	both,
+	not,
+	gt,
+	gte,
+	lt,
+	lte,
+	equal,
+	equalStrict,
+	arrEqual,
+	id,
+	always,
+	when,
+	unless,
+	ifElse
+};

@@ -5,7 +5,10 @@ function summonArray(total) {
 }
 
 function summon(total, fn) {
-	return new Function(...summonArray(total + 1), 'return a0.apply(this,Array.prototype.splice.call(arguments,1));').bind(null, fn);
+	return new Function(
+		...summonArray(total + 1),
+		'return a0.apply(this,Array.prototype.splice.call(arguments,1));'
+	).bind(null, fn);
 }
 
 function summonWithName(list, fn) {
