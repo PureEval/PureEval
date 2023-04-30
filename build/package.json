@@ -1,16 +1,18 @@
 {
-    "name": "pureeval",
-    "version": "1.6.0",
-    "description": "A powerful simple JavaScript functional-programming toolset.",
-    "keywords": [
-      "fp",
-      "eval"
-    ],
-    "author": "",
-    "license": "GPL",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/PureEval/PureEval.git"
-    }
-  }
-  
+	"name": "pureeval",
+	"version": "1.6.1",
+	"description": "A powerful simple JavaScript functional-programming toolset.",
+	"keywords": [
+		"fp",
+		"functional-programming",
+		"monad",
+		"JavaScript",
+		"curry"
+	],
+	"author": "PureEval Dev",
+	"license": "GPL",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PureEval/PureEval.git"
+	}
+}
