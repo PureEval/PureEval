@@ -12,11 +12,10 @@ function __boom(args) {
 }
 
 function iterate(fun, ...args) {
-	const uncurryed = fun.curryed === true ? uncurry(fun) : fun;
 	const iterateList = [],
 		result = [];
 	args.forEach((v) => iterateList.push(Array.isArray(v) ? v : [v]));
-	__boom(iterateList).forEach((v) => result.push(uncurryed.apply(null, v)));
+	__boom(iterateList).forEach((v) => result.push(fun.apply(null, v)));
 	return result;
 }
 
