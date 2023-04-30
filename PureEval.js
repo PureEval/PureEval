@@ -12,7 +12,7 @@ import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMach
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js';
 import { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has } from './src/object.js';
 import { Lens, view, set, over } from './src/abstract/optics.js';
-import { rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words } from './src/string.js';
+import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from './src/string.js';
 import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse } from './src/list.js';
 import * as L from './src/abstract/list.js';
 export {
@@ -30,7 +30,7 @@ export {
 	Maybe, Nothing, Just,
 	prop, assoc, modify, dissoc, valuesIn, makePair, construct, has,
 	Lens, view, set, over,
-	rexMatch, rexReplace, rexTest, toString, split, toLower, toUpper, trim, words,
+	rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words,
 	zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse,
 	L
 };

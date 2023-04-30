@@ -91,7 +91,7 @@ const dissoc = curry((s, a) => {
 function valuesIn(x) {
 	const result = [];
 	for (const i in x) result.push(x[i]);
-	return x;
+	return result;
 }
 
 function makePair(arr) {

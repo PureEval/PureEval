@@ -20,11 +20,11 @@ const power = curry((a, b) => Math.pow(a, b));
 
 const negate = (a) => -a;
 
-const upper = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const under = () => (a, b) => a < b ? -1 : a > b ? 1 : 0;
 
-const under = (a, b) => (a > b ? -1 : a < b ? 1 : 0);
+const upper = () => (a, b) => a > b ? -1 : a < b ? 1 : 0;
 
-const sort = curry((arr, rule) => {
+const sort = curry((rule, arr) => {
 	if (rule != undefined) return arr.sort(rule);
 	else return arr.sort();
 });
