@@ -23,7 +23,7 @@ function Data(...args) {
 			fname = functions;
 			data[fname] = new DATA(fname);
 		}
-		data.is[fname] = (val) => val.constructor === DATA && val.type === fname;
+		data.is[fname] = (val) => val instanceof DATA && val.type === fname;
 	}
 	return data;
 }

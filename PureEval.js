@@ -10,6 +10,7 @@ import { match } from './src/match.js';
 import { Data } from './src/abstract/data.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js';
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js';
+import { MaybeAsync, NothingAsync, JustAsync } from './src/abstract/maybeAsync.js';
 import { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has } from './src/object.js';
 import { Lens, view, set, over } from './src/abstract/optics.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from './src/string.js';
@@ -28,6 +29,7 @@ export {
 	Data,
 	higherPipe, higherComp, coalgebra, stateMachine,
 	Maybe, Nothing, Just,
+    MaybeAsync, NothingAsync, JustAsync,
 	prop, assoc, modify, dissoc, valuesIn, makePair, construct, has,
 	Lens, view, set, over,
 	rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words,

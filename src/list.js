@@ -1,15 +1,6 @@
 import { curry } from './curry.js';
 
-const zipWith = curry((f, a, b) => {
-	const result = [],
-		end = Math.min(a.length, b.length);
-	let index = 0;
-	while (index < end) {
-		result.push(f(a[index], b[index]));
-		++index;
-	}
-	return result;
-});
+const zipWith = curry((f, a, b) => a.map((x, i) => f(x, b[i])));
 
 const zip = zipWith((a, b) => [a, b]);
 
@@ -17,7 +8,7 @@ const join = curry((s, arr) => arr.join(s));
 
 const slice = curry((start, end, arr) => arr.splice(start, end));
 
-const take = curry((pos, arr) => slice(0, pos - 1, arr));
+const take = curry((pos, arr) => slice(0, pos, arr));
 
 const takeWhile = curry((f, arr) => {
 	const result = [],
@@ -80,9 +71,9 @@ const tail = (arr) => arr[arr.length - 1];
 
 const dropHead = (arr) => drop(1, arr);
 
-const dropTail = (arr) => arr.splice(0, -1);
+const dropTail = (arr) => arr.splice(0, arr.length - 1);
 
-const includes = curry((a, b) => a.includes(b));
+const includes = curry((a, b) => b.includes(a));
 
 function reverse(arr) {
 	const result = [];
