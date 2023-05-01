@@ -11,9 +11,10 @@ import { range } from '../PureEval.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from '../PureEval.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from '../PureEval.js';
 import { compose, pipe, call } from '../PureEval.js';
+import {zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse} from '../PureEval.js';
 import { Data } from '../PureEval.js';
 import { Lens, view, set, over } from '../PureEval.js';
-import { Maybe, Just, Nothing } from '../PureEval.js';
+import { Just } from '../PureEval.js';
 
 (function main() {
 	Curry();
@@ -28,6 +29,7 @@ import { Maybe, Just, Nothing } from '../PureEval.js';
 	StateMachine();
 	String();
 	Transform();
+    List();
 	Abstract();
 })();
 
@@ -560,6 +562,100 @@ function Transform() {
 			it('Base', () => {
 				const foo = (a, b) => a + b;
 				assert.equal(call(foo, ['114', '514']), '114514');
+			});
+		});
+	});
+}
+
+function List(){
+    describe('List', () => {
+		describe('zipWith()', () => {
+			it('Base', () => {
+				const f = (a, b) => a + b;
+                assert.deepEqual(zipWith(f, [1, 2, 3], [4, 5, 6]),[5, 7, 9])
+			});
+		});
+        describe('zip()', () => {
+			it('Base', () => {
+                assert.deepEqual(zip([1, 2, 3], [4, 5, 6]), [[1, 4], [2, 5], [3, 6]]);
+			});
+		});
+        describe('join()', () => {
+			it('Base', () => {
+                assert.equal(join("|", [1, 2, 3]), "1|2|3");
+			});
+		});
+        describe('slice()', () => {
+			it('Base', () => {
+                assert.deepEqual(slice(0, 3, [1, 2, 3, 4]), [1, 2, 3]);
+			});
+		});
+        describe('take()', () => {
+			it('Base', () => {
+                assert.deepEqual(take(3, [1, 2, 3, 4]), [1, 2, 3]);
+			});
+		});
+        describe('takeWhile()', () => {
+			it('Base', () => {
+                assert.deepEqual(takeWhile((v) => v < 3, [1, 1, 4, 5, 1, 4]), [1, 1]);
+			});
+		});
+        describe('drop()', () => {
+			it('Base', () => {
+                assert.deepEqual(drop(3, [1, 2, 3, 4]), [4]);
+			});
+		});
+        describe('dropWhile()', () => {
+			it('Base', () => {
+                assert.deepEqual(dropWhile((v) => v < 3, [4, 5, 1, 4]), [4, 5, 1, 4]);
+                assert.deepEqual(dropWhile((v) => v < 5, [4, 5, 1, 4]), [5, 1, 4]);
+			});
+		});
+        describe('allCheck()', () => {
+			it('Base', () => {
+                assert.equal(allCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]), false);
+			});
+		});
+        describe('anyCheck()', () => {
+			it('Base', () => {
+                assert.equal(anyCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]), true);
+			});
+		});
+        describe('concat()', () => {
+			it('Base', () => {
+                assert.deepEqual(concat([1, 2, 3], [1, 2, 3]), [1, 2, 3, 1, 2, 3]);
+                assert.equal(concat("abc", "def"), "abcdef");
+			});
+		});
+        describe('head()', () => {
+			it('Base', () => {
+                assert.equal(head([1, 2, 3]), 1);
+			});
+		});
+        describe('tail()', () => {
+			it('Base', () => {
+                assert.equal(tail([1, 2, 3]), 3);
+			});
+		});
+        describe('dropHead()', () => {
+			it('Base', () => {
+                assert.deepEqual(dropHead([1, 2, 3]), [2, 3]);
+			});
+		});
+        describe('dropTail()', () => {
+			it('Base', () => {
+                assert.deepEqual(dropTail([1, 2, 3]), [1, 2]);
+			});
+		});
+        describe('includes()', () => {
+			it('Base', () => {
+                assert.equal(includes(4)([1, 3, 4]), true);
+                assert.equal(includes(5)([1, 3, 4]), false);
+			});
+		});
+        describe('reverse()', () => {
+			it('Base', () => {
+                assert.deepEqual(reverse([1, 2, 3]), [3, 2, 1]);
 			});
 		});
 	});

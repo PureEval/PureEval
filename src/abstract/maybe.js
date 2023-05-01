@@ -10,7 +10,7 @@ class Maybe extends Monad {
 	}
 
 	static is(m) {
-		return Object.prototype.toString.call(m) === '[object Object]' && m.constructor === Maybe;
+		return m instanceof Maybe;
 	}
 
 	isNothing() {
