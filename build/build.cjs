@@ -2,18 +2,19 @@
 const fs = require('fs');
 const path = require('path');
 const esbuild = require('esbuild');
+const chalk = require('chalk');
 
 function clean() {
-	console.log('Cleaning cache...');
+	console.log(chalk.yellow('Cleaning cache...'));
 	
     rmdirSync('./dist');
-	console.log('\tRemove dist -> Done');
+	console.log(chalk.green('\tRemove dist -> Done'));
 
-    console.log("Clean cache -> Done\n");
+    console.log(chalk.yellow("Clean cache -> Done\n"));
 }
 
 function buildForNode() {
-	console.log('Building code for Nodejs...');
+	console.log(chalk.yellow('Building code for Nodejs...'));
 
 	esbuild.buildSync({
 		entryPoints: ['PureEval.js'],
@@ -23,7 +24,7 @@ function buildForNode() {
 		external: ['./node_modules/*'],
 		outfile: './dist/common/PureEval.common.min.js'
 	});
-	console.log('\tPureEval.common.min.js -> Done');
+	console.log(chalk.green('\tPureEval.common.min.js -> Done'));
 
 	esbuild.buildSync({
 		entryPoints: ['PureEval.js'],
@@ -32,13 +33,13 @@ function buildForNode() {
 		external: ['./node_modules/*'],
 		outfile: './dist/common/PureEval.common.js'
 	});
-	console.log('\tPureEval.common.js -> Done');
+	console.log(chalk.green('\tPureEval.common.js -> Done'));
 
-	console.log('Build for Nodejs -> Done');
+	console.log(chalk.yellow('Build for Nodejs -> Done'));
 }
 
 function buildForESM() {
-	console.log('Building code for ESM...');
+	console.log(chalk.yellow('Building code for ESM...'));
 
 	esbuild.buildSync({
 		entryPoints: ['PureEval.js'],
@@ -48,7 +49,7 @@ function buildForESM() {
 		external: ['./node_modules/*'],
 		outfile: './dist/esm/PureEval.es.min.js'
 	});
-	console.log('\tPureEval.es.min.js -> Done');
+	console.log(chalk.green('\tPureEval.es.min.js -> Done'));
 
 	esbuild.buildSync({
 		entryPoints: ['PureEval.js'],
@@ -57,9 +58,9 @@ function buildForESM() {
 		external: ['./node_modules/*'],
 		outfile: './dist/esm/PureEval.es.js'
 	});
-	console.log('\tPureEval.es.js -> Done');
+	console.log(chalk.green('\tPureEval.es.js -> Done'));
 
-	console.log('Build for ESM -> Done');
+	console.log(chalk.yellow('Build for ESM -> Done'));
 }
 
 function build() {
@@ -69,9 +70,10 @@ function build() {
 }
 
 (function main() {
-	console.log('Starting Build for PureEval...\n');
+	console.log(chalk.blue('Starting Build for PureEval...\n'));
 	clean();
 	build();
+	console.log(chalk.blue('Build Completed!'));
 })();
 
 // utils
