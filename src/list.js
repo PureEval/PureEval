@@ -13,11 +13,11 @@ const take = curry((pos, arr) => slice(0, pos, arr));
 const takeWhile = curry((f, arr) => {
 	const result = [],
 		end = arr.length;
-	let index = 0;
-	while (index < end) {
-		if (f(arr[index])) result.push(arr[index]);
-		else break;
-		++index;
+	for (let i = 0; i < end; i++) {
+		if (!f(arr[i])) {
+			break;
+		}
+		result.push(arr[i]);
 	}
 	return result;
 });
@@ -40,25 +40,9 @@ const dropWhile = curry((f, arr) => {
 	return result;
 });
 
-const allCheck = curry((f, arr) => {
-	let index = 0;
-	const end = arr.length;
-	while (index < end) {
-		if (!f(arr[index])) return false;
-		++index;
-	}
-	return true;
-});
+const allCheck = curry((f, arr) => arr.every(f));
 
-const anyCheck = curry((f, arr) => {
-	let index = 0;
-	const end = arr.length;
-	while (index < end) {
-		if (f(arr[index])) return true;
-		++index;
-	}
-	return false;
-});
+const anyCheck = curry((f, arr) => arr.some(f));
 
 const concat = curry((a, b) => {
 	if (Array.isArray(a)) return a.concat(b);

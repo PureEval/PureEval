@@ -6,7 +6,7 @@ function Data(...args) {
 			this.type = type;
 		}
 	}
-	const data = { is: {}, from: (v) => v.constructor === DATA };
+	const data = { is: {}, from: (v) => v instanceof DATA };
 	for (const name in args) {
 		const functions = args[name].trim();
 		let fname;
