@@ -75,6 +75,20 @@ const dissoc = curry((s, a) => {
 	}
 });
 
+const deepClone = (obj) => {
+	if (obj === null) return null;
+	if (typeof obj !== 'object') return obj;
+	if (obj instanceof RegExp) return new RegExp(obj);
+	if (obj instanceof Date) return new Date(obj);
+	const newObj = new obj.constructor();
+	for (const key in obj) {
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
+			newObj[key] = deepClone(obj[key]);
+		}
+	}
+	return newObj;
+};
+
 const valuesIn = (x) => Object.values(x);
 
 const makePair = (arr) => Object.fromEntries(arr);
@@ -83,4 +97,4 @@ const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new
 
 const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj, prop));
 
-export { prop, assoc, modify, dissoc, valuesIn, makePair, construct, has };
+export { prop, assoc, modify, dissoc, deepClone, valuesIn, makePair, construct, has };

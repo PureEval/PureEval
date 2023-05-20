@@ -11,20 +11,15 @@ const slice = curry((start, end, arr) => arr.splice(start, end));
 const take = curry((pos, arr) => slice(0, pos, arr));
 
 const takeWhile = curry((f, arr) => {
-	const result = [];
-	for (const item of arr) {
-		if (!f(item)) break;
-		result.push(item);
-	}
-	return result;
+	const index = arr.findIndex((item) => !f(item));
+	return index === -1 ? arr : arr.slice(0, index);
 });
 
 const drop = curry((pos, arr) => arr.slice(pos));
 
 const dropWhile = curry((f, arr) => {
-	let index = 0;
-	while (f(arr[index])) ++index;
-	return arr.slice(index);
+	const index = arr.findIndex((item) => !f(item));
+	return index === -1 ? [] : arr.slice(index);
 });
 
 const allCheck = curry((f, arr) => arr.every(f));

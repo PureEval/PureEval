@@ -1,12 +1,7 @@
 import { curry } from './curry.js';
 
-function __boom(args) {
-	let now = args.shift().map((x) => [x]);
-	args.forEach((v) => {
-		now = v.flatMap((u) => now.map((x) => x.concat([u])));
-	});
-	return now;
-}
+const __boom = (args) =>
+	args.reduce((acc, curr) => curr.flatMap((v) => acc.map((w) => [...w, v])), [[]]);
 
 function iterate(fun, ...args) {
 	return __boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));

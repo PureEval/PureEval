@@ -2,61 +2,18 @@
 import { curry } from './curry.js';
 import { fold } from './iterate.js';
 import { summon } from './summon.js';
-import { compose, pipe } from './transform.js';
+import { pipe } from './transform.js';
 
 const higherPipe = curry((functions, iv) => {
-	const processed = [],
-		processedIv = [];
-	iv.forEach((value, index) => {
-		if (value !== 0) {
-			processed.push(functions[index]);
-			processedIv.push(value);
-		}
-	});
-	const firstFunction = processed.shift(),
-		firstFunctionIv = processedIv.shift();
-	if (processed.length === 0) return fold(firstFunction, firstFunctionIv);
-	else {
-		const construct = pipe.apply(
-			this,
-			processed.map((value, index) => fold(value, processedIv[index]))
-		);
-		return summon(firstFunction.length, (...args) =>
-			construct(
-				firstFunction.length === 1
-					? fold(firstFunction, firstFunctionIv, args[0])
-					: firstFunction(...args)
-			)
-		);
-	}
+	const processed = iv
+		.map((value, index) => (value !== 0 ? functions[index] : null))
+		.filter(Boolean);
+	iv = iv.map((value) => (value !== 0 ? value : null)).filter(Boolean);
+	const construct = pipe(...processed.map((value, index) => fold(value, iv[index])));
+	return summon(processed[0].length, (...args) => construct(...args));
 });
 
-const higherComp = curry((functions, iv) => {
-	const processed = [],
-		processedIv = [];
-	iv.forEach((value, index) => {
-		if (value !== 0) {
-			processed.push(functions[index]);
-			processedIv.push(value);
-		}
-	});
-	const firstFunction = processed.pop(),
-		firstFunctionIv = processedIv.pop();
-	if (processed.length === 0) return fold(firstFunction, firstFunctionIv);
-	else {
-		const construct = compose.apply(
-			this,
-			processed.map((value, index) => fold(value, processedIv[index]))
-		);
-		return summon(firstFunction.length, (...args) =>
-			construct(
-				firstFunction.length === 1
-					? fold(firstFunction, firstFunctionIv, args[0])
-					: firstFunction(...args)
-			)
-		);
-	}
-});
+const higherComp = curry((functions, iv) => higherPipe(functions.reverse(), iv.reverse()));
 
 const coalgebra = curry((seed, next) => () => (seed = next(seed)));
 
