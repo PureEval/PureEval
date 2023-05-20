@@ -12,25 +12,14 @@ function __equalMaybe(a, b) {
 	return false;
 }
 
-function __equalArray(a, b) {
-	return Array.isArray(a) && Array.isArray(b) && arrEqual(a, b);
-}
+const __equalArray = (a, b) => Array.isArray(a) && Array.isArray(b) && arrEqual(a, b);
 
-function __processValue(rule, value) {
-	return Array.isArray(value) && value.length
-		? rule(value, value[0], dropHead(value))
-		: rule(value);
-}
+const __processValue = (rule, value) =>
+	Array.isArray(value) && value.length ? rule(value, value[0], dropHead(value)) : rule(value);
 
-function __unbalanceTest(a, b) {
-	if (a === _) return true;
-	if (typeof a === 'function' && a(b)) return true;
-	return false;
-}
+const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
 
-function __typeTest(a, b) {
-	return !(typeof a === typeof b);
-}
+const __typeTest = (a, b) => typeof a !== typeof b;
 
 function match(...rules) {
 	return (value) => {
