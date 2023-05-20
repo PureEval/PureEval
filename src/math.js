@@ -14,9 +14,12 @@ const div = curry((a, b) => a / b);
 
 const mod = curry((a, b) => a % b);
 
-const rema = curry((a, b) => ((a % b) + b) % b);
+const rema = curry((a, b) => {
+	const r = a % b;
+	return r < 0 ? r + b : r;
+});
 
-const power = curry((a, b) => Math.pow(a, b));
+const power = curry((a, b) => a ** b);
 
 const negate = (a) => -a;
 
