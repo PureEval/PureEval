@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 function summonPre(total, fn) {
 	switch (total) {
 		case 0:

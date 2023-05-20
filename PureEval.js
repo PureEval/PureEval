@@ -9,6 +9,8 @@ import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id,
 import { match } from './src/match.js';
 import { Data } from './src/abstract/data.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js';
+import { Task } from './src/abstract/task.js';
+import { Right, Left } from './src/abstract/either.js';
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js';
 import { MaybeAsync, NothingAsync, JustAsync } from './src/abstract/maybeAsync.js';
 import { prop, assoc, modify, dissoc, deepClone, valuesIn, makePair, construct, has } from './src/object.js';
@@ -28,6 +30,8 @@ export {
 	match,
 	Data,
 	higherPipe, higherComp, coalgebra, stateMachine,
+    Task,
+    Right, Left,
 	Maybe, Nothing, Just,
     MaybeAsync, NothingAsync, JustAsync,
 	prop, assoc, modify, dissoc, deepClone, valuesIn, makePair, construct, has,
