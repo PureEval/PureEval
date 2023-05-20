@@ -9,13 +9,13 @@ const reject = curry((rule, arr) => {
 });
 
 const shied = curry((v, arr) => {
-	if (!Array.isArray(v)) v = [v];
-	return arr.filter((val) => !v.includes(val));
+	const values = Array.isArray(v) ? v : [v];
+	return arr.filter((val) => !values.includes(val));
 });
 
 const choose = curry((v, arr) => {
-	if (!Array.isArray(v)) v = [v];
-	return arr.filter((val) => v.includes(val));
+	const values = Array.isArray(v) ? v : [v];
+	return arr.filter((val) => values.includes(val));
 });
 
 export { filter, reject, shied, choose };

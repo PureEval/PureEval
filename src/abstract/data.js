@@ -9,21 +9,21 @@ function Data(...args) {
 	const data = { is: {}, from: (v) => v instanceof DATA };
 	for (const name in args) {
 		const functions = args[name].trim();
-		let fname;
+		let functionName;
 		if (functions.includes(' ')) {
 			const spl = functions.split(' ');
-			fname = spl.shift();
-			data[fname] = summon(spl.length, (...iargs) => {
-				const result = new DATA(fname);
+			functionName = spl.shift();
+			data[functionName] = summon(spl.length, (...iargs) => {
+				const result = new DATA(functionName);
 				for (const idx in iargs) result[spl[idx]] = iargs[idx];
 				result.args = iargs;
 				return result;
 			});
 		} else {
-			fname = functions;
-			data[fname] = new DATA(fname);
+			functionName = functions;
+			data[functionName] = new DATA(functionName);
 		}
-		data.is[fname] = (val) => val instanceof DATA && val.type === fname;
+		data.is[functionName] = (val) => val instanceof DATA && val.type === functionName;
 	}
 	return data;
 }

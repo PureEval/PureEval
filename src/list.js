@@ -11,13 +11,10 @@ const slice = curry((start, end, arr) => arr.splice(start, end));
 const take = curry((pos, arr) => slice(0, pos, arr));
 
 const takeWhile = curry((f, arr) => {
-	const result = [],
-		end = arr.length;
-	for (let i = 0; i < end; i++) {
-		if (!f(arr[i])) {
-			break;
-		}
-		result.push(arr[i]);
+	const result = [];
+	for (const item of arr) {
+		if (!f(item)) break;
+		result.push(item);
 	}
 	return result;
 });
@@ -25,19 +22,9 @@ const takeWhile = curry((f, arr) => {
 const drop = curry((pos, arr) => arr.slice(pos));
 
 const dropWhile = curry((f, arr) => {
-	const result = [],
-		end = arr.length;
-	let index = 0,
-		flag = false;
-	while (index < end) {
-		if (flag) result.push(arr[index]);
-		else if (!f(arr[index])) {
-			flag = true;
-			result.push(arr[index]);
-		}
-		++index;
-	}
-	return result;
+	let index = 0;
+	while (f(arr[index])) ++index;
+	return arr.slice(index);
 });
 
 const allCheck = curry((f, arr) => arr.every(f));
@@ -59,15 +46,7 @@ const dropTail = (arr) => arr.splice(0, arr.length - 1);
 
 const includes = curry((a, b) => b.includes(a));
 
-function reverse(arr) {
-	const result = [];
-	let end = arr.length - 1;
-	while (end >= 0) {
-		result.push(arr[end]);
-		--end;
-	}
-	return result;
-}
+const reverse = (arr) => arr.reduceRight((acc, cur) => [...acc, cur], []);
 
 export {
 	zipWith,

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { curry, uncurry } from '../PureEval.js';
+import { Nothing, curry, uncurry } from '../PureEval.js';
 import { bind, _ } from '../PureEval.js';
 import { filter, reject, shied, choose } from '../PureEval.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.js';
@@ -28,9 +28,9 @@ import { Just } from '../PureEval.js';
 	Range();
 	StateMachine();
 	String();
-	Transform();
+    Transform();
     List();
-	Abstract();
+    Abstract();
 })();
 
 function Curry() {
@@ -272,6 +272,23 @@ function Match() {
 			it('FastSort', () => {
 				const sort = match([], [], _, (a, x, s) => [...sort(filter(lte(x), s)), x, ...sort(filter(gt(x), s))]);
 				assert.deepEqual(sort([4, 6, 7, 4, 1]), [7, 6, 4, 4, 1]);
+			});
+            it('Maybe', () => {
+				const foo = match(Just('1'), 1, Nothing, 2, _, 3);
+                assert.deepEqual(foo(Just('1')), 1);
+                assert.deepEqual(foo(Nothing), 2);
+                assert.deepEqual(foo(Just(2)), 3);
+			});
+            it('Check', () => {
+				const foo = match((v) => v <= 3, 1, _, 2);
+                assert.deepEqual(foo(5), 2);
+                assert.deepEqual(foo(1), 1);
+			});
+            it('Array', () => {
+				const foo = match([1, 2, 3], '123', [], 'e', _, 1);
+                assert.deepEqual(foo([1, 2, 3]), '123');
+                assert.deepEqual(foo([]), 'e');
+                assert.deepEqual(foo([1, 2, 3, 4]), 1);
 			});
 		});
 	});
