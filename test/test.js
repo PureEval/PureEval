@@ -557,6 +557,10 @@ function Transform() {
 				const div_and_add = pipe(mul(0.5), add(1));
 				assert.equal(div_and_add(229026), 114514);
 			});
+            it('Length', () => {
+				const foo = pipe((a, b, c, d, e) => a + b + c + d + e, add(1));
+                assert.equal(foo.length,5);
+			});
 		});
 		describe('call()', () => {
 			it('Base', () => {
