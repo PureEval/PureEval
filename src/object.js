@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { Just, Nothing } from './abstract/maybe.js';
+import { Just } from './abstract/maybe.js';
 import { curry } from './curry.js';
 import { summon } from './summon.js';
 
@@ -11,7 +11,7 @@ function _assoc(pos, val, obj) {
 	}
 	const result = {};
 	for (const p in obj) result[p] = obj[p];
-	result[pos] = val;
+	Reflect.set(result, pos, val);
 	return result;
 }
 
@@ -32,7 +32,7 @@ function _dissoc(pos, obj) {
 	if (Number.isInteger(pos) && Array.isArray(obj)) return _remove(pos, 1, obj);
 	const result = {};
 	for (const p in obj) result[p] = obj[p];
-	delete result[pos];
+	Reflect.deleteProperty(result, pos);
 	return result;
 }
 
@@ -65,15 +65,11 @@ const modify = curry((s, f, a) => {
 		let value = a;
 		for (const index in s) {
 			if (index == s.length - 1) {
-				if (Just(value[s[index]]).isNothing()) return Nothing;
-				else value[s[index]] = f(value[s[index]]);
+				value[s[index]] = f(value[s[index]]);
 			}
 			value = value[s[index]];
 		}
-	} else {
-		if (Just(a[s]).isNothing()) return Nothing;
-		else a[s] = f(a[s]);
-	}
+	} else a[s] = f(a[s]);
 	return a;
 });
 
