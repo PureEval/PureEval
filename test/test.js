@@ -1,12 +1,12 @@
 import * as assert from 'assert';
-import { Nothing, curry, deepClone, uncurry } from '../PureEval.js';
+import { Nothing, curry, uncurry } from '../PureEval.js';
 import { bind, _ } from '../PureEval.js';
 import { filter, reject, shield, choose } from '../PureEval.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.js';
 import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse } from '../PureEval.js';
 import { match } from '../PureEval.js';
 import { odd, even, add, minus, mul, div, divr, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec } from '../PureEval.js';
-import { prop, assoc, modify, dissoc, valuesIn, makePair, has } from '../PureEval.js';
+import { prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, has } from '../PureEval.js';
 import { range } from '../PureEval.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from '../PureEval.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from '../PureEval.js';
@@ -509,6 +509,11 @@ function Object() {
 				assert.deepEqual(foo, { a: 1 });
 				c.a = 3;
 				assert.deepEqual(b, { a: 2 });
+			});
+		});
+        describe('keys()', () => {
+			it('Base', () => {
+				assert.deepEqual(keys({ a: 1, b: 2, c: 3 }), ['a', 'b', 'c']);
 			});
 		});
 		describe('valuesIn()', () => {
