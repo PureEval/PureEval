@@ -3,9 +3,7 @@ import { includes } from '../list.js';
 
 const iter = (xs) => xs();
 const seq = (xs) => [...xs()];
-//Unverified
 const head = (xs) => xs().next().value;
-//Unverified
 const isEmpty = (xs) => xs().next().done === true;
 
 const range = curry(
@@ -24,7 +22,6 @@ const lazy = (xs) =>
 		for (const x of xs) yield x;
 	};
 
-//Unverified
 const tail = (xs) =>
 	function* () {
 		let flag = false;
@@ -48,8 +45,7 @@ const map = curry(
 		}
 );
 
-//Unverified
-const faltMap = curry(
+const flatMap = curry(
 	(f, xs) =>
 		function* () {
 			for (const x of iter(xs)) for (const y of iter(f(x))) yield y;
@@ -92,7 +88,6 @@ const repeat = (x) =>
 		while (1) yield x;
 	};
 
-//Unverified
 const filter = curry(
 	(rule, xs) =>
 		function* () {
@@ -100,7 +95,6 @@ const filter = curry(
 		}
 );
 
-//Unverified
 const reject = curry(
 	(rule, xs) =>
 		function* () {
@@ -108,12 +102,10 @@ const reject = curry(
 		}
 );
 
-//Unverified
 const forEach = curry((rule, xs) => {
 	for (const x of iter(xs)) rule(x);
 });
 
-//Unverified
 const takeWhile = curry(
 	(rule, xs) =>
 		function* () {
@@ -124,7 +116,6 @@ const takeWhile = curry(
 		}
 );
 
-//Unverified
 const dropWhile = curry(
 	(rule, xs) =>
 		function* () {
@@ -139,7 +130,6 @@ const dropWhile = curry(
 		}
 );
 
-//Unverified
 const zipWith = curry(
 	(f, xa, xb) =>
 		function* () {
@@ -153,10 +143,10 @@ const zipWith = curry(
 		}
 );
 
-//Unverified
-const shied = curry((v, xs) => reject(includes(v), xs));
+const shield = curry((v, xs) => reject(includes(v), xs));
 
-//Unverified
 const choose = curry((v, xs) => filter(includes(v), xs));
 
-export { seq, head, isEmpty, range, lazy, tail, iterate, map, faltMap, choose, dropWhile, take, takeWhile, zipWith, drop, filter, reject, repeat, shied, forEach, concat, includes };
+export { seq, head, isEmpty, range, lazy, tail, iterate, map, flatMap, choose, dropWhile, take, takeWhile, zipWith, drop, filter, reject, repeat, shield, forEach, concat, includes };
+
+
