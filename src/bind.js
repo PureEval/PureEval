@@ -6,7 +6,7 @@ function bind(func, ...args) {
 		nowarg = [];
 	let cnt = 0;
 	args.forEach((v, i) => {
-		if (v == _) ++cnt, pos.push(i);
+		if (v === _) ++cnt, pos.push(i);
 		nowarg.push(v);
 	});
 	return summon(cnt, function () {

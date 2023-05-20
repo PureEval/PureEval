@@ -8,7 +8,7 @@ class Monad {
 	}
 
 	map(f) {
-		return this.lift(f(this.v));
+		return this.lift(f(this.value));
 	}
 
 	chain(f) {

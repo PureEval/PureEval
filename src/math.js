@@ -1,8 +1,9 @@
 import { curry } from './curry.js';
 
-const odd = (v) => v % 2;
 
-const even = (v) => !(v % 2);
+const odd = (v) => v % 2 === 1;
+
+const even = (v) => v % 2 === 0;
 
 const add = curry((a, b) => a + b);
 
@@ -33,14 +34,9 @@ const sort = curry((rule, arr) => {
 });
 
 function median(arr) {
-	const w = 2 - (arr.length & 1),
-		x = (arr.length - w) >> 1;
-	return average(
-		Array.prototype.slice
-			.call(arr, 0)
-			.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
-			.slice(x, x + w)
-	);
+	const sortedArr = [...arr].sort((a, b) => a - b);
+	const mid = Math.floor(sortedArr.length / 2);
+	return sortedArr.length % 2 !== 0 ? sortedArr[mid] : (sortedArr[mid - 1] + sortedArr[mid]) / 2;
 }
 
 function sum(arr) {
@@ -51,13 +47,9 @@ function prod(arr) {
 	return arr.reduce((x, y) => x * y);
 }
 
-function max(arr) {
-	return arr.reduce((x, y) => (x > y ? x : y));
-}
+const max = (arr) => Math.max(...arr);
 
-function min(arr) {
-	return arr.reduce((x, y) => (x < y ? x : y));
-}
+const min = (arr) => Math.min(...arr);
 
 function average(arr) {
 	return sum(arr) / arr.length;

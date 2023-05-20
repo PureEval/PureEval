@@ -5,101 +5,79 @@ import { summon } from './summon.js';
 
 function _assoc(pos, val, obj) {
 	if (Array.isArray(obj)) {
-		const arr = [].concat(obj);
+		const arr = [...obj];
 		arr[pos] = val;
 		return arr;
 	}
-	const result = {};
-	for (const p in obj) result[p] = obj[p];
-	Reflect.set(result, pos, val);
-	return result;
+	return { ...obj, [pos]: val };
 }
 
-function _shallowCloneObject(pos, obj) {
-	if (Number.isInteger(pos) && Array.isArray(obj)) return [].concat(obj);
-	const result = {};
-	for (const p in obj) result[p] = obj[p];
-	return result;
-}
+const _shallowCloneObject = (pos, obj) => {
+	if (Number.isInteger(pos) && Array.isArray(obj)) return [...obj];
+	return { ...obj };
+};
 
-function _remove(start, cnt, list) {
-	const result = Array.prototype.slice.call(list, 0);
+const _remove = (start, cnt, list) => {
+	Array.prototype.slice.call;
+	const result = [...list];
 	result.splice(start, cnt);
 	return result;
-}
+};
 
-function _dissoc(pos, obj) {
+const _dissoc = (pos, obj) => {
 	if (Number.isInteger(pos) && Array.isArray(obj)) return _remove(pos, 1, obj);
-	const result = {};
-	for (const p in obj) result[p] = obj[p];
-	Reflect.deleteProperty(result, pos);
-	return result;
-}
+	// eslint-disable-next-line no-unused-vars
+	const { [pos]: __, ...rest } = obj;
+	return rest;
+};
 
 const prop = curry((s, a) => {
-	if (Array.isArray(s)) {
-		let value = a;
-		for (const index in s) value = value[s[index]];
-		return value;
-	} else return a[s];
+	if (Array.isArray(s)) return s.reduce((acc, cur) => acc && acc[cur], a);
+	else return a[s];
 });
 
 const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
 		const idx = s[0];
-		if (s.length > 1) {
-			const nextObj =
-				!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
-					? a[idx]
-					: Number.isInteger(s[1])
-					? []
-					: {};
-			v = assoc(Array.prototype.slice.call(s, 1), v, nextObj);
-		}
+		const nextObj =
+			!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
+				? a[idx]
+				: Number.isInteger(s[1])
+				? []
+				: {};
+		v = s.length > 1 ? assoc(Array.prototype.slice.call(s, 1), v, nextObj) : v;
 		return _assoc(idx, v, a);
 	} else return _assoc(s, v, a);
 });
 
 const modify = curry((s, f, a) => {
 	if (Array.isArray(s)) {
-		let value = a;
-		for (const index in s) {
-			if (index == s.length - 1) {
-				value[s[index]] = f(value[s[index]]);
-			}
-			value = value[s[index]];
-		}
-	} else a[s] = f(a[s]);
-	return a;
+		const [head, ...tail] = s;
+		return tail.length === 0
+			? assoc(head, f(a[head]), a)
+			: assoc(head, modify(tail, f, a[head]), a);
+	} else {
+		return assoc(s, f(a[s]), a);
+	}
 });
 
 const dissoc = curry((s, a) => {
 	if (Array.isArray(s)) {
-		switch (s.length) {
-			case 0:
-				return a;
-			case 1:
-				return _dissoc(s[0], a);
-			default:
-				const head = s[0],
-					tail = Array.prototype.slice.call(s, 1);
-				if (a[head] == null) return _shallowCloneObject(head, a);
-				else return assoc(head, dissoc(tail, a[head]), a);
+		if (s.length === 0) return a;
+		const [head, ...tail] = s;
+		if (tail.length === 0) return _dissoc(head, a);
+		else {
+			const nextObj = a[head] == null ? _shallowCloneObject(head, a) : a[head];
+			return assoc(head, dissoc(tail, nextObj), a);
 		}
-	} else return _dissoc(s, a);
+	} else {
+		return _dissoc(s, a);
+	}
 });
 
-function valuesIn(x) {
-	const result = [];
-	for (const i in x) result.push(x[i]);
-	return result;
-}
+const valuesIn = (x) => Object.values(x);
 
-function makePair(arr) {
-	const result = {};
-	for (const i in arr) result[arr[i][0]] = arr[i][1];
-	return result;
-}
+const makePair = (arr) => Object.fromEntries(arr);
 
 const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new cls(...args)));
 
