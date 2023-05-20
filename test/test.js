@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { Nothing, curry, uncurry } from '../PureEval.js';
 import { bind, _ } from '../PureEval.js';
-import { filter, reject, shied, choose } from '../PureEval.js';
+import { filter, reject, shield, choose } from '../PureEval.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.js';
 import { either, both, not, gt, gte, lt, lte, equal, equalStrict, arrEqual, id, always, when, unless, ifElse } from '../PureEval.js';
 import { match } from '../PureEval.js';
@@ -90,9 +90,9 @@ function Filter() {
 				assert.deepEqual(reject((v) => v == 1)([1, 1, 4, 5, 1, 4]), [4, 5, 4]);
 			});
 		});
-		describe('shied()', () => {
+		describe('shield()', () => {
 			it('Base', () => {
-				assert.deepEqual(shied([1])([1, 1, 4, 5, 1, 4]), [4, 5, 4]);
+				assert.deepEqual(shield([1])([1, 1, 4, 5, 1, 4]), [4, 5, 4]);
 			});
 		});
 		describe('choose()', () => {
