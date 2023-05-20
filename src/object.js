@@ -88,6 +88,8 @@ const deepClone = (obj) => {
 	return newObj;
 };
 
+const keys = (x) => Object.keys(x);
+
 const valuesIn = (x) => Object.values(x);
 
 const makePair = (arr) => Object.fromEntries(arr);
@@ -96,4 +98,4 @@ const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new
 
 const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj, prop));
 
-export { prop, assoc, modify, dissoc, deepClone, valuesIn, makePair, construct, has };
+export { prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, construct, has };
