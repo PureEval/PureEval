@@ -148,5 +148,3 @@ const shield = curry((v, xs) => reject(includes(v), xs));
 const choose = curry((v, xs) => filter(includes(v), xs));
 
 export { seq, head, isEmpty, range, lazy, tail, iterate, map, flatMap, choose, dropWhile, take, takeWhile, zipWith, drop, filter, reject, repeat, shield, forEach, concat, includes };
-
-

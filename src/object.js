@@ -18,7 +18,6 @@ const _shallowCloneObject = (pos, obj) => {
 };
 
 const _remove = (start, cnt, list) => {
-	Array.prototype.slice.call;
 	const result = [...list];
 	result.splice(start, cnt);
 	return result;
