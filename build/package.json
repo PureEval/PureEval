@@ -1,6 +1,6 @@
 {
 	"name": "pureeval",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "A powerful simple JavaScript functional-programming toolset.",
 	"keywords": [
 		"fp",
