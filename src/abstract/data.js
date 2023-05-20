@@ -1,4 +1,4 @@
-import { summonWithName } from '../summon.js';
+import { summon } from '../summon.js';
 
 function Data(...args) {
 	class DATA {
@@ -13,7 +13,7 @@ function Data(...args) {
 		if (functions.includes(' ')) {
 			const spl = functions.split(' ');
 			fname = spl.shift();
-			data[fname] = summonWithName(spl, (...iargs) => {
+			data[fname] = summon(spl.length, (...iargs) => {
 				const result = new DATA(fname);
 				for (const idx in iargs) result[spl[idx]] = iargs[idx];
 				result.args = iargs;
