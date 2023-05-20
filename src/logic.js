@@ -22,33 +22,25 @@ const id = (v) => v;
 
 const always = (v) => () => v;
 
-const arrEqual = curry((a, b) => {
-	if (a.length !== b.length) {
-		return false;
+function deepEqual(a, b) {
+	if (a === b) return true;
+	if (typeof a !== typeof b) return false;
+	if (typeof a !== 'object' || a === null || b === null) return false;
+	const keysA = Object.keys(a),
+		keysB = Object.keys(b);
+	if (keysA.length !== keysB.length) return false;
+	for (let i = 0; i < keysA.length; ++i) {
+		const key = keysA[i];
+		if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
 	}
-	return a.every((val, index) => val === b[index]);
-});
+	return true;
+}
 
-const when = curry((a, b) => {
-	return (obj) => {
-		if (a(obj)) return b(obj);
-		return obj;
-	};
-});
+const when = curry((a, b) => (obj) => a(obj) ? b(obj) : obj);
 
-const unless = curry((a, b) => {
-	return (obj) => {
-		if (!a(obj)) return b(obj);
-		return obj;
-	};
-});
+const unless = curry((a, b) => (obj) => !a(obj) ? b(obj) : obj);
 
-const ifElse = curry((a, b, c) => {
-	return (obj) => {
-		if (a(obj)) return b(obj);
-		else return c(obj);
-	};
-});
+const ifElse = curry((a, b, c) => (obj) => a(obj) ? b(obj) : c(obj));
 
 export {
 	either,
@@ -60,7 +52,7 @@ export {
 	lte,
 	equal,
 	equalStrict,
-	arrEqual,
+	deepEqual,
 	id,
 	always,
 	when,

@@ -1,11 +1,11 @@
 import * as assert from 'assert';
-import { Nothing, curry, uncurry } from '../PureEval.js';
+import { Nothing, curry, deepClone, uncurry } from '../PureEval.js';
 import { bind, _ } from '../PureEval.js';
 import { filter, reject, shield, choose } from '../PureEval.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.js';
-import { either, both, not, gt, gte, lt, lte, equal, equalStrict, arrEqual, id, always, when, unless, ifElse } from '../PureEval.js';
+import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse } from '../PureEval.js';
 import { match } from '../PureEval.js';
-import { odd, even, add, minus, mul, div, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec } from '../PureEval.js';
+import { odd, even, add, minus, mul, div, divr, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec } from '../PureEval.js';
 import { prop, assoc, modify, dissoc, valuesIn, makePair, has } from '../PureEval.js';
 import { range } from '../PureEval.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from '../PureEval.js';
@@ -28,9 +28,9 @@ import { Just } from '../PureEval.js';
 	Range();
 	StateMachine();
 	String();
-    Transform();
-    List();
-    Abstract();
+	Transform();
+	List();
+	Abstract();
 })();
 
 function Curry() {
@@ -48,8 +48,42 @@ function Curry() {
 				assert.equal(foo.length, 3);
 			});
 			it('Performance', () => {
-				const foo = curry((a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z) => a + z);
-				assert.equal(foo(1)(2)(3)(4)(5)(6)(7)(8)(9)(10)(11)(12)(13)(14)(15)(16)(17)(18)(19)(20)(21)(22)(23)(24)(25)(26), 27);
+				const foo = curry(
+					(
+						a,
+						b,
+						c,
+						d,
+						e,
+						f,
+						g,
+						h,
+						i,
+						j,
+						k,
+						l,
+						m,
+						n,
+						o,
+						p,
+						q,
+						r,
+						s,
+						t,
+						u,
+						v,
+						w,
+						x,
+						y,
+						z
+					) => a + z
+				);
+				assert.equal(
+					foo(1)(2)(3)(4)(5)(6)(7)(8)(9)(10)(11)(12)(13)(14)(15)(16)(17)(18)(19)(20)(21)(
+						22
+					)(23)(24)(25)(26),
+					27
+				);
 			});
 		});
 		describe('uncurry()', () => {
@@ -223,12 +257,12 @@ function Logic() {
 				assert.equal(always(4)(), 4);
 			});
 		});
-		describe('arrEqual()', () => {
+		describe('deepEqual()', () => {
 			it('Base', () => {
-				assert.equal(arrEqual([1, 2, 3], [3, 2, 1]), false);
+				assert.equal(deepEqual([1, 2, 3], [3, 2, 1]), false);
 			});
 			it('EmptyArray', () => {
-				assert.equal(arrEqual([], []), true);
+				assert.equal(deepEqual([], []), true);
 			});
 		});
 		describe('when()', () => {
@@ -270,25 +304,34 @@ function Match() {
 				assert.equal(fib(5), 8);
 			});
 			it('FastSort', () => {
-				const sort = match([], [], _, (a, x, s) => [...sort(filter(lte(x), s)), x, ...sort(filter(gt(x), s))]);
+				const sort = match([], [], _, (a, x, s) => [
+					...sort(filter(lte(x), s)),
+					x,
+					...sort(filter(gt(x), s))
+				]);
 				assert.deepEqual(sort([4, 6, 7, 4, 1]), [7, 6, 4, 4, 1]);
 			});
-            it('Maybe', () => {
+			it('Maybe', () => {
 				const foo = match(Just('1'), 1, Nothing, 2, _, 3);
-                assert.deepEqual(foo(Just('1')), 1);
-                assert.deepEqual(foo(Nothing), 2);
-                assert.deepEqual(foo(Just(2)), 3);
+				assert.deepEqual(foo(Just('1')), 1);
+				assert.deepEqual(foo(Nothing), 2);
+				assert.deepEqual(foo(Just(2)), 3);
 			});
-            it('Check', () => {
+			it('Check', () => {
 				const foo = match((v) => v <= 3, 1, _, 2);
-                assert.deepEqual(foo(5), 2);
-                assert.deepEqual(foo(1), 1);
+				assert.deepEqual(foo(5), 2);
+				assert.deepEqual(foo(1), 1);
 			});
-            it('Array', () => {
+			it('Array', () => {
 				const foo = match([1, 2, 3], '123', [], 'e', _, 1);
-                assert.deepEqual(foo([1, 2, 3]), '123');
-                assert.deepEqual(foo([]), 'e');
-                assert.deepEqual(foo([1, 2, 3, 4]), 1);
+				assert.deepEqual(foo([1, 2, 3]), '123');
+				assert.deepEqual(foo([]), 'e');
+				assert.deepEqual(foo([1, 2, 3, 4]), 1);
+			});
+			it('Object', () => {
+				const foo = match({ a: 1 }, 1, _, 2);
+				assert.deepEqual(foo({ a: 2 }), 2);
+				assert.deepEqual(foo({ a: 1 }), 1);
 			});
 		});
 	});
@@ -330,6 +373,12 @@ function Math() {
 			it('Base', () => {
 				assert.equal(div(50)(2), 25);
 				assert.equal(div(6, 6), 1);
+			});
+		});
+        describe('divr()', () => {
+			it('Base', () => {
+				assert.equal(divr(2)(50), 25);
+				assert.equal(divr(6, 6), 1);
 			});
 		});
 		describe('mod()', () => {
@@ -425,7 +474,9 @@ function Object() {
 		describe('assoc()', () => {
 			it('Base', () => {
 				assert.deepEqual(assoc('homo', 'yeah', { homo: 114514 }), { homo: 'yeah' });
-				assert.deepEqual(assoc(['inside', 'homo'], 'yeah', { inside: { homo: 114514 } }), { inside: { homo: 'yeah' } });
+				assert.deepEqual(assoc(['inside', 'homo'], 'yeah', { inside: { homo: 114514 } }), {
+					inside: { homo: 'yeah' }
+				});
 			});
 		});
 		describe('modify()', () => {
@@ -443,7 +494,21 @@ function Object() {
 		describe('dissoc()', () => {
 			it('Base', () => {
 				assert.deepEqual(dissoc('homo', { homo: 114514 }), {});
-				assert.deepEqual(dissoc(['inside', 'homo'], { inside: { homo: 114514 } }), { inside: {} });
+				assert.deepEqual(dissoc(['inside', 'homo'], { inside: { homo: 114514 } }), {
+					inside: {}
+				});
+			});
+		});
+		describe('deepClone()', () => {
+			it('Base', () => {
+				const foo = { a: 1 };
+				const b = deepClone(foo);
+				const c = foo;
+				b.a = 2;
+				assert.deepEqual(b, { a: 2 });
+				assert.deepEqual(foo, { a: 1 });
+				c.a = 3;
+				assert.deepEqual(b, { a: 2 });
 			});
 		});
 		describe('valuesIn()', () => {
@@ -574,9 +639,9 @@ function Transform() {
 				const div_and_add = pipe(mul(0.5), add(1));
 				assert.equal(div_and_add(229026), 114514);
 			});
-            it('Length', () => {
+			it('Length', () => {
 				const foo = pipe((a, b, c, d, e) => a + b + c + d + e, add(1));
-                assert.equal(foo.length,5);
+				assert.equal(foo.length, 5);
 			});
 		});
 		describe('call()', () => {
@@ -588,95 +653,114 @@ function Transform() {
 	});
 }
 
-function List(){
-    describe('List', () => {
+function List() {
+	describe('List', () => {
 		describe('zipWith()', () => {
 			it('Base', () => {
 				const f = (a, b) => a + b;
-                assert.deepEqual(zipWith(f, [1, 2, 3], [4, 5, 6]),[5, 7, 9])
+				assert.deepEqual(zipWith(f, [1, 2, 3], [4, 5, 6]), [5, 7, 9]);
 			});
 		});
-        describe('zip()', () => {
+		describe('zip()', () => {
 			it('Base', () => {
-                assert.deepEqual(zip([1, 2, 3], [4, 5, 6]), [[1, 4], [2, 5], [3, 6]]);
+				assert.deepEqual(zip([1, 2, 3], [4, 5, 6]), [
+					[1, 4],
+					[2, 5],
+					[3, 6]
+				]);
 			});
 		});
-        describe('join()', () => {
+		describe('join()', () => {
 			it('Base', () => {
-                assert.equal(join("|", [1, 2, 3]), "1|2|3");
+				assert.equal(join('|', [1, 2, 3]), '1|2|3');
 			});
 		});
-        describe('slice()', () => {
+		describe('slice()', () => {
 			it('Base', () => {
-                assert.deepEqual(slice(0, 3, [1, 2, 3, 4]), [1, 2, 3]);
+				assert.deepEqual(slice(0, 3, [1, 2, 3, 4]), [1, 2, 3]);
 			});
 		});
-        describe('take()', () => {
+		describe('take()', () => {
 			it('Base', () => {
-                assert.deepEqual(take(3, [1, 2, 3, 4]), [1, 2, 3]);
+				assert.deepEqual(take(3, [1, 2, 3, 4]), [1, 2, 3]);
 			});
 		});
-        describe('takeWhile()', () => {
+		describe('takeWhile()', () => {
 			it('Base', () => {
-                assert.deepEqual(takeWhile((v) => v < 3, [1, 1, 4, 5, 1, 4]), [1, 1]);
+				assert.deepEqual(
+					takeWhile((v) => v < 3, [1, 1, 4, 5, 1, 4]),
+					[1, 1]
+				);
 			});
 		});
-        describe('drop()', () => {
+		describe('drop()', () => {
 			it('Base', () => {
-                assert.deepEqual(drop(3, [1, 2, 3, 4]), [4]);
+				assert.deepEqual(drop(3, [1, 2, 3, 4]), [4]);
 			});
 		});
-        describe('dropWhile()', () => {
+		describe('dropWhile()', () => {
 			it('Base', () => {
-                assert.deepEqual(dropWhile((v) => v < 3, [4, 5, 1, 4]), [4, 5, 1, 4]);
-                assert.deepEqual(dropWhile((v) => v < 5, [4, 5, 1, 4]), [5, 1, 4]);
+				assert.deepEqual(
+					dropWhile((v) => v < 3, [4, 5, 1, 4]),
+					[4, 5, 1, 4]
+				);
+				assert.deepEqual(
+					dropWhile((v) => v < 5, [4, 5, 1, 4]),
+					[5, 1, 4]
+				);
 			});
 		});
-        describe('allCheck()', () => {
+		describe('allCheck()', () => {
 			it('Base', () => {
-                assert.equal(allCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]), false);
+				assert.equal(
+					allCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]),
+					false
+				);
 			});
 		});
-        describe('anyCheck()', () => {
+		describe('anyCheck()', () => {
 			it('Base', () => {
-                assert.equal(anyCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]), true);
+				assert.equal(
+					anyCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]),
+					true
+				);
 			});
 		});
-        describe('concat()', () => {
+		describe('concat()', () => {
 			it('Base', () => {
-                assert.deepEqual(concat([1, 2, 3], [1, 2, 3]), [1, 2, 3, 1, 2, 3]);
-                assert.equal(concat("abc", "def"), "abcdef");
+				assert.deepEqual(concat([1, 2, 3], [1, 2, 3]), [1, 2, 3, 1, 2, 3]);
+				assert.equal(concat('abc', 'def'), 'abcdef');
 			});
 		});
-        describe('head()', () => {
+		describe('head()', () => {
 			it('Base', () => {
-                assert.equal(head([1, 2, 3]), 1);
+				assert.equal(head([1, 2, 3]), 1);
 			});
 		});
-        describe('tail()', () => {
+		describe('tail()', () => {
 			it('Base', () => {
-                assert.equal(tail([1, 2, 3]), 3);
+				assert.equal(tail([1, 2, 3]), 3);
 			});
 		});
-        describe('dropHead()', () => {
+		describe('dropHead()', () => {
 			it('Base', () => {
-                assert.deepEqual(dropHead([1, 2, 3]), [2, 3]);
+				assert.deepEqual(dropHead([1, 2, 3]), [2, 3]);
 			});
 		});
-        describe('dropTail()', () => {
+		describe('dropTail()', () => {
 			it('Base', () => {
-                assert.deepEqual(dropTail([1, 2, 3]), [1, 2]);
+				assert.deepEqual(dropTail([1, 2, 3]), [1, 2]);
 			});
 		});
-        describe('includes()', () => {
+		describe('includes()', () => {
 			it('Base', () => {
-                assert.equal(includes(4)([1, 3, 4]), true);
-                assert.equal(includes(5)([1, 3, 4]), false);
+				assert.equal(includes(4)([1, 3, 4]), true);
+				assert.equal(includes(5)([1, 3, 4]), false);
 			});
 		});
-        describe('reverse()', () => {
+		describe('reverse()', () => {
 			it('Base', () => {
-                assert.deepEqual(reverse([1, 2, 3]), [3, 2, 1]);
+				assert.deepEqual(reverse([1, 2, 3]), [3, 2, 1]);
 			});
 		});
 	});

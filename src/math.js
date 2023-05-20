@@ -1,6 +1,5 @@
 import { curry } from './curry.js';
 
-
 const odd = (v) => v % 2 === 1;
 
 const even = (v) => v % 2 === 0;
@@ -12,6 +11,8 @@ const minus = curry((a, b) => a - b);
 const mul = curry((a, b) => a * b);
 
 const div = curry((a, b) => a / b);
+
+const divr = curry((a, b) => b / a);
 
 const mod = curry((a, b) => a % b);
 
@@ -70,6 +71,7 @@ export {
 	minus,
 	mul,
 	div,
+	divr,
 	mod,
 	rema,
 	power,

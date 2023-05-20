@@ -1,5 +1,5 @@
 import { _ } from './bind.js';
-import { always, arrEqual, equalStrict } from './logic.js';
+import { always, deepEqual, equalStrict } from './logic.js';
 import { Maybe } from './abstract/maybe.js';
 import { dropHead } from './list.js';
 
@@ -8,11 +8,14 @@ function __equalMaybe(a, b) {
 	if (a.isNothing() && b.isNothing()) return true;
 	if (a.isNothing() || b.isNothing()) return false;
 	if (a.value === b.value) return true;
-	if (Array.isArray(a.value) && Array.isArray(b.value) && arrEqual(a.value, b.value)) return true;
+	if (__equalArray(a, b)) return true;
+	if (__equalObject(a, b)) return true;
 	return false;
 }
 
-const __equalArray = (a, b) => Array.isArray(a) && Array.isArray(b) && arrEqual(a, b);
+const __equalObject = (a, b) => typeof a === 'object' && typeof a === typeof b && deepEqual(a, b);
+
+const __equalArray = (a, b) => Array.isArray(a) && Array.isArray(b) && deepEqual(a, b);
 
 const __processValue = (rule, value) =>
 	Array.isArray(value) && value.length ? rule(value, value[0], dropHead(value)) : rule(value);
@@ -30,6 +33,7 @@ function match(...rules) {
 			if (equalStrict(rules[i], value)) return rules[i + 1](value);
 			if (__equalArray(rules[i], value)) return __processValue(rules[i + 1], value);
 			if (__equalMaybe(rules[i], value)) return rules[i + 1](value);
+			if (__equalObject(rules[i], value)) return rules[i + 1](value);
 		}
 	};
 }
