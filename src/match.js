@@ -8,8 +8,8 @@ function __equalMaybe(a, b) {
 	if (a.isNothing() && b.isNothing()) return true;
 	if (a.isNothing() || b.isNothing()) return false;
 	if (a.value === b.value) return true;
-	if (__equalArray(a, b)) return true;
-	if (__equalObject(a, b)) return true;
+	if (__equalArray(a.value, b.value)) return true;
+	if (__equalObject(a.value, b.value)) return true;
 	return false;
 }
 
