@@ -13,7 +13,7 @@ class Right {
 	}
 
 	fold(reject, resolve) {
-		resolve(this.value);
+		return resolve(this.value);
 	}
 }
 
@@ -23,7 +23,7 @@ class Left extends Right {
 	}
 
 	fold(reject, resolve) {
-		reject(this.value);
+		return reject(this.value);
 	}
 }
 
