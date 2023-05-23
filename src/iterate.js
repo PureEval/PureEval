@@ -28,10 +28,8 @@ const fold = curry((fun, cnt, init) => {
 	return init;
 });
 
-const scan = curry((init, fun, cnt) => {
-	const result = [];
-	while (cnt--) result.push((init = fun(init)));
-	return result;
-});
+const scan = curry((init, fun, cnt) =>
+	Array.from({ length: cnt }, () => (init = fun(init)))
+);
 
 export { iterate, map, flatMap, forEach, reduce, fold, scan };
