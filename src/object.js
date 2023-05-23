@@ -17,16 +17,16 @@ const _shallowCloneObject = (pos, obj) => {
 	return { ...obj };
 };
 
-const _remove = (start, cnt, list) => {
+const _remove = (start, list) => {
 	const result = [...list];
-	result.splice(start, cnt);
+	result.splice(start, 1);
 	return result;
 };
 
 const _dissoc = (pos, obj) => {
-	if (Number.isInteger(pos) && Array.isArray(obj)) return _remove(pos, 1, obj);
+	if (Number.isInteger(pos) && Array.isArray(obj)) return _remove(pos, obj);
 	// eslint-disable-next-line no-unused-vars
-	const { [pos]: __, ...rest } = obj;
+	const { [pos]: _, ...rest } = obj;
 	return rest;
 };
 

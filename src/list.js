@@ -26,10 +26,7 @@ const allCheck = curry((f, arr) => arr.every(f));
 
 const anyCheck = curry((f, arr) => arr.some(f));
 
-const concat = curry((a, b) => {
-	if (Array.isArray(a)) return a.concat(b);
-	else return a + b;
-});
+const concat = curry((a, b) => Array.isArray(a) ? a.concat(b) : a + b);
 
 const head = (arr) => arr[0];
 
