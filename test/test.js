@@ -189,7 +189,7 @@ function Iterate() {
 		});
 		describe('scan()', () => {
 			it('Base', () => {
-				assert.deepEqual(scan(1)((v) => v + 1)(5), [2, 3, 4, 5, 6]);
+				assert.deepEqual(scan((v) => v + 1)(5)(1), [2, 3, 4, 5, 6]);
 			});
 		});
 	});

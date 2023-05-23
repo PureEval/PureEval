@@ -1,17 +1,18 @@
 import { curry } from './curry.js';
 import { summon } from './summon.js';
 
-const pipe = (...funcs) => {
-	if (funcs.length === 1) return funcs[0];
-	return summon(funcs[0].length, (...args) =>
-		funcs.reduce((result, func, idx) => (idx === 0 ? func(...result) : func(result)), args)
-	);
-};
+const pipe = (...funcs) =>
+	funcs.length === 1
+		? funcs[0]
+		: summon(funcs[0].length, (...args) =>
+				funcs.reduce(
+					(result, func, idx) => (idx === 0 ? func(...result) : func(result)),
+					args
+				)
+		  );
 
 const compose = (...funcs) => pipe(...funcs.reverse());
 
-const call = curry((fun, args) => {
-	return fun.apply(this, args);
-});
+const call = curry((fun, args) => fun.apply(null, args));
 
 export { compose, pipe, call };

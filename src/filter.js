@@ -1,12 +1,8 @@
 import { curry } from './curry.js';
 
-const filter = curry((rule, arr) => {
-	return arr.filter((v) => rule(v));
-});
+const filter = curry((rule, arr) => arr.filter((v) => rule(v)));
 
-const reject = curry((rule, arr) => {
-	return arr.filter((v) => !rule(v));
-});
+const reject = curry((rule, arr) => arr.filter((v) => !rule(v)));
 
 const shield = curry((v, arr) => {
 	const values = Array.isArray(v) ? v : [v];

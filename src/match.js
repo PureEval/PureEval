@@ -24,7 +24,7 @@ const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
 
 const __typeTest = (a, b) => typeof a !== typeof b;
 
-function match(...rules) {
+const match = (...rules) => {
 	return (value) => {
 		for (let i = 0; i < rules.length; i += 2) {
 			if (typeof rules[i + 1] != 'function') rules[i + 1] = always(rules[i + 1]);
@@ -36,6 +36,6 @@ function match(...rules) {
 			if (__equalObject(rules[i], value)) return rules[i + 1](value);
 		}
 	};
-}
+};
 
 export { match };

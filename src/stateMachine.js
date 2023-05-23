@@ -17,6 +17,9 @@ const higherComp = curry((functions, iv) => higherPipe(functions.reverse(), iv.r
 
 const coalgebra = curry((seed, next) => () => (seed = next(seed)));
 
-const stateMachine = curry((seed, functions) => (iv) => (seed = higherPipe(functions, iv)(seed)));
+const stateMachine = curry((seed, functions) => {
+	const construct = higherPipe(functions);
+	return (iv) => (seed = construct(iv)(seed));
+});
 
 export { higherPipe, higherComp, coalgebra, stateMachine };

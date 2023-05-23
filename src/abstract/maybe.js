@@ -1,8 +1,6 @@
-import { Monad } from './monad.js';
-
-class Maybe extends Monad {
-	constructor(value) {
-		super(value);
+class Maybe {
+	constructor(v) {
+		this.value = v;
 	}
 
 	static lift(v) {
@@ -18,17 +16,11 @@ class Maybe extends Monad {
 	}
 
 	map(f) {
-		if (this.isNothing()) {
-			return new Maybe(null);
-		}
-		return new Maybe(f(this.value));
+		return this.isNothing() ? new Maybe(null) : new Maybe(f(this.value));
 	}
 
 	chain(f) {
-		if (this.isNothing()) {
-			return new Maybe(null);
-		}
-		return f(this.value);
+		return this.isNothing() ? new Maybe(null) : f(this.value);
 	}
 
 	fold(asNothing, asJust) {
