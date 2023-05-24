@@ -12,28 +12,20 @@ function _assoc(pos, val, obj) {
 	return { ...obj, [pos]: val };
 }
 
-const _shallowCloneObject = (pos, obj) => {
-	if (Number.isInteger(pos) && Array.isArray(obj)) return [...obj];
-	return { ...obj };
-};
-
-const _remove = (start, list) => {
-	const result = [...list];
-	result.splice(start, 1);
-	return result;
-};
+const _shallowCloneObject = (pos, obj) => Number.isInteger(pos) && Array.isArray(obj) ? [...obj] : { ...obj };
 
 const _dissoc = (pos, obj) => {
-	if (Number.isInteger(pos) && Array.isArray(obj)) return _remove(pos, obj);
-	// eslint-disable-next-line no-unused-vars
-	const { [pos]: _, ...rest } = obj;
-	return rest;
+	if (Number.isInteger(pos) && Array.isArray(obj)) {
+		const result = [...obj];
+		result.splice(pos, 1);
+		return result;
+	}
+	const newObj = { ...obj };
+	delete newObj[pos];
+	return newObj;
 };
 
-const prop = curry((s, a) => {
-	if (Array.isArray(s)) return s.reduce((acc, cur) => acc && acc[cur], a);
-	else return a[s];
-});
+const prop = curry((s, a) => Array.isArray(s) ? s.reduce((acc, cur) => acc && acc[cur], a) : a[s]);
 
 const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
@@ -42,8 +34,8 @@ const assoc = curry((s, v, a) => {
 			!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
 				? a[idx]
 				: Number.isInteger(s[1])
-				? []
-				: {};
+					? []
+					: {};
 		v = s.length > 1 ? assoc(Array.prototype.slice.call(s, 1), v, nextObj) : v;
 		return _assoc(idx, v, a);
 	} else return _assoc(s, v, a);

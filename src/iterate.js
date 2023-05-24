@@ -7,29 +7,18 @@ function iterate(fun, ...args) {
 	return __boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));
 }
 
-const map = curry((rule, arr) => {
-	return arr.map((v) => rule(v));
-});
+const map = curry((rule, arr) => arr.map((v) => rule(v)));
 
-const flatMap = curry((rule, arr) => {
-	return arr.flatMap(rule);
-});
+const flatMap = curry((rule, arr) => arr.flatMap(rule));
 
-const forEach = curry((rule, arr) => {
-	arr.forEach(rule);
-});
+const forEach = curry((rule, arr) => arr.forEach(rule));
 
-const reduce = curry((fun, init, arr) => {
-	return init != undefined ? arr.reduce(fun, init) : arr.reduce(fun);
-});
-
-const fold = curry((fun, cnt, init) => {
-	while (cnt--) init = fun(init);
-	return init;
-});
-
-const scan = curry((init, fun, cnt) =>
-	Array.from({ length: cnt }, () => (init = fun(init)))
+const reduce = curry((fun, init, arr) =>
+	init != undefined ? arr.reduce(fun, init) : arr.reduce(fun)
 );
+
+const fold = curry((fun, cnt, init) => scan(fun, cnt, init).pop());
+
+const scan = curry((fun, cnt, init) => Array.from({ length: cnt }, () => (init = fun(init))));
 
 export { iterate, map, flatMap, forEach, reduce, fold, scan };

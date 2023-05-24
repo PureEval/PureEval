@@ -29,10 +29,7 @@ const under = () => (a, b) => a < b ? -1 : a > b ? 1 : 0;
 
 const upper = () => (a, b) => a > b ? -1 : a < b ? 1 : 0;
 
-const sort = curry((rule, arr) => {
-	if (rule != undefined) return arr.sort(rule);
-	else return arr.sort();
-});
+const sort = curry((rule, arr) => arr.sort(rule ? rule : undefined));
 
 function median(arr) {
 	const sortedArr = [...arr].sort((a, b) => a - b);
@@ -40,29 +37,19 @@ function median(arr) {
 	return sortedArr.length % 2 !== 0 ? sortedArr[mid] : (sortedArr[mid - 1] + sortedArr[mid]) / 2;
 }
 
-function sum(arr) {
-	return arr.reduce((x, y) => x + y);
-}
+const sum = (arr) => arr.reduce((x, y) => x + y);
 
-function prod(arr) {
-	return arr.reduce((x, y) => x * y);
-}
+const prod = (arr) => arr.reduce((x, y) => x * y);
 
 const max = (arr) => Math.max(...arr);
 
 const min = (arr) => Math.min(...arr);
 
-function average(arr) {
-	return sum(arr) / arr.length;
-}
+const average = (arr) => sum(arr) / arr.length;
 
-function inc(x) {
-	return x + 1;
-}
+const inc = (x) => x + 1;
 
-function dec(x) {
-	return x - 1;
-}
+const dec = (x) => x - 1;
 
 export {
 	odd,
