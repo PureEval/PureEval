@@ -10,6 +10,7 @@ const pipe = (...funcs) =>
 					args
 				)
 		  );
+
 const compose = (...funcs) => pipe(...funcs.reverse());
 
 const call = curry((fun, args) => fun.apply(this, args));

@@ -31,11 +31,11 @@ const upper = () => (a, b) => a > b ? -1 : a < b ? 1 : 0;
 
 const sort = curry((rule, arr) => arr.sort(rule ? rule : undefined));
 
-function median(arr) {
+const median = (arr) => {
 	const sortedArr = [...arr].sort((a, b) => a - b);
 	const mid = Math.floor(sortedArr.length / 2);
 	return sortedArr.length % 2 !== 0 ? sortedArr[mid] : (sortedArr[mid - 1] + sortedArr[mid]) / 2;
-}
+};
 
 const sum = (arr) => arr.reduce((x, y) => x + y);
 

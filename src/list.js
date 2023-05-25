@@ -8,7 +8,7 @@ const join = curry((s, arr) => arr.join(s));
 
 const slice = curry((start, end, arr) => arr.slice(start, end));
 
-const take = curry((pos, arr) => arr.splice(0, pos));
+const take = curry((pos, arr) => arr.slice(0, pos));
 
 const takeWhile = curry((f, arr) => {
 	const index = arr.findIndex((item) => !f(item));

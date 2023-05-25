@@ -3,9 +3,8 @@ import { curry } from './curry.js';
 const __boom = (args) =>
 	args.reduce((acc, curr) => curr.flatMap((v) => acc.map((w) => [...w, v])), [[]]);
 
-function iterate(fun, ...args) {
-	return __boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));
-}
+const iterate = (fun, ...args) =>
+	__boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));
 
 const map = curry((rule, arr) => arr.map((v) => rule(v)));
 

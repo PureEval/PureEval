@@ -3,16 +3,13 @@ import { Just } from './abstract/maybe.js';
 import { curry } from './curry.js';
 import { summon } from './summon.js';
 
-function _assoc(pos, val, obj) {
-	if (Array.isArray(obj)) {
-		const arr = [...obj];
-		arr[pos] = val;
-		return arr;
-	}
-	return { ...obj, [pos]: val };
-}
+const _assoc = (pos, val, obj) =>
+	Array.isArray(obj)
+		? [...obj.slice(0, pos), val, ...obj.slice(pos + 1)]
+		: { ...obj, [pos]: val };
 
-const _shallowCloneObject = (pos, obj) => Number.isInteger(pos) && Array.isArray(obj) ? [...obj] : { ...obj };
+const _shallowCloneObject = (pos, obj) =>
+	Number.isInteger(pos) && Array.isArray(obj) ? [...obj] : { ...obj };
 
 const _dissoc = (pos, obj) => {
 	if (Number.isInteger(pos) && Array.isArray(obj)) {
@@ -20,12 +17,14 @@ const _dissoc = (pos, obj) => {
 		result.splice(pos, 1);
 		return result;
 	}
-	const newObj = { ...obj };
-	delete newObj[pos];
-	return newObj;
+	// eslint-disable-next-line no-unused-vars
+	const { [pos]: _, ...rest } = obj;
+	return rest;
 };
 
-const prop = curry((s, a) => Array.isArray(s) ? s.reduce((acc, cur) => acc && acc[cur], a) : a[s]);
+const prop = curry((s, a) =>
+	Array.isArray(s) ? s.reduce((acc, cur) => acc && acc[cur], a) : a[s]
+);
 
 const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
@@ -34,8 +33,8 @@ const assoc = curry((s, v, a) => {
 			!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
 				? a[idx]
 				: Number.isInteger(s[1])
-					? []
-					: {};
+				? []
+				: {};
 		v = s.length > 1 ? assoc(Array.prototype.slice.call(s, 1), v, nextObj) : v;
 		return _assoc(idx, v, a);
 	} else return _assoc(s, v, a);
@@ -47,9 +46,7 @@ const modify = curry((s, f, a) => {
 		return tail.length === 0
 			? assoc(head, f(a[head]), a)
 			: assoc(head, modify(tail, f, a[head]), a);
-	} else {
-		return assoc(s, f(a[s]), a);
-	}
+	} else return assoc(s, f(a[s]), a);
 });
 
 const dissoc = curry((s, a) => {
@@ -61,23 +58,13 @@ const dissoc = curry((s, a) => {
 			const nextObj = a[head] == null ? _shallowCloneObject(head, a) : a[head];
 			return assoc(head, dissoc(tail, nextObj), a);
 		}
-	} else {
-		return _dissoc(s, a);
-	}
+	} else return _dissoc(s, a);
 });
 
 const deepClone = (obj) => {
-	if (obj === null) return null;
-	if (typeof obj !== 'object') return obj;
-	if (obj instanceof RegExp) return new RegExp(obj);
-	if (obj instanceof Date) return new Date(obj);
-	const newObj = new obj.constructor();
-	for (const key in obj) {
-		if (Object.prototype.hasOwnProperty.call(obj, key)) {
-			newObj[key] = deepClone(obj[key]);
-		}
-	}
-	return newObj;
+	if (obj === null || typeof obj !== 'object') return obj;
+	if (obj instanceof RegExp || obj instanceof Date) return new obj.constructor(obj);
+	return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepClone(value)]));
 };
 
 const keys = (x) => Object.keys(x);

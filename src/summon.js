@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-function summonPre(total, fn) {
+const summonPre = (total, fn) => {
 	switch (total) {
 		case 0:
 			return function () {
@@ -46,13 +46,13 @@ function summonPre(total, fn) {
 				return fn.apply(this, arguments);
 			};
 	}
-}
+};
 
-function summon(total, fn) {
+const summon = (total, fn) => {
 	if (total < 11) return summonPre(total, fn);
 	const summoner = (...args) => fn.apply(null, args);
 	Reflect.defineProperty(summoner, 'length', { value: total });
 	return summoner;
-}
+};
 
 export { summon };
