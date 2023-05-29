@@ -26,15 +26,15 @@ const allCheck = curry((f, arr) => arr.every(f));
 
 const anyCheck = curry((f, arr) => arr.some(f));
 
-const concat = curry((a, b) => Array.isArray(a) ? a.concat(b) : a + b);
+const concat = curry((a, b) => (Array.isArray(a) ? a.concat(b) : a + b));
 
 const head = (arr) => arr[0];
 
 const tail = (arr) => arr[arr.length - 1];
 
-const dropHead = (arr) => drop(1, arr);
+const dropHead = (arr) => arr.slice(1);
 
-const dropTail = (arr) => arr.splice(0, arr.length - 1);
+const dropTail = (arr) => arr.slice(0, arr.length - 1);
 
 const includes = curry((a, b) => b.includes(a));
 

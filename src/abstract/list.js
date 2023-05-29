@@ -65,7 +65,7 @@ const take = curry(
 		function* () {
 			for (const x of iter(xs)) {
 				if (n > 0) {
-					n--;
+					--n;
 					yield x;
 				} else return;
 			}
@@ -76,9 +76,8 @@ const drop = curry(
 	(n, xs) =>
 		function* () {
 			for (const x of iter(xs)) {
-				if (n > 0) {
-					n--;
-				} else yield x;
+				if (n > 0) --n;
+				else yield x;
 			}
 		}
 );
@@ -147,4 +146,27 @@ const shield = curry((v, xs) => reject(includes(v), xs));
 
 const choose = curry((v, xs) => filter(includes(v), xs));
 
-export { seq, head, isEmpty, range, lazy, tail, iterate, map, flatMap, choose, dropWhile, take, takeWhile, zipWith, drop, filter, reject, repeat, shield, forEach, concat, includes };
+export {
+	seq,
+	head,
+	isEmpty,
+	range,
+	lazy,
+	tail,
+	iterate,
+	map,
+	flatMap,
+	choose,
+	dropWhile,
+	take,
+	takeWhile,
+	zipWith,
+	drop,
+	filter,
+	reject,
+	repeat,
+	shield,
+	forEach,
+	concat,
+	includes
+};

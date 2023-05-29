@@ -1,8 +1,6 @@
-import { Monad } from './monad.js';
-
-class MaybeAsync extends Monad {
-	constructor(promise) {
-		super(promise);
+class MaybeAsync {
+	constructor(v) {
+		this.value = v;
 	}
 
 	static lift(promise) {

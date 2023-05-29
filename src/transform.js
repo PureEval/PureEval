@@ -13,6 +13,6 @@ const pipe = (...funcs) =>
 
 const compose = (...funcs) => pipe(...funcs.reverse());
 
-const call = curry((fun, args) => fun.apply(this, args));
+const call = curry((fun, args) => fun.apply(null, args));
 
 export { compose, pipe, call };

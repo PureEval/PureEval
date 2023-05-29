@@ -16,10 +16,7 @@ const divr = curry((a, b) => b / a);
 
 const mod = curry((a, b) => a % b);
 
-const rema = curry((a, b) => {
-	const r = a % b;
-	return r < 0 ? r + b : r;
-});
+const rema = curry((a, b) => ((a % b) + b) % b);
 
 const power = curry((a, b) => a ** b);
 

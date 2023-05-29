@@ -1,8 +1,6 @@
-import { Monad } from './monad.js';
-
-class Maybe extends Monad {
-	constructor(value) {
-		super(value);
+class Maybe {
+	constructor(v) {
+		this.value = v;
 	}
 
 	static lift(v) {
