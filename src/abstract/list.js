@@ -19,16 +19,14 @@ const range = curry(
 
 const lazy = (xs) =>
 	function* () {
-		for (const x of xs) yield x;
+		yield* xs;
 	};
 
 const tail = (xs) =>
 	function* () {
-		let flag = false;
-		for (const x of iter(xs)) {
-			if (flag) yield x;
-			else flag = true;
-		}
+		const iter_xs = iter(xs);
+		iter_xs.next();
+		yield* iter_xs;
 	};
 
 const iterate = curry(
@@ -55,8 +53,8 @@ const flatMap = curry(
 const concat = curry(
 	(xsa, xsb) =>
 		function* () {
-			for (const x of iter(xsa)) yield x;
-			for (const x of iter(xsb)) yield x;
+			yield* iter(xsa);
+			yield* iter(xsb);
 		}
 );
 
@@ -84,7 +82,7 @@ const drop = curry(
 
 const repeat = (x) =>
 	function* () {
-		while (1) yield x;
+		for (;;) yield x;
 	};
 
 const filter = curry(

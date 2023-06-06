@@ -1,23 +1,18 @@
 import { curry } from '../curry.js';
 import { assoc, prop } from '../object.js';
 
-class Lens {
-	constructor(getter, setter) {
-		this.get = getter;
-		this.set = setter;
-	}
+const _Lens = (getter, setter) => ({
+	getter: getter,
+	setter: setter
+});
 
-	static of(getter, setter) {
-		return new Lens(getter, setter);
-	}
+const Lens = {
+	of: (getter, setter) => _Lens(getter, setter),
+	bind: (pos) => _Lens(prop(pos), assoc(pos))
+};
 
-	static bind(pos) {
-		return new Lens(prop(pos), assoc(pos));
-	}
-}
-
-const view = curry((lens, value) => lens.get(value));
-const set = curry((lens, opt, value) => lens.set(opt, value));
-const over = curry((lens, f, value) => lens.set(f(lens.get(value)), value));
+const view = curry((lens, value) => lens.getter(value));
+const set = curry((lens, opt, value) => lens.setter(opt, value));
+const over = curry((lens, f, value) => lens.setter(f(lens.getter(value)), value));
 
 export { Lens, view, set, over };

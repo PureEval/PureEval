@@ -1,34 +1,20 @@
-class Maybe {
-	constructor(v) {
-		this.value = v;
-	}
+const tag = Symbol('Maybe');
 
-	static lift(v) {
-		return new Maybe(v);
-	}
+const isNothing = (v) => v === null || v === undefined || Number.isNaN(v);
 
-	static is(m) {
-		return m instanceof Maybe;
-	}
+const _Maybe = (v) => ({
+	isNothing: () => isNothing(v),
+	map: (f) => (isNothing(v) ? _Maybe(null) : _Maybe(f(v))),
+	fold: (asNothing, asJust) => (isNothing(v) ? asNothing(v) : asJust(v)),
+	[tag]: true
+});
 
-	isNothing() {
-		return this.value === null || this.value === undefined;
-	}
+const Maybe = {
+	of: (v) => _Maybe(v),
+	is: (m) => Object.prototype.hasOwnProperty.call(m,tag)
+};
 
-	map(f) {
-		return this.isNothing() ? new Maybe(null) : new Maybe(f(this.value));
-	}
+const Nothing = Maybe.of(null);
+const Just = (x) => Maybe.of(x);
 
-	chain(f) {
-		return this.isNothing() ? new Maybe(null) : f(this.value);
-	}
-
-	fold(asNothing, asJust) {
-		return this.isNothing() ? asNothing(this.value) : asJust(this.value);
-	}
-}
-
-const Nothing = Maybe.lift(null);
-const Just = (x) => Maybe.lift(x);
-
-export { Maybe, Nothing, Just };
+export { Maybe, Nothing, Just, isNothing };

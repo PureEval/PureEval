@@ -1,13 +1,18 @@
 import { curry } from './curry.js';
 
-const range = curry((start, end) => {
-	if (typeof start === 'number' && typeof end === 'number') {
-		return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-	} else if (typeof start === 'string' && typeof end === 'string') {
-		const l = start.charCodeAt(),
-			r = end.charCodeAt();
-		return Array.from({ length: r - l + 1 }, (_, i) => String.fromCharCode(l + i));
-	}
-});
+const createArray = (length, callback) => Array.from({ length }, callback);
+const createNumberArray = (start, end) => createArray(end - start + 1, (_, i) => start + i);
+const createStringArray = (start, end) =>
+	createArray(end.charCodeAt() - start.charCodeAt() + 1, (_, i) =>
+		String.fromCharCode(start.charCodeAt() + i)
+	);
+
+const range = curry((start, end) =>
+	typeof start === 'number' && typeof end === 'number'
+		? createNumberArray(start, end)
+		: typeof start === 'string' && typeof end === 'string'
+		? createStringArray(start, end)
+		: []
+);
 
 export { range };

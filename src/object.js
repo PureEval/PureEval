@@ -1,5 +1,4 @@
 /* eslint-disable no-case-declarations */
-import { Just } from './abstract/maybe.js';
 import { curry } from './curry.js';
 import { summon } from './summon.js';
 
@@ -28,14 +27,14 @@ const prop = curry((s, a) =>
 
 const assoc = curry((s, v, a) => {
 	if (Array.isArray(s)) {
-		const idx = s[0];
+		const [idx, ...tail] = s;
 		const nextObj =
-			!Just(a).isNothing() && Object.prototype.hasOwnProperty.call(a, idx)
+			a && Object.prototype.hasOwnProperty.call(a, idx)
 				? a[idx]
 				: Number.isInteger(s[1])
 				? []
 				: {};
-		v = s.length > 1 ? assoc(Array.prototype.slice.call(s, 1), v, nextObj) : v;
+		v = s.length > 1 ? assoc(tail, v, nextObj) : v;
 		return _assoc(idx, v, a);
 	} else return _assoc(s, v, a);
 });
@@ -69,7 +68,7 @@ const deepClone = (obj) => {
 
 const keys = (x) => Object.keys(x);
 
-const valuesIn = (x) => Object.values(x);
+const values = (x) => Object.values(x);
 
 const makePair = (arr) => Object.fromEntries(arr);
 
@@ -77,4 +76,4 @@ const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new
 
 const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj, prop));
 
-export { prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, construct, has };
+export { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has };

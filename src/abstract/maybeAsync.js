@@ -1,37 +1,39 @@
-class MaybeAsync {
-	constructor(v) {
-		this.value = v;
-	}
+import { isNothing } from './maybe.js';
 
-	static lift(promise) {
-		return new MaybeAsync(promise);
-	}
+const tag = Symbol('MaybeAsync');
 
-	static is(m) {
-		return m instanceof MaybeAsync;
+const _MaybeAsync = (v) => ({
+	isNothing: async () => {
+		try {
+			return isNothing(await v);
+		} catch (e) {
+			return true;
+		}
+	},
+	map: async (f) => {
+		try {
+			const value = await v;
+			return _MaybeAsync(v ? f(value) : null);
+		} catch (e) {
+			return NothingAsync;
+		}
+	},
+	fold: async (asNothing, asJust) => {
+		try {
+			const value = await v;
+			return value ? asJust(value) : asNothing();
+		} catch (e) {
+			return asNothing();
+		}
 	}
+});
 
-	async isNothing() {
-		return this.value === null || this.value === undefined;
-	}
+const MaybeAsync = {
+	of: (promise) => _MaybeAsync(promise),
+	is: (m) => Object.prototype.hasOwnProperty.call(m, tag)
+};
 
-	async map(f) {
-		const value = await this.value;
-		return new MaybeAsync(value ? f(value) : null);
-	}
-
-	async chain(f) {
-		const value = await this.value;
-		return value ? f(value) : new MaybeAsync(null);
-	}
-
-	async fold(asNothing, asJust) {
-		const value = await this.value;
-		return value ? asJust(value) : asNothing();
-	}
-}
-
-const NothingAsync = MaybeAsync.lift(Promise.resolve(null));
-const JustAsync = (x) => MaybeAsync.lift(Promise.resolve(x));
+const NothingAsync = MaybeAsync.of(null);
+const JustAsync = (x) => MaybeAsync.of(x);
 
 export { MaybeAsync, NothingAsync, JustAsync };

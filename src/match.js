@@ -7,9 +7,17 @@ function __equalMaybe(a, b) {
 	if (!Maybe.is(a) || !Maybe.is(b)) return false;
 	if (a.isNothing() && b.isNothing()) return true;
 	if (a.isNothing() || b.isNothing()) return false;
-	if (a.value === b.value) return true;
-	if (__equalArray(a.value, b.value)) return true;
-	if (__equalObject(a.value, b.value)) return true;
+	const valueA = a.fold(
+			() => false,
+			(v) => v
+		),
+		valueB = b.fold(
+			() => false,
+			(v) => v
+		);
+	if (valueA === valueB) return true;
+	if (__equalArray(valueA, valueB)) return true;
+	if (__equalObject(valueA, valueB)) return true;
 	return false;
 }
 

@@ -22,9 +22,9 @@ const dropWhile = curry((f, arr) => {
 	return index === -1 ? [] : arr.slice(index);
 });
 
-const allCheck = curry((f, arr) => arr.every(f));
+const every = curry((f, arr) => arr.every(f));
 
-const anyCheck = curry((f, arr) => arr.some(f));
+const some = curry((f, arr) => arr.some(f));
 
 const concat = curry((a, b) => (Array.isArray(a) ? a.concat(b) : a + b));
 
@@ -49,8 +49,8 @@ export {
 	takeWhile,
 	drop,
 	dropWhile,
-	allCheck,
-	anyCheck,
+	every,
+	some,
 	concat,
 	head,
 	tail,
