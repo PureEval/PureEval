@@ -17,9 +17,7 @@ const Data = (...args) => {
 				result.args = iargs;
 				return result;
 			});
-		} else {
-			data[functionName] = new DATA(functionName);
-		}
+		} else data[functionName] = new DATA(functionName);
 		data.is[functionName] = (val) => val instanceof DATA && val.type === functionName;
 	});
 	return data;

@@ -14,9 +14,9 @@ const toUpper = (v) => v.toUpperCase();
 
 const trim = (v) => v.trim();
 
-const words = (str) => String(str)
-	.split(/\s|\b/)
-	.filter((v) => /^[\w]+$/.test(v));
-
+const words = (str) =>
+	String(str)
+		.split(/\s|\b/)
+		.filter((v) => /^[\w]+$/.test(v));
 
 export { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words };

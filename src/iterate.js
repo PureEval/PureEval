@@ -1,3 +1,4 @@
+import { _ } from './bind.js';
 import { curry } from './curry.js';
 
 const __boom = (args) =>
@@ -12,9 +13,7 @@ const flatMap = curry((rule, arr) => arr.flatMap(rule));
 
 const forEach = curry((rule, arr) => arr.forEach(rule));
 
-const reduce = curry((fun, init, arr) =>
-	init != undefined ? arr.reduce(fun, init) : arr.reduce(fun)
-);
+const reduce = curry((fun, init, arr) => (init !== _ ? arr.reduce(fun, init) : arr.reduce(fun)));
 
 const fold = curry((fun, cnt, init) => {
 	while (cnt--) init = fun(init);

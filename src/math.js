@@ -1,3 +1,4 @@
+import { _ } from './bind.js';
 import { curry } from './curry.js';
 
 const odd = (v) => v % 2 === 1;
@@ -26,7 +27,7 @@ const under = () => (a, b) => a < b ? -1 : a > b ? 1 : 0;
 
 const upper = () => (a, b) => a > b ? -1 : a < b ? 1 : 0;
 
-const sort = curry((rule, arr) => arr.sort(rule ? rule : undefined));
+const sort = curry((rule, arr) => arr.sort(rule !== _ ? rule : undefined));
 
 const median = (arr) => {
 	const sortedArr = [...arr].sort((a, b) => a - b);

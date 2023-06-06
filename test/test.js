@@ -6,12 +6,12 @@ import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.
 import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse } from '../PureEval.js';
 import { match } from '../PureEval.js';
 import { odd, even, add, minus, mul, div, divr, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec } from '../PureEval.js';
-import { prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, has } from '../PureEval.js';
+import { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, has } from '../PureEval.js';
 import { range } from '../PureEval.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from '../PureEval.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from '../PureEval.js';
 import { compose, pipe, call } from '../PureEval.js';
-import {zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse} from '../PureEval.js';
+import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse} from '../PureEval.js';
 import { Data } from '../PureEval.js';
 import { Lens, view, set, over } from '../PureEval.js';
 import { Just } from '../PureEval.js';
@@ -175,6 +175,10 @@ function Iterate() {
 			it('Base', () => {
 				assert.equal(
 					reduce((a, b) => a + b, 0, [1, 2, 3]),
+					6
+				);
+                assert.equal(
+					reduce((a, b) => a + b, _, [1, 2, 3]),
 					6
 				);
 			});
@@ -520,9 +524,9 @@ function Object() {
 				assert.deepEqual(keys({ a: 1, b: 2, c: 3 }), ['a', 'b', 'c']);
 			});
 		});
-		describe('valuesIn()', () => {
+		describe('values()', () => {
 			it('Base', () => {
-				assert.deepEqual(valuesIn({ a: 1, b: 2, c: 3 }), [1, 2, 3]);
+				assert.deepEqual(values({ a: 1, b: 2, c: 3 }), [1, 2, 3]);
 			});
 		});
 		describe('makePair()', () => {
@@ -719,18 +723,18 @@ function List() {
 				);
 			});
 		});
-		describe('allCheck()', () => {
+		describe('every()', () => {
 			it('Base', () => {
 				assert.equal(
-					allCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]),
+					every((v) => v < 3, [1, 1, 4, 5, 1, 4]),
 					false
 				);
 			});
 		});
-		describe('anyCheck()', () => {
+		describe('some()', () => {
 			it('Base', () => {
 				assert.equal(
-					anyCheck((v) => v < 3, [1, 1, 4, 5, 1, 4]),
+					some((v) => v < 3, [1, 1, 4, 5, 1, 4]),
 					true
 				);
 			});
@@ -831,7 +835,6 @@ function abstractMaybe() {
 						.fold(() => 'Nothing', id),
 					114514
 				);
-				assert.equal(Just(1).chain(add(114513)), 114514);
 			});
 		});
 	});

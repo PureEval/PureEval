@@ -13,10 +13,10 @@ import { Task } from './src/abstract/task.js';
 import { Right, Left } from './src/abstract/either.js';
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js';
 import { MaybeAsync, NothingAsync, JustAsync } from './src/abstract/maybeAsync.js';
-import { prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, construct, has } from './src/object.js';
+import { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has } from './src/object.js';
 import { Lens, view, set, over } from './src/abstract/optics.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from './src/string.js';
-import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse } from './src/list.js';
+import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse } from './src/list.js';
 import * as L from './src/abstract/list.js';
 export {
 	curry, uncurry,
@@ -29,14 +29,14 @@ export {
 	either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse,
 	match,
 	Data,
-	higherPipe, higherComp, coalgebra, stateMachine,
+	higherPipe, higherComp, coalgebra, stateMachine,    
 	Task,
 	Right, Left,
 	Maybe, Nothing, Just,
 	MaybeAsync, NothingAsync, JustAsync,
-	prop, assoc, modify, dissoc, deepClone, keys, valuesIn, makePair, construct, has,
+	prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has,
 	Lens, view, set, over,
 	rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words,
-	zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, allCheck, anyCheck, concat, head, tail, dropHead, dropTail, includes, reverse,
+	zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse,
 	L
 };
