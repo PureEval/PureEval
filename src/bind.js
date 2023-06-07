@@ -1,6 +1,6 @@
 import { summon } from './summon.js';
 
-const _ = { [Symbol('place')]: 1 };
+const _ = Symbol('place');
 const bind = (func, ...args) => {
 	if (args.length < func.length) args.push(...new Array(func.length - args.length).fill(_));
 	return summon(args.filter((v) => v === _).length, (...a) =>

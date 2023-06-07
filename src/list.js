@@ -32,13 +32,17 @@ const head = (arr) => arr[0];
 
 const tail = (arr) => arr[arr.length - 1];
 
-const dropHead = (arr) => arr.slice(1);
+const dropHead = ([_, ...tail]) => tail;
 
-const dropTail = (arr) => arr.slice(0, arr.length - 1);
+const dropTail = (arr) => arr.slice(0, -1);
 
 const includes = curry((a, b) => b.includes(a));
 
 const reverse = (arr) => arr.reduceRight((acc, cur) => [...acc, cur], []);
+
+const count = curry((rule, arr) => arr.filter(rule).length);
+
+const pairList = ([head, ...tail]) => [head, tail];
 
 export {
 	zipWith,
@@ -57,5 +61,7 @@ export {
 	dropHead,
 	dropTail,
 	includes,
-	reverse
+	reverse,
+	count,
+    pairList
 };

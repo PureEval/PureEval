@@ -15,4 +15,6 @@ const compose = (...funcs) => pipe(...funcs.reverse());
 
 const call = curry((fun, args) => fun.apply(null, args));
 
-export { compose, pipe, call };
+const then = curry((f, p) => p.then(f));
+
+export { compose, pipe, call, then };
