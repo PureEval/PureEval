@@ -3,7 +3,7 @@ import { Nothing, curry, uncurry } from '../PureEval.js';
 import { bind, _ } from '../PureEval.js';
 import { filter, reject, shield, choose } from '../PureEval.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from '../PureEval.js';
-import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse } from '../PureEval.js';
+import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse, eqData } from '../PureEval.js';
 import { match } from '../PureEval.js';
 import { odd, even, add, minus, mul, div, divr, mod, rema, power, sort, upper, under, sum, prod, negate, average, median, max, min, inc, dec } from '../PureEval.js';
 import { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, has } from '../PureEval.js';
@@ -11,7 +11,7 @@ import { range } from '../PureEval.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from '../PureEval.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from '../PureEval.js';
 import { compose, pipe, call } from '../PureEval.js';
-import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse} from '../PureEval.js';
+import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse, pairList } from '../PureEval.js';
 import { Data } from '../PureEval.js';
 import { Lens, view, set, over } from '../PureEval.js';
 import { Just } from '../PureEval.js';
@@ -108,9 +108,9 @@ function Bind() {
 				const foo = (a, b, c) => a + b + c;
 				assert.equal(bind(foo, 1, _, 3)(4), 8);
 			});
-            it('Arguments', () => {
-				const foo = (a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) => a8;
-				assert.equal(bind(foo, 1, _, 3)(2,4,5,6,7,8,9), 8);
+			it('Arguments', () => {
+				const foo = (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) => a8;
+				assert.equal(bind(foo, 1, _, 3)(2, 4, 5, 6, 7, 8, 9), 8);
 			});
 		});
 	});
@@ -177,7 +177,7 @@ function Iterate() {
 					reduce((a, b) => a + b, 0, [1, 2, 3]),
 					6
 				);
-                assert.equal(
+				assert.equal(
 					reduce((a, b) => a + b, _, [1, 2, 3]),
 					6
 				);
@@ -301,6 +301,16 @@ function Logic() {
 				assert.equal(foo(' is you!'), 'homo is you!');
 			});
 		});
+		describe('eqData()', () => {
+			it('Base', () => {
+				const foo = Data('A a b c');
+				assert.equal(eqData(foo.A, { a: 1, b: 1, c: 2 }, foo.A(1, 1, 2)), true);
+				assert.equal(
+					eqData(foo.A, { a: 1, b: 1, c: { r: _ } }, foo.A(1, 1, { r: 1 })),
+					true
+				);
+			});
+		});
 	});
 }
 
@@ -383,7 +393,7 @@ function Math() {
 				assert.equal(div(6, 6), 1);
 			});
 		});
-        describe('divr()', () => {
+		describe('divr()', () => {
 			it('Base', () => {
 				assert.equal(divr(2)(50), 25);
 				assert.equal(divr(6, 6), 1);
@@ -519,7 +529,7 @@ function Object() {
 				assert.deepEqual(b, { a: 2 });
 			});
 		});
-        describe('keys()', () => {
+		describe('keys()', () => {
 			it('Base', () => {
 				assert.deepEqual(keys({ a: 1, b: 2, c: 3 }), ['a', 'b', 'c']);
 			});
@@ -774,6 +784,12 @@ function List() {
 		describe('reverse()', () => {
 			it('Base', () => {
 				assert.deepEqual(reverse([1, 2, 3]), [3, 2, 1]);
+			});
+		});
+		describe('pairList()', () => {
+			it('Base', () => {
+				assert.equal(pairList([1, 2, 3, 4, 5])[0], [1]);
+				assert.deepEqual(pairList([1, 2, 3, 4, 5])[1], [2, 3, 4, 5]);
 			});
 		});
 	});
