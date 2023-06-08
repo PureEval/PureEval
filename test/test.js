@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import {
-    curry,
-    uncurry,
+	curry,
+	uncurry,
 	Nothing,
 	Just,
 	range,
@@ -103,7 +103,8 @@ import {
 	dropTail,
 	includes,
 	reverse,
-	pairList
+	pairList,
+	tryCatch
 } from '../PureEval.js';
 
 (function main() {
@@ -761,6 +762,13 @@ function Transform() {
 			it('Base', () => {
 				const foo = (a, b) => a + b;
 				assert.equal(call(foo, ['114', '514']), '114514');
+			});
+		});
+		describe('tryCatch()', () => {
+			it('Base', () => {
+				const foo = tryCatch(div(1), always('hello'));
+				assert.equal(foo.length, 1);
+				assert.equal(foo(1), 1);
 			});
 		});
 	});

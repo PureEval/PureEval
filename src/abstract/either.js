@@ -1,8 +1,20 @@
 /* eslint-disable no-unused-vars */
 const Right = (value) => ({
-	map: (f) => Right(f(value)),
+	map: (f) => {
+		try {
+			return Right(f(value));
+		} catch (error) {
+			return Left(error);
+		}
+	},
 	fold: (reject, resolve) => resolve(value),
-	chain: (f) => (m) => m.fold(Left, f)
+	chain: (f) => {
+		try {
+			return f(value);
+		} catch (error) {
+			return Left(error);
+		}
+	}
 });
 
 const Left = (value) => ({

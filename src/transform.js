@@ -17,4 +17,16 @@ const call = curry((fun, args) => fun.apply(null, args));
 
 const then = curry((f, p) => p.then(f));
 
-export { compose, pipe, call, then };
+const tryCatch = curry((tryer, reject) => {
+	return curry(
+		summon(tryer.length, (...args) => {
+			try {
+				return tryer(...args);
+			} catch (e) {
+				return reject(e, ...args);
+			}
+		})
+	);
+});
+
+export { compose, pipe, call, then, tryCatch };
