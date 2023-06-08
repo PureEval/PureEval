@@ -1,13 +1,16 @@
 {
 	"name": "pureeval",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "A powerful simple JavaScript functional-programming toolset.",
 	"keywords": [
 		"fp",
 		"functional-programming",
 		"monad",
 		"JavaScript",
-		"curry"
+		"curry",
+		"maybe",
+		"task",
+        "IO"
 	],
 	"author": "PureEval Dev",
 	"license": "GPL",

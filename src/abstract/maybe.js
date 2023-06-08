@@ -4,14 +4,20 @@ const isNothing = (v) => v === null || v === undefined || Number.isNaN(v);
 
 const _Maybe = (v) => ({
 	isNothing: () => isNothing(v),
-	map: (f) => (isNothing(v) ? _Maybe(null) : _Maybe(f(v))),
+	map: (f) => {
+		try {
+			return isNothing(v) ? Nothing : _Maybe(f(v));
+		} catch (error) {
+			return Nothing;
+		}
+	},
 	fold: (asNothing, asJust) => (isNothing(v) ? asNothing(v) : asJust(v)),
 	[tag]: true
 });
 
 const Maybe = {
 	of: (v) => _Maybe(v),
-	is: (m) => Object.prototype.hasOwnProperty.call(m,tag)
+	is: (m) => Object.prototype.hasOwnProperty.call(m, tag)
 };
 
 const Nothing = Maybe.of(null);

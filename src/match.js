@@ -1,5 +1,5 @@
 import { _ } from './placeholder.js';
-import { always, deepEqual, equalStrict } from './logic.js';
+import { always, deepEqual } from './logic.js';
 import { Maybe } from './abstract/maybe.js';
 import { dropHead } from './list.js';
 
@@ -38,7 +38,7 @@ const match = (...rules) => {
 			if (typeof rules[i + 1] != 'function') rules[i + 1] = always(rules[i + 1]);
 			if (__unbalanceTest(rules[i], value)) return __processValue(rules[i + 1], value);
 			if (__typeTest(rules[i], value)) continue;
-			if (equalStrict(rules[i], value)) return rules[i + 1](value);
+			if (rules[i] === value) return rules[i + 1](value);
 			if (__equalArray(rules[i], value)) return __processValue(rules[i + 1], value);
 			if (__equalMaybe(rules[i], value)) return rules[i + 1](value);
 			if (__equalObject(rules[i], value)) return rules[i + 1](value);
