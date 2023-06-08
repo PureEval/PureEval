@@ -25,7 +25,8 @@ const _MaybeAsync = (v) => ({
 		} catch (e) {
 			return asNothing();
 		}
-	}
+	},
+	[tag]: true
 });
 
 const MaybeAsync = {

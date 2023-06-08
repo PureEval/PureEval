@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { curry } from './curry.js';
-import { _ } from './bind.js';
+import { _ } from './placeholder.js';
 
 const either = curry((a, b) => a || b);
 
