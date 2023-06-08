@@ -1,4 +1,4 @@
-import { _ } from './bind.js';
+import { _ } from './placeholder.js';
 import { curry } from './curry.js';
 
 const odd = (v) => v % 2 === 1;
