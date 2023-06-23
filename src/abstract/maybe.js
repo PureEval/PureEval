@@ -12,8 +12,16 @@ const _Maybe = (v) => ({
 		}
 	},
 	fold: (asNothing, asJust) => (isNothing(v) ? asNothing(v) : asJust(v)),
+	chain: (f) => {
+		try {
+			return isNothing(v) ? Nothing : f(v);
+		} catch (error) {
+			return Nothing;
+		}
+	},
 	[tag]: true
 });
+
 
 const Maybe = {
 	of: (v) => _Maybe(v),

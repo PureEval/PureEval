@@ -26,6 +26,14 @@ const _MaybeAsync = (v) => ({
 			return asNothing();
 		}
 	},
+	chain: async (f) => {
+		try {
+			const value = await v;
+			return value ? f(value) : NothingAsync;
+		} catch (e) {
+			return NothingAsync;
+		}
+	},
 	[tag]: true
 });
 

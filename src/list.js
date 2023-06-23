@@ -33,7 +33,7 @@ const head = (arr) => arr[0];
 
 const tail = (arr) => arr[arr.length - 1];
 
-const dropHead = ([_, ...tail]) => tail;
+const dropHead = (arr) => arr.splice(1);
 
 const dropTail = (arr) => arr.slice(0, -1);
 
@@ -41,7 +41,9 @@ const includes = curry((a, b) => b.includes(a));
 
 const reverse = (arr) => arr.reduceRight((acc, cur) => [...acc, cur], []);
 
-const count = curry((rule, arr) => arr.filter(rule).length);
+const countWith = curry((f, arr) => arr.filter(f).length);
+
+const count = curry((v, arr) => countWith((x) => x === v, arr));
 
 const pairList = ([head, ...tail]) => [head, tail];
 
@@ -63,6 +65,7 @@ export {
 	dropTail,
 	includes,
 	reverse,
+    countWith,
 	count,
-	pairList
+	pairList,
 };

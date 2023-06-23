@@ -104,7 +104,9 @@ import {
 	includes,
 	reverse,
 	pairList,
-	tryCatch
+	tryCatch,
+	count,
+	countWith
 } from '../PureEval.js';
 
 (function main() {
@@ -359,6 +361,9 @@ function Logic() {
 		describe('deepEqual()', () => {
 			it('Base', () => {
 				assert.equal(deepEqual([1, 2, 3], [3, 2, 1]), false);
+			});
+			it('Auto', () => {
+				assert.equal(deepEqual({ a: _, b: [_, 1, 2, 3] }, { a: 1, b: [1, 1, 2, 3] }), true);
 			});
 			it('EmptyArray', () => {
 				assert.equal(deepEqual([], []), true);
@@ -888,6 +893,16 @@ function List() {
 			it('Base', () => {
 				assert.equal(pairList([1, 2, 3, 4, 5])[0], [1]);
 				assert.deepEqual(pairList([1, 2, 3, 4, 5])[1], [2, 3, 4, 5]);
+			});
+		});
+		describe('countWith()', () => {
+			it('Base', () => {
+				assert.equal(countWith(equal(5), [1, 2, 3, 4, 5, 5, 5]), 3);
+			});
+		});
+		describe('count()', () => {
+			it('Base', () => {
+				assert.equal(count(5, [1, 2, 3, 4, 5, 5, 5]), 3);
 			});
 		});
 	});
