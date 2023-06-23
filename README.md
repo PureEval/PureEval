@@ -25,6 +25,4 @@ npm run build
 
 # Usage
 
-关于 PureEval 的使用文档可见此：[文档](https://PureEval.github.io)。
-
-对于中国大陆开发者，可访问[托管在 Cloudflare 的文档](https://PureEval.shannon.science)。
+PureEval 文档可见此：[文档](https://pureeval.org)。
