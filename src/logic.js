@@ -24,6 +24,12 @@ const id = (v) => v;
 
 const always = (v) => () => v;
 
+const when = curry((a, b) => (obj) => a(obj) ? b(obj) : obj);
+
+const unless = curry((a, b) => (obj) => !a(obj) ? b(obj) : obj);
+
+const ifElse = curry((a, b, c) => (obj) => a(obj) ? b(obj) : c(obj));
+
 const deepEqual = curry((a, b) => {
 	if (a === b) return true;
 	if (typeof a !== typeof b) return false;
@@ -32,27 +38,7 @@ const deepEqual = curry((a, b) => {
 		keysB = Object.keys(b);
 	return (
 		keysA.length === keysB.length &&
-		keysA.every((key) => keysB.includes(key) && deepEqual(a[key], b[key]))
-	);
-});
-
-const when = curry((a, b) => (obj) => a(obj) ? b(obj) : obj);
-
-const unless = curry((a, b) => (obj) => !a(obj) ? b(obj) : obj);
-
-const ifElse = curry((a, b, c) => (obj) => a(obj) ? b(obj) : c(obj));
-
-const __deepEqualData = curry((a, b) => {
-	if (a === b) return true;
-	if (typeof a !== typeof b) return false;
-	if (typeof a !== 'object' || a === null || b === null) return false;
-	const keysA = Object.keys(a),
-		keysB = Object.keys(b);
-	return (
-		keysA.length === keysB.length &&
-		keysA.every(
-			(key) => keysB.includes(key) && (__deepEqualData(a[key], b[key]) || a[key] === _)
-		)
+		keysA.every((key) => keysB.includes(key) && (deepEqual(a[key], b[key]) || a[key] === _))
 	);
 });
 
@@ -60,7 +46,7 @@ const eqData = curry((data, a, b) => {
 	if (data.type !== b.type) return false;
 	const { args: _, type: __, ...restA } = a,
 		{ args: ___, type: ____, ...restB } = b;
-	return __deepEqualData(restA, restB);
+	return deepEqual(restA, restB);
 });
 
 export {

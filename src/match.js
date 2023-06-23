@@ -16,14 +16,11 @@ function __equalMaybe(a, b) {
 			(v) => v
 		);
 	if (valueA === valueB) return true;
-	if (__equalArray(valueA, valueB)) return true;
 	if (__equalObject(valueA, valueB)) return true;
 	return false;
 }
 
 const __equalObject = (a, b) => typeof a === 'object' && typeof a === typeof b && deepEqual(a, b);
-
-const __equalArray = (a, b) => Array.isArray(a) && Array.isArray(b) && deepEqual(a, b);
 
 const __processValue = (rule, value) =>
 	Array.isArray(value) && value.length ? rule(value, value[0], dropHead(value)) : rule(value);
@@ -39,9 +36,8 @@ const match = (...rules) => {
 			if (__unbalanceTest(rules[i], value)) return __processValue(rules[i + 1], value);
 			if (__typeTest(rules[i], value)) continue;
 			if (rules[i] === value) return rules[i + 1](value);
-			if (__equalArray(rules[i], value)) return __processValue(rules[i + 1], value);
 			if (__equalMaybe(rules[i], value)) return rules[i + 1](value);
-			if (__equalObject(rules[i], value)) return rules[i + 1](value);
+			if (__equalObject(rules[i], value)) return __processValue(rules[i + 1], value);
 		}
 	};
 };
