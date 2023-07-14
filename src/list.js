@@ -33,7 +33,7 @@ const head = (arr) => arr[0];
 
 const tail = (arr) => arr[arr.length - 1];
 
-const dropHead = (arr) => arr.splice(1);
+const dropHead = (arr) => arr.slice(1);
 
 const dropTail = (arr) => arr.slice(0, -1);
 

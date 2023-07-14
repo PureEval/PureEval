@@ -1,43 +1,47 @@
 import { _ } from './placeholder.js';
-import { always, deepEqual } from './logic.js';
+import { always, deepEqual, equalStrict } from './logic.js';
 import { Maybe } from './abstract/maybe.js';
 import { dropHead } from './list.js';
 
 function __equalMaybe(a, b) {
 	if (!Maybe.is(a) || !Maybe.is(b)) return false;
-	if (a.isNothing() && b.isNothing()) return true;
-	if (a.isNothing() || b.isNothing()) return false;
-	const valueA = a.fold(
+	if (a.isNothing() !== b.isNothing()) return false;
+	const [valueA, valueB] = [
+		a.fold(
 			() => false,
 			(v) => v
 		),
-		valueB = b.fold(
+		b.fold(
 			() => false,
 			(v) => v
-		);
-	if (valueA === valueB) return true;
-	if (__equalObject(valueA, valueB)) return true;
-	return false;
+		)
+	];
+	return valueA === valueB || __equalObject(valueA, valueB);
 }
 
-const __equalObject = (a, b) => typeof a === 'object' && typeof a === typeof b && deepEqual(a, b);
+const __equalObject = (a, b) => typeof a === 'object' && deepEqual(a, b);
 
-const __processValue = (rule, value) =>
+const __processArray = (rule, value) =>
 	Array.isArray(value) && value.length ? rule(value, value[0], dropHead(value)) : rule(value);
-
-const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
 
 const __typeTest = (a, b) => typeof a !== typeof b;
 
+const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
+
+const __transformConstant = (value) =>
+	typeof value !== 'function' && value !== _ ? always(value) : value;
+
 const match = (...rules) => {
+	const rule = [];
+	for (let i = 0; i < rules.length; i += 2)
+		rule.push([rules[i], __transformConstant(rules[i + 1])]);
 	return (value) => {
-		for (let i = 0; i < rules.length; i += 2) {
-			if (typeof rules[i + 1] != 'function') rules[i + 1] = always(rules[i + 1]);
-			if (__unbalanceTest(rules[i], value)) return __processValue(rules[i + 1], value);
-			if (__typeTest(rules[i], value)) continue;
-			if (rules[i] === value) return rules[i + 1](value);
-			if (__equalMaybe(rules[i], value)) return rules[i + 1](value);
-			if (__equalObject(rules[i], value)) return __processValue(rules[i + 1], value);
+		for (const [checker, executer] of rule) {
+			if (__unbalanceTest(checker, value)) return __processArray(executer, value);
+			if (__typeTest(checker, value)) continue;
+			if (equalStrict(checker, value)) return executer(value);
+			if (__equalMaybe(checker, value)) return executer(value);
+			if (__equalObject(checker, value)) return __processArray(executer, value);
 		}
 	};
 };

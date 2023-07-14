@@ -29,8 +29,9 @@ jobs:
           npm run build
 
       - name: Move
-        run: mv ./dist/common/PureEval.common.js ./build/index.js
-
+        run: |
+          mv ./dist/common/PureEval.common.js ./build/index.js
+          cp ./README.md ./build/
 
       - name: Publish
         run: npm publish --access public
