@@ -1,0 +1,23 @@
+name: 'Commit Message Check'
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  check-commit-message:
+    name: Check Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Commit Type
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^(feat|style|sync|refactor|fix|build|chore|other|revert|package|readme|index|log|init):\s+\S+'
+          flags: 'gm'
+          error: 'Your first line has to contain a commit type in [meow/meta/module/feat/fix/docs/style/refactor/test/chore/perf/ci/build].' 
