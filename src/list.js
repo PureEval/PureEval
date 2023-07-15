@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { curry } from './curry.js';
 
 const zipWith = curry((f, a, b) => a.map((x, i) => f(x, b[i])));

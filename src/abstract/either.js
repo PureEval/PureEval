@@ -7,7 +7,7 @@ const Right = (value) => ({
 			return Left(error);
 		}
 	},
-	fold: (reject, resolve) => resolve(value),
+	fold: (_reject, resolve) => resolve(value),
 	chain: (f) => {
 		try {
 			return f(value);
@@ -18,9 +18,9 @@ const Right = (value) => ({
 });
 
 const Left = (value) => ({
-	map: (f) => Left(value),
-	fold: (reject, resolve) => reject(value),
-	chain: (f) => Left(value)
+	map: (_f) => Left(value),
+	fold: (reject, _resolve) => reject(value),
+	chain: (_f) => Left(value)
 });
 
 export { Right, Left };
