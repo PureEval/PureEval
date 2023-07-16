@@ -2,7 +2,7 @@
 
 [简体中文的 PureEval README](README_Chinese.md)
 
-[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v2.4-red) [![](https://img.shields.io/badge/npm-pureeval-orange.svg)](https://www.npmjs.com/pureeval) [![](https://img.shields.io/badge/npm-pureeval--es-blue.svg)](https://www.npmjs.com/pureeal-es)
+[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v2.4-red) [![](https://img.shields.io/badge/npm-pureeval-orange.svg)](https://www.npmjs.com/pureeval) [![](https://img.shields.io/badge/npm-pureeval--es-blue.svg)](https://www.npmjs.com/pureeval-es)
 
 PureEval was created for the [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) project, aiming to build a compact yet powerful JavaScript functional utility toolkit.
 
