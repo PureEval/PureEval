@@ -60,7 +60,7 @@ export {
 	every,
 	some,
 	concat,
-    concatr,
+	concatr,
 	head,
 	tail,
 	dropHead,

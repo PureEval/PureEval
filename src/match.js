@@ -1,7 +1,7 @@
-import { _ } from './placeholder.js';
-import { always, deepEqual, equalStrict } from './logic.js';
 import { Maybe } from './abstract/maybe.js';
 import { dropHead } from './list.js';
+import { always, deepEqual, equalStrict } from './logic.js';
+import { _ } from './placeholder.js';
 
 function __equalMaybe(a, b) {
 	if (!Maybe.is(a) || !Maybe.is(b)) return false;

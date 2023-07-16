@@ -26,4 +26,4 @@ const stateMachine = curry((seed, functions) => {
 	return (iv) => (seed = construct(iv)(seed));
 });
 
-export { higherPipe, higherComp, coalgebra, stateMachine };
+export { coalgebra, higherComp, higherPipe, stateMachine };

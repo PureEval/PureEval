@@ -15,4 +15,4 @@ const view = curry((lens, value) => lens.getter(value));
 const set = curry((lens, opt, value) => lens.setter(opt, value));
 const over = curry((lens, f, value) => lens.setter(f(lens.getter(value)), value));
 
-export { Lens, view, set, over };
+export { Lens, over, set, view };

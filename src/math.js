@@ -1,5 +1,5 @@
-import { _ } from './placeholder.js';
 import { curry } from './curry.js';
+import { _ } from './placeholder.js';
 
 const odd = (v) => (v & 1) === 1;
 
@@ -50,26 +50,26 @@ const inc = (x) => x + 1;
 const dec = (x) => x - 1;
 
 export {
-	odd,
-	even,
 	add,
-	minus,
-	mul,
+	average,
+	dec,
 	div,
 	divr,
-	mod,
-	rema,
-	power,
-	sort,
-	upper,
-	under,
-	sum,
-	prod,
-	negate,
-	average,
-	median,
-	max,
-	min,
+	even,
 	inc,
-	dec
+	max,
+	median,
+	min,
+	minus,
+	mod,
+	mul,
+	negate,
+	odd,
+	power,
+	prod,
+	rema,
+	sort,
+	sum,
+	under,
+	upper
 };

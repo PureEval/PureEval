@@ -22,7 +22,6 @@ const _Maybe = (v) => ({
 	[tag]: true
 });
 
-
 const Maybe = {
 	of: (v) => _Maybe(v),
 	is: (m) => Object.prototype.hasOwnProperty.call(m, tag)

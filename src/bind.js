@@ -1,6 +1,6 @@
-import { summon } from './summon.js';
 import { curry } from './curry.js';
 import { _ } from './placeholder.js';
+import { summon } from './summon.js';
 
 const bind = curry((func, ...args) => {
 	if (args.length < func.length) args.push(...new Array(func.length - args.length).fill(_));

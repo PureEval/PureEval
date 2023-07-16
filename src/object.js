@@ -76,4 +76,4 @@ const construct = (cls) => curry(summon(cls.constructor.length, (...args) => new
 
 const has = curry((prop, obj) => Object.prototype.hasOwnProperty.call(obj, prop));
 
-export { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has };
+export { assoc, construct, deepClone, dissoc, has, keys, makePair, modify, prop, values };

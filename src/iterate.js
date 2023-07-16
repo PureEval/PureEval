@@ -1,5 +1,5 @@
-import { _ } from './placeholder.js';
 import { curry } from './curry.js';
+import { _ } from './placeholder.js';
 
 const __boom = (args) =>
 	args.reduce((acc, curr) => curr.flatMap((v) => acc.map((w) => [...w, v])), [[]]);
@@ -22,4 +22,4 @@ const fold = curry((fun, cnt, init) => {
 
 const scan = curry((fun, cnt, init) => Array.from({ length: cnt }, () => (init = fun(init))));
 
-export { iterate, map, flatMap, forEach, reduce, fold, scan };
+export { flatMap, fold, forEach, iterate, map, reduce, scan };
