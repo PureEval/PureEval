@@ -30,7 +30,7 @@ jobs:
 
       - name: Move
         run: |
-          mv ./dist/common/PureEval.es.js ./build/index.js
+          mv ./dist/esm/PureEval.es.js ./build/index.js
           cp ./README.md ./build/
       
       - name: Switch
