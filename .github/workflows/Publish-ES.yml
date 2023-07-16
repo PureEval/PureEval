@@ -34,7 +34,7 @@ jobs:
           cp ./README.md ./build/
       
       - name: Switch
-        run: node ./build/switch.mjs
+        run: npm run switch
 
       - name: Publish
         run: npm publish --access public

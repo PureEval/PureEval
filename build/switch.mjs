@@ -2,7 +2,7 @@ import * as P from '../PureEval.js';
 import { readFile, writeFile } from 'fs';
 
 P.Task((reject, resolve) => {
-	readFile('./package.json', 'utf-8', (err, data) => {
+	readFile('./build/package.json', 'utf-8', (err, data) => {
 		if (err) reject(err);
 		resolve(data);
 	});
@@ -12,9 +12,9 @@ P.Task((reject, resolve) => {
 	.map(JSON.stringify)
 	.chain((context) =>
 		P.Task((reject, resolve) => {
-			writeFile('./package.json', context, (err) => {
+			writeFile('./build/package.json', context, (err) => {
 				if (err) reject(err);
-				resolve('package.json file switch completed');
+				resolve('package.json file switch completed.');
 			});
 		})
 	)

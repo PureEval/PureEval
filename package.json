@@ -8,6 +8,7 @@
 	"license": "ISC",
 	"scripts": {
 		"build": "node build/build.cjs",
+		"switch": "node build/switch.mjs",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js"
 	},
 	"devDependencies": {
