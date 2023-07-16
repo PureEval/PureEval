@@ -40,7 +40,7 @@ const dropTail = (arr) => arr.slice(0, -1);
 
 const includes = curry((a, b) => b.includes(a));
 
-const reverse = (arr) => arr.reduceRight((acc, cur) => [...acc, cur], []);
+const reverse = (arr) => [...arr].reverse();
 
 const countWith = curry((f, arr) => arr.filter(f).length);
 

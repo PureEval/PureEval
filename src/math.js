@@ -35,9 +35,9 @@ const median = (arr) => {
 	return sortedArr.length % 2 === 1 ? sortedArr[mid] : (sortedArr[mid - 1] + sortedArr[mid]) / 2;
 };
 
-const sum = (arr) => arr.reduce((x, y) => x + y);
+const sum = (arr) => arr.reduce(add);
 
-const prod = (arr) => arr.reduce((x, y) => x * y);
+const prod = (arr) => arr.reduce(mul);
 
 const max = (arr) => Math.max(...arr);
 
