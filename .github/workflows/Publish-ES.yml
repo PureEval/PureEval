@@ -33,7 +33,7 @@ jobs:
           mv ./dist/common/PureEval.es.js ./build/index.js
           cp ./README.md ./build/
       
-      -name: Switch
+      - name: Switch
         run: node ./build/switch.mjs
 
       - name: Publish
