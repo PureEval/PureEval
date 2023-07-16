@@ -10,7 +10,8 @@
 		"curry",
 		"maybe",
 		"task",
-        "IO"
+        "IO",
+        "math"
 	],
 	"author": "PureEval Dev",
 	"license": "GPL",

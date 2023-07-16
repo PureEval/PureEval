@@ -1,6 +1,6 @@
 # PrueEval
 
-[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v2.3-red) [![](https://img.shields.io/badge/npm-pureeval-orange.svg)](https://www.npmjs.com/pureeval) [![](https://img.shields.io/badge/npm-pureeval--es-blue.svg)](https://www.npmjs.com/pureeal-es)
+[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v2.4-red) [![](https://img.shields.io/badge/npm-pureeval-orange.svg)](https://www.npmjs.com/pureeval) [![](https://img.shields.io/badge/npm-pureeval--es-blue.svg)](https://www.npmjs.com/pureeal-es)
 
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
