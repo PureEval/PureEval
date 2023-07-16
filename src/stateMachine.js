@@ -8,12 +8,16 @@ const higherPipe = curry((functions, iv) => {
 	const processed = iv
 		.map((value, index) => (value !== 0 ? functions[index] : null))
 		.filter(Boolean);
-	iv = iv.map((value) => (value !== 0 ? value : null)).filter(Boolean);
-	const construct = pipe(...processed.map((value, index) => fold(value, iv[index])));
-	return summon(processed[0].length, (...args) => construct(...args));
+	const idx = iv.map((value) => (value !== 0 ? value : null)).filter(Boolean);
+	return summon(
+		processed[0].length,
+		pipe(...processed.map((value, index) => fold(value, idx[index])))
+	);
 });
 
-const higherComp = curry((functions, iv) => higherPipe(functions.reverse(), iv.reverse()));
+const higherComp = curry((functions, iv) =>
+	higherPipe([...functions].reverse(), [...iv].reverse())
+);
 
 const coalgebra = curry((seed, next) => () => (seed = next(seed)));
 
