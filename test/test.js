@@ -106,7 +106,8 @@ import {
 	pairList,
 	tryCatch,
 	count,
-	countWith
+	countWith,
+    concatr
 } from '../PureEval.js';
 
 (function main() {
@@ -856,6 +857,12 @@ function List() {
 			it('Base', () => {
 				assert.deepEqual(concat([1, 2, 3], [1, 2, 3]), [1, 2, 3, 1, 2, 3]);
 				assert.equal(concat('abc', 'def'), 'abcdef');
+			});
+		});
+        describe('concatr()', () => {
+			it('Base', () => {
+				assert.deepEqual(concatr([1, 3, 3], [1, 2, 3]), [1, 2, 3, 1, 3, 3]);
+				assert.equal(concatr('abc', 'def'), 'defabc');
 			});
 		});
 		describe('head()', () => {

@@ -28,6 +28,8 @@ const some = curry((f, arr) => arr.some(f));
 
 const concat = curry((a, b) => (Array.isArray(a) ? a.concat(b) : a + b));
 
+const concatr = curry((a, b) => concat(b, a));
+
 const head = (arr) => arr[0];
 
 const tail = (arr) => arr[arr.length - 1];
@@ -58,13 +60,14 @@ export {
 	every,
 	some,
 	concat,
+    concatr,
 	head,
 	tail,
 	dropHead,
 	dropTail,
 	includes,
 	reverse,
-    countWith,
+	countWith,
 	count,
-	pairList,
+	pairList
 };
