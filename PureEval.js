@@ -12,7 +12,7 @@ import { Right, Left } from './src/abstract/either.js';
 import { Maybe, Nothing, Just } from './src/abstract/maybe.js';
 import { Lens, view, set, over } from './src/abstract/optics.js';
 import { filter, reject, shield, choose } from './src/filter.js';
-import { compose, pipe, call, andthen, tryCatch } from './src/transform.js';
+import { compose, pipe, call, andThen, tryCatch } from './src/transform.js';
 import { MaybeAsync, NothingAsync, JustAsync } from './src/abstract/maybeAsync.js';
 import { iterate, map, flatMap, forEach, reduce, fold, scan } from './src/iterate.js';
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js';
@@ -36,7 +36,7 @@ export {
     Maybe, Nothing, Just,
     Lens, view, set, over,
     filter, reject, shield, choose,
-    compose, pipe, call, andthen, tryCatch,
+    compose, pipe, call, andThen, tryCatch,
     MaybeAsync, NothingAsync, JustAsync,
     iterate, map, flatMap, forEach, reduce, fold, scan,
     higherPipe, higherComp, coalgebra, stateMachine,

@@ -15,7 +15,7 @@ const compose = (...funcs) => pipe(...funcs.reverse());
 
 const call = curry((fun, args) => fun.apply(null, args));
 
-const andthen = curry((f, p) => p.then(f));
+const andThen = curry((f, p) => p.then(f));
 
 const tryCatch = curry((tryer, reject) => {
 	return curry(
@@ -29,4 +29,4 @@ const tryCatch = curry((tryer, reject) => {
 	);
 });
 
-export { compose, pipe, call, andthen, tryCatch };
+export { compose, pipe, call, andThen, tryCatch };
