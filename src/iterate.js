@@ -7,11 +7,11 @@ const __boom = (args) =>
 const iterate = (fun, ...args) =>
 	__boom(args.map((v) => (Array.isArray(v) ? v : [v]))).map((v) => fun.apply(null, v));
 
-const map = curry((rule, arr) => arr.map(rule));
+const map = curry((rule, arr) => arr.map((v, idx, arr) => rule(v, idx, arr)));
 
-const flatMap = curry((rule, arr) => arr.flatMap(rule));
+const flatMap = curry((rule, arr) => arr.flatMap((v, idx, arr) => rule(v, idx, arr)));
 
-const forEach = curry((rule, arr) => arr.forEach(rule));
+const forEach = curry((rule, arr) => arr.forEach((v, idx, arr) => rule(v, idx, arr)));
 
 const reduce = curry((fun, init, arr) => (init !== _ ? arr.reduce(fun, init) : arr.reduce(fun)));
 
