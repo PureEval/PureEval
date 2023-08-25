@@ -4,10 +4,10 @@
 <p align="center"><img width="200" src="./logo.svg" alt="logo"></a></p>
 <p align="center">
   <a href="https://github.com/PureEval/PureEval/blob/main/LICENSE"><img src="https://img.shields.io/github/license/pureeval/pureeval" alt="license"></a>
-  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/v/pureeval" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/v/pureeval"></a>
   <a href="https://www.npmjs.com/pureeval"><img src="https://img.shields.io/badge/npm-pureeval-orange.svg"></a>
   <a href="https://www.npmjs.com/pureeval-es"><img src="https://img.shields.io/badge/npm-pureeval--es-blue.svg"></a>
-  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/dw/pureeval alt="download"></a>
+  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/dw/pureeval"></a>
 </p>
 
 View this document in [简体中文](README_zh-CN.md) | English
