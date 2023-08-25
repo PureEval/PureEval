@@ -6,21 +6,41 @@ const Data = (...args) => {
 			this.type = type;
 		}
 	}
-	const data = { is: {}, from: (v) => v instanceof DATA };
+	let show = (D) => D.type;
+
+	const data = {
+		from: (v) => v instanceof DATA,
+		bindShow: (f) => (show = f)
+	};
+
 	args.forEach((value) => {
 		const functions = value.trim().split(' '),
 			functionName = functions.shift();
-		data[functionName] = functions.length
-			? summon(functions.length, (...iargs) => {
+		if (functions.length) {
+			data[functionName] = summon(
+				functions.length,
+				(...iargs) => {
 					const result = new DATA(functionName);
-					functions.forEach((item, idx) => (result[item] = iargs[idx]));
+					functions.forEach(
+						(item, idx) => (result[item] = iargs[idx])
+					);
 					result.args = iargs;
+					result.show = function () {
+						return show(this);
+					};
 					return result;
-			  })
-			: new DATA(functionName);
-		data[functionName].type = functionName;
-		data.is[functionName] = (val) => val instanceof DATA && val.type === functionName;
+				}
+			);
+		} else {
+			data[functionName] = new DATA(functionName);
+			data[functionName]['show'] = function () {
+				return show(this);
+			};
+		}
+		data[functionName]['is'] = (val) =>
+			val instanceof DATA && val.type === functionName;
 	});
+
 	return data;
 };
 

@@ -18,7 +18,7 @@ import { iterate, map, flatMap, forEach, reduce, fold, scan } from './src/iterat
 import { higherPipe, higherComp, coalgebra, stateMachine } from './src/stateMachine.js';
 import { rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words } from './src/string.js';
 import { prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has } from './src/object.js';
-import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse, eqData } from './src/logic.js';
+import { either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse, eqType, eqData } from './src/logic.js';
 import { odd, even, add, minus, mul, div, divr, mod, rema, power, upper, under, sort, sum, prod, negate, average, median, max, min, inc, dec } from './src/math.js';
 import { zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse, countWith, count, pairList, concatr } from './src/list.js';
 export {
@@ -42,7 +42,7 @@ export {
     higherPipe, higherComp, coalgebra, stateMachine,
     rexMatch, rexReplace, rexTest, split, toLower, toUpper, trim, words,
     prop, assoc, modify, dissoc, deepClone, keys, values, makePair, construct, has,
-    either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse, eqData,
+    either, both, not, gt, gte, lt, lte, equal, equalStrict, deepEqual, id, always, when, unless, ifElse, eqType, eqData,
     odd, even, add, minus, mul, div, divr, mod, rema, power, upper, under, sort, sum, prod, negate, average, median, max, min, inc, dec,
     zipWith, zip, join, slice, take, takeWhile, drop, dropWhile, every, some, concat, head, tail, dropHead, dropTail, includes, reverse, countWith, count, pairList, concatr
 };

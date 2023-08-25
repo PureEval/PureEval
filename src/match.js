@@ -1,7 +1,6 @@
 import { Maybe } from './abstract/maybe.js';
-import { dropHead } from './list.js';
+import { _, otherwise, unreached } from './placeholder.js';
 import { always, deepEqual, equalStrict } from './logic.js';
-import { _ } from './placeholder.js';
 
 function __equalMaybe(a, b) {
 	if (!Maybe.is(a) || !Maybe.is(b)) return false;
@@ -19,31 +18,47 @@ function __equalMaybe(a, b) {
 	return valueA === valueB || __equalObject(valueA, valueB);
 }
 
-const __equalObject = (a, b) => typeof a === 'object' && deepEqual(a, b);
-
-const __processArray = (rule, value) =>
-	Array.isArray(value) && value.length ? rule(value, value[0], dropHead(value)) : rule(value);
+const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
 
 const __typeTest = (a, b) => typeof a !== typeof b;
 
-const __unbalanceTest = (a, b) => a === _ || (typeof a === 'function' && a(b));
+const __equalObject = (a, b) => typeof a === 'object' && deepEqual(a, b);
 
-const __transformConstant = (value) =>
-	typeof value !== 'function' && value !== _ ? always(value) : value;
+function __judge(values, checker) {
+	if (!checker.length) return false;
+	if (checker[0] === otherwise) return true;
 
-const match = (...rules) => {
-	const rule = [];
-	for (let i = 0; i < rules.length; i += 2)
-		rule.push([rules[i], __transformConstant(rules[i + 1])]);
-	return (value) => {
-		for (const [checker, executer] of rule) {
-			if (__unbalanceTest(checker, value)) return __processArray(executer, value);
-			if (__typeTest(checker, value)) continue;
-			if (equalStrict(checker, value)) return executer(value);
-			if (__equalMaybe(checker, value)) return executer(value);
-			if (__equalObject(checker, value)) return __processArray(executer, value);
-		}
+	if (values.length !== checker.length) {
+		const effectiveChecker = checker[0];
+		if (typeof effectiveChecker === 'function' && effectiveChecker(...values)) return true;
+		return false;
+	}
+
+	for (let idx = 0; idx < checker.length; ++idx) {
+		const [rule, value] = [checker[idx], values[idx]];
+		if (__unbalanceTest(rule, value)) continue;
+		if (__typeTest(rule, value)) return false;
+		if (equalStrict(rule, value)) continue;
+		if (__equalMaybe(rule, value)) continue;
+		if (__equalObject(rule, value)) continue;
+		return false;
+	}
+
+	return true;
+}
+
+function match(...raw) {
+	const rules = raw.map(([checker, executer]) => {
+		if (!Array.isArray(checker)) checker = [checker];
+		if (typeof executer !== 'function') executer = always(executer);
+		return [checker, executer];
+	});
+
+	return (...values) => {
+		for (const [checker, executer] of rules)
+			if (__judge(values, checker)) return executer(...values);
+		return unreached;
 	};
-};
+}
 
 export { match };

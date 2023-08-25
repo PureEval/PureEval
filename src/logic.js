@@ -42,11 +42,29 @@ const deepEqual = curry((a, b) => {
 	);
 });
 
-const eqData = curry((data, a, b) => {
-	if (data.type !== b.type) return false;
+const __deepEqualData = curry((a, b) => {
+	if (a === b) return true;
+	if (typeof a !== typeof b) return false;
+	if (typeof a !== 'object' || a === null || b === null) return false;
+	const keysA = Object.keys(a),
+		keysB = Object.keys(b);
+	return (
+		keysA.length === keysB.length &&
+		keysA.every(
+			(key) =>
+				key === 'show' ||
+				(keysB.includes(key) && (deepEqual(a[key], b[key]) || a[key] === _))
+		)
+	);
+});
+
+const eqType = curry((a, b) => typeof a === typeof b);
+
+const eqData = curry((a, b) => {
+	if (a.type !== b.type) return false;
 	const { args: _, type: __, ...restA } = a,
 		{ args: ___, type: ____, ...restB } = b;
-	return deepEqual(restA, restB);
+	return __deepEqualData(restA, restB);
 });
 
 export {
@@ -65,5 +83,6 @@ export {
 	when,
 	unless,
 	ifElse,
+	eqType,
 	eqData
 };

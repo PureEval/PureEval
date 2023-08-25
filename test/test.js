@@ -109,6 +109,7 @@ import {
 	zip,
 	zipWith
 } from '../PureEval.js';
+import { otherwise } from '../src/placeholder.js';
 
 (function main() {
 	Curry();
@@ -401,11 +402,8 @@ function Logic() {
 		describe('eqData()', () => {
 			it('Base', () => {
 				const foo = Data('A a b c');
-				assert.equal(eqData(foo.A, { a: 1, b: 1, c: 2 }, foo.A(1, 1, 2)), true);
-				assert.equal(
-					eqData(foo.A, { a: 1, b: 1, c: { r: _ } }, foo.A(1, 1, { r: 1 })),
-					true
-				);
+				assert.equal(eqData({ a: 1, b: 1, c: 2 }, foo.A(1, 1, 2)), false);
+				assert.equal(eqData(foo.A(1, 1, { r: _ }), foo.A(1, 1, { r: 1 })), true);
 			});
 		});
 	});
@@ -415,36 +413,38 @@ function Match() {
 	describe('Match', () => {
 		describe('match()', () => {
 			it('Fibonacci', () => {
-				const fib = match(1, 1, 2, 2, _, (v) => fib(v - 1) + fib(v - 2));
+				const fib = match([1, 1], [2, 2], [_, (v) => fib(v - 1) + fib(v - 2)]);
 				assert.equal(fib(5), 8);
 			});
 			it('FastSort', () => {
-				const sort = match([], [], _, (_a, x, s) => [
-					...sort(filter(lte(x), s)),
-					x,
-					...sort(filter(gt(x), s))
-				]);
+				const sort = match(
+					[[[]], []],
+					[
+						_,
+						([x, ...xs]) => [...sort(filter(lte(x), xs)), x, ...sort(filter(gt(x), xs))]
+					]
+				);
 				assert.deepEqual(sort([4, 6, 7, 4, 1]), [7, 6, 4, 4, 1]);
 			});
 			it('Maybe', () => {
-				const foo = match(Just('1'), 1, Nothing, 2, _, 3);
+				const foo = match([Just('1'), 1], [Nothing, 2], [otherwise, 3]);
 				assert.deepEqual(foo(Just('1')), 1);
 				assert.deepEqual(foo(Nothing), 2);
 				assert.deepEqual(foo(Just(2)), 3);
 			});
 			it('Check', () => {
-				const foo = match((v) => v <= 3, 1, _, 2);
+				const foo = match([(v) => v <= 3, 1], [otherwise, 2]);
 				assert.deepEqual(foo(5), 2);
 				assert.deepEqual(foo(1), 1);
 			});
 			it('Array', () => {
-				const foo = match([1, 2, 3], '123', [], 'e', _, 1);
+				const foo = match([[[1, 2, 3]], '123'], [[[]], 'e'], [otherwise, 1]);
 				assert.deepEqual(foo([1, 2, 3]), '123');
 				assert.deepEqual(foo([]), 'e');
 				assert.deepEqual(foo([1, 2, 3, 4]), 1);
 			});
 			it('Object', () => {
-				const foo = match({ a: 1 }, 1, _, 2);
+				const foo = match([{ a: 1 }, 1], [otherwise, 2]);
 				assert.deepEqual(foo({ a: 2 }), 2);
 				assert.deepEqual(foo({ a: 1 }), 1);
 			});
@@ -926,7 +926,7 @@ function abstractData() {
 		describe('Data()', () => {
 			it('Maybe', () => {
 				const rMaybe = Data('Just a', 'Nothing');
-				assert.equal(rMaybe.is.Just(rMaybe.Just(1)), true);
+				assert.equal(rMaybe.Just.is(rMaybe.Just(1)), true);
 				assert.equal(rMaybe.Just(2).a, 2);
 			});
 			it('Round', () => {
