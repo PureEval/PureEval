@@ -31,6 +31,7 @@ import {
 	dropTail,
 	dropWhile,
 	either,
+	eqType,
 	eqData,
 	equal,
 	equalStrict,
@@ -397,6 +398,12 @@ function Logic() {
 					(v) => 'homo' + v
 				);
 				assert.equal(foo(' is you!'), 'homo is you!');
+			});
+		});
+		describe('eqType()', () => {
+			it('Base', () => {
+				assert.equal(eqType(1, '1'), false);
+				assert.equal(eqType('1', '2'), true);
 			});
 		});
 		describe('eqData()', () => {

@@ -1,6 +1,16 @@
-# PrueEval
+<p align="center">
+  <h1 align="center">Serein</h1>
+</p>
+<p align="center"><img width="200" src="./logo.svg" alt="logo"></a></p>
+<p align="center">
+  <a href="https://github.com/PureEval/PureEval/blob/main/LICENSE"><img src="https://img.shields.io/github/license/pureeval/pureeval" alt="license"></a>
+  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/v/pureeval" alt="npm"></a>
+  <a href="https://www.npmjs.com/pureeval"><img src="https://img.shields.io/badge/npm-pureeval-orange.svg"></a>
+  <a href="https://www.npmjs.com/pureeval-es"><img src="https://img.shields.io/badge/npm-pureeval--es-blue.svg"></a>
+  <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/dw/pureeval alt="download"></a>
+</p>
+查看此文档的 [English](README.md) | 简体中文 版本
 
-[![](https://img.shields.io/badge/License-GPL-green)](https://github.com/Lampese/PureEval/blob/main/LICENSE) ![](https://img.shields.io/badge/version-v2.4.1-red) [![](https://img.shields.io/badge/npm-pureeval-orange.svg)](https://www.npmjs.com/pureeval) [![](https://img.shields.io/badge/npm-pureeval--es-blue.svg)](https://www.npmjs.com/pureeval-es)
 
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
