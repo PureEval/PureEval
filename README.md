@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Serein</h1>
+  <h1 align="center">PureEval</h1>
 </p>
 <p align="center"><img width="200" src="./logo.svg" alt="logo"></a></p>
 <p align="center">
