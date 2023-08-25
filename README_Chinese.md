@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Serein</h1>
+  <h1 align="center">PureEval</h1>
 </p>
 <p align="center"><img width="200" src="./logo.svg" alt="logo"></a></p>
 <p align="center">
@@ -9,13 +9,13 @@
   <a href="https://www.npmjs.com/pureeval-es"><img src="https://img.shields.io/badge/npm-pureeval--es-blue.svg"></a>
   <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/dw/pureeval alt="download"></a>
 </p>
+
 查看此文档的 [English](README.md) | 简体中文 版本
 
 
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
 PureEval 具有以下特点：
-<img align="right" src="https://raw.githubusercontent.com/PureEval/PureEval/main/logo.svg" height="150px" alt="logo">
 
 - 支持对任意参数函数的柯里化和复变。
 - 大量可以参与函数式编程的实用函数。
