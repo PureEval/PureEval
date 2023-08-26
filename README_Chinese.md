@@ -12,7 +12,6 @@
 
 查看此文档的 [English](README.md) | 简体中文 版本
 
-
 PureEval 因 [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) 项目而生，意在打造一个精巧而强大的 JavaScript 函数式工具包。
 
 PureEval 具有以下特点：

@@ -32,7 +32,9 @@ const sort = curry((rule, arr) => arr.sort(rule !== _ ? rule : undefined));
 const median = (arr) => {
 	const sortedArr = [...arr].sort((a, b) => a - b);
 	const mid = Math.floor(sortedArr.length / 2);
-	return sortedArr.length % 2 === 1 ? sortedArr[mid] : (sortedArr[mid - 1] + sortedArr[mid]) / 2;
+	return (sortedArr.length & 1) === 1
+		? sortedArr[mid]
+		: (sortedArr[mid - 1] + sortedArr[mid]) / 2;
 };
 
 const sum = (arr) => arr.reduce(add);
