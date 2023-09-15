@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.com/package/pureeval"><img src="https://img.shields.io/npm/dw/pureeval"></a>
 </p>
 
-View this document in [简体中文](README_zh-CN.md) | English
+View this document in [简体中文](README_Chinese.md) | English
 
 PureEval was created for the [VoxelGeometry](https://github.com/CAIMEOX/VoxelGeometry) project, aiming to build a compact yet powerful JavaScript functional utility toolkit.
 
