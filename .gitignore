@@ -3,4 +3,5 @@ node_modules
 dist
 test.js
 package-lock.json
+pnpm-lock.yaml
 .directory

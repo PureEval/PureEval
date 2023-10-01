@@ -30,22 +30,23 @@ const upper = () => (a, b) => a > b ? -1 : a < b ? 1 : 0;
 const sort = curry((rule, arr) => arr.sort(rule !== _ ? rule : undefined));
 
 const median = (arr) => {
-	const sortedArr = [...arr].sort((a, b) => a - b);
+	if (arr.length === 0) return 0;
+	const sortedArr = [...arr].sort();
 	const mid = Math.floor(sortedArr.length / 2);
 	return (sortedArr.length & 1) === 1
 		? sortedArr[mid]
 		: (sortedArr[mid - 1] + sortedArr[mid]) / 2;
 };
 
-const sum = (arr) => arr.reduce(add);
+const sum = (arr) => arr.reduce(add, 0);
 
-const prod = (arr) => arr.reduce(mul);
+const prod = (arr) => arr.reduce(mul, 1);
 
 const max = (arr) => Math.max(...arr);
 
 const min = (arr) => Math.min(...arr);
 
-const average = (arr) => sum(arr) / arr.length;
+const average = (arr) => (arr.length === 0 ? 0 : sum(arr) / arr.length);
 
 const inc = (x) => x + 1;
 

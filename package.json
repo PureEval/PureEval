@@ -9,12 +9,14 @@
 	"scripts": {
 		"build": "node build/build.cjs",
 		"switch": "node build/switch.mjs",
-		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js"
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js",
+		"pbt": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/pe.test.js"
 	},
 	"devDependencies": {
 		"chalk": "4.0.0",
 		"esbuild": "^0.17.18",
 		"eslint": "^8.32.0",
+		"fast-check": "^3.13.1",
 		"jest": "^29.5.0"
 	}
 }
